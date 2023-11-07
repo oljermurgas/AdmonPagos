@@ -1,0 +1,64 @@
+/* -------------------------------------------
+ 2. ESTILO CONTENDOR
+ ---------------------------------------------*/
+ .contendor-componente{
+    height: 35.75rem;
+}
+
+/* -------------------------------------------
+2. ESTILO LISTA DE ITEM
+---------------------------------------------*/
+.contenedor-item-registro {
+    background-color: white;
+    border: 1px solid #cdbebe;
+    padding: 1px;
+    border-radius: var(--bs-border-radius);
+    z-index: 1;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    overflow: hidden; }
+  
+.contenedor-item-registro:hover {
+    color: #35363c;
+    background-color: #fff;
+    border-color: #17a2b8; }
+
+.contenedor-item-registro:active {
+    color: #35363c !important;
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important; }
+
+.contenedor-item-registro:focus {
+    background-color: #35363c;
+    color: #35363c !important;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(4, 85, 235, 0.5) !important;
+    box-shadow: 0 0 0 0.2rem rgba(4, 85, 235, 0.5) !important; }
+
+.texto-lista-item {
+    display: block;
+    width: 100%;
+    height: 1.6rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    -webkit-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;  }
+   
+.black-icon {
+color: rgb(63, 62, 62);  }
+
+.cursor-pointer {
+    cursor: pointer;  }
+
+
+.fa-trash-alt:before {
+    content: "\f2ed";
+    font-size: 1rem;
+}
+
+.fa-edit:before {
+    content: "\f044";
+    font-size: 1rem;
+}

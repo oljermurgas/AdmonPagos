@@ -1,0 +1,85 @@
+<section class="container tarjeta-govco horizontal-tarjeta-govco mt-4" href="" title="{{nombreRecurso}}">
+    <div class="row">
+      <div class="col-12 col-md-3 container-img-tarjeta-govco">
+          <div class="image-container" [style.backgroundImage]="'url(' + (imagenTipoObligacion ? imagenTipoObligacion : imagenTipoObligacion) + ')'">
+          <div class="overlay-text">
+            <span>
+              <img id="btn-boton-icono" src="{{iconoTipoFormatoRecurso}}" alt="Ícono {{tipoFormatoRecurso}} asociado al recurso" class="icon">
+            </span>
+            <span>
+              <div>
+                <a [ngClass]="{
+                  'pagada': estadoFacturaActual === 'pagada',
+                  'reclamo': estadoFacturaActual === 'reclamo',
+                  'pendiente': estadoFacturaActual === 'pendiente',
+                  'proxvencer': estadoFacturaActual === 'prox vencer'
+                }" class="descripcion_opciones_etiqueta capitalizar">{{estadoFacturaActual}}</a>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+  
+      <div class="col-12 col-md-9 p-3">
+        <article class="container mt-1">
+          <h3 class="titulo-nivel"> {{nombreSede}} </h3>
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <a class="subtitulo-nivel">Nombre entidad: </a> <a class="descripcion_opciones">{{nombreEntidad}}</a>
+            </div>
+ 
+            <div class="col-6 d-flex align-items-center mt-1">
+              <a class="titulo_opciones">Fecha emision: </a>
+                  <span class="mx-1">
+                    <i class="fa-regular fa-calendar"></i>
+                  </span>
+                  <h6 class="descripcion_opciones m-0" style="text-decoration: none;">
+                    {{facturaFechaEmision | date: 'dd/MM/yyyy'}}
+                  </h6>
+            </div>
+
+            <div class="col-6 d-flex align-items-center mt-1">
+                <a class="titulo_opciones">Fecha pago oportuno: </a>
+                    <span class="mx-1">
+                      <i class="fa-solid fa-calendar-day"></i>
+                    </span>
+                    <h6 class="descripcion_opciones m-0" style="text-decoration: none;">
+                      {{facturaFechaPagoOportuno | date: 'dd/MM/yyyy'}}
+                    </h6>
+            </div>
+
+            <div class="col-12 d-flex align-items-center mt-1">
+              <a class="titulo_opciones">Valor: </a>
+                  <span class="mx-1">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                  </span>
+                  <h6 class="descripcion_opciones m-0" style="text-decoration: none;">
+                    {{facturaValor | number:'1.2-2'}}
+                  </h6>
+            </div>
+  
+            <div class="col-12 mt-1">
+              <p class="descripcion-nivel mt-1"> {{facturaNota}} </p>
+            </div>
+  
+            <div class="col-12">
+              <div class="contenedor-descripcion-nivel">
+                <span class="mx-1" *ngIf="!confirmPopupOpened" (click)="openPopup(idFactura)">
+                  <img id="btn-boton-icono-descarga" src="./assets/ico/descargar.svg" alt="Ícono descarga recurso" class="icon">
+                </span>
+                <span>
+                  <a class="texto-boton-descargar">
+                    <a *ngIf="!confirmPopupOpened" (click)="openPopup(idFactura)"> DESCARGAR</a>
+                  </a>
+                </span>
+              </div>
+            </div>
+  
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+  <app-custom-popup></app-custom-popup>

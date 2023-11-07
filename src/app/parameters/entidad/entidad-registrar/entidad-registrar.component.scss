@@ -1,0 +1,13 @@
+.bg-success {
+    color: #fff;
+    background-color: #00ad75;
+    border-color: #00ad75;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease; }
+
+.contenedor-checkbox{
+   height: calc(1.5em + 0.75rem + 2px);
+}

@@ -1,0 +1,313 @@
+// $width: 300px;
+// $padding: 10px;
+// $bgcolor: rgb(52, 52, 52);
+// $hovercolor: rgb(23, 23, 23);
+// $widt-collapsed: 50px;
+
+// .contenedor-flex{
+//     display: flex;
+// }
+
+// #body-menu{
+//     background-color: #032c55;
+//     background-color: red;
+//     font-family: Arial, Helvetica, sans-serif;
+//     font-size: 18px;
+//     padding: 0;
+//     margin: 0;
+//     margin-left: $widt-collapsed;
+// }
+
+// .body-expanded{
+//     margin-left: $width;
+// }
+
+
+// #main-container{
+//     color: white;
+//     background-color: yellow;
+//     width: 100%;
+//     // width: calc((#{$width} - #{$widt-collapsed}) - 5px);
+// }
+
+
+// #sidemenu{
+//     background-color: $bgcolor;
+//     color: white;
+//     position: fixed;
+//     height: 100%;
+//     left: 0;
+//     top: 0;
+//     // width: $width;
+// }
+
+
+// #sidemenu a {
+//     color: white;
+//     text-decoration: none;
+// }
+
+// /* HEADER */
+// #sidemenu #header {
+//     box-sizing: border-box;
+//     border-bottom: solid 1px $hovercolor;
+// }
+
+// #sidemenu #header #title{
+//     box-sizing: border-box;
+//     overflow: hidden;
+// }
+
+
+// #sidemenu #header #title, #sidemenu #header #menu-btn{
+//     vertical-align: middle;
+// }
+
+// #sidemenu #header #menu-btn{
+//     display: inline-block;
+// }
+
+// #sidemenu #header #menu-btn{
+//     cursor: pointer;
+//     padding: 10px;
+//     width: $widt-collapsed;
+//     box-sizing: border-box;
+// }
+
+// #sidemenu #header #menu-btn:hover{
+//     background-color:  $hovercolor;
+// }
+
+// #sidemenu #header #menu-btn .btn-hamburger{
+//     background-color: #fff;
+//     width: 100%;
+//     height: 2px;
+//     margin: 5px 0;
+// }
+
+// /* PROFILE */
+
+// #sidemenu #profile{
+//     border-bottom: solid 1px $hovercolor;
+//     padding: $padding 0;
+//     text-align: center;
+// }
+
+// #sidemenu #profile #photo{
+//   box-sizing: border-box;
+//   padding: $padding;
+//   margin: 0 auto;
+// }
+
+// #sidemenu #profile #photo img{
+//         border-radius: 50%;
+//         width: 60%;
+//         // border: 3px solid red($color: #000000);
+// }
+
+// #sidemenu #profile #photo, #sidemenu #profile #name{
+//     font-size: 24px;
+//     padding: $padding 0;
+//     overflow: hidden;
+// }
+
+
+
+// /* ITEM */   
+
+// #sidemenu #menu-items{
+//     overflow: hidden;
+// }
+
+// #sidemenu #menu-items .item{
+//     width: $width;
+// }
+
+// #sidemenu #menu-items .item .icon{
+//     display: inline-block;
+// }
+
+// #sidemenu #menu-items .item .icon,
+// #sidemenu #menu-items .item .title{
+//     font-size: 14px;
+//     vertical-align: middle;
+//     overflow: hidden;
+//     display: inline-block;
+// }
+
+// #sidemenu #menu-items .item a{
+//     display: block;
+// }
+
+
+// #sidemenu #menu-items .item a:hover{
+//     background-color: $hovercolor;
+// }
+
+// #sidemenu #menu-items .item .icon{
+//     box-sizing: border-box;
+//     padding: $padding;
+//     width: $widt-collapsed;
+// }
+
+
+// #sidemenu #menu-items .item .icon img {
+//     width: 100%;
+// }
+
+
+// #sidemenu #menu-items .item .title{
+//     padding: $padding 0;
+// }
+
+// #sidemenu #menu-items .item.separator{
+//     height: 1px;
+//     border-bottom: solid 1px $hovercolor;
+//     margin:  15px 0;
+// }
+
+// .menu-expanded {
+//     width: $width;
+//     box-sizing: 0 0 10px rgba(0,0,0,0.5);
+// }
+
+
+// .menu-expanded #header #title {
+//     display: inline-block;
+//     width: calc(100% - 50px);
+//     margin-right: -5px;
+//     padding: $padding;
+// }
+
+// .menu-expanded #header #title span {
+//     width: calc((#{$width} - #{$widt-collapsed}) - 5px);
+//     overflow: hidden;
+//     // display: inline-block;
+// }
+
+// .menu-expanded #profile #photo{
+//     width: 200px;
+// }
+
+// .menu-expanded #profile #name{
+//    width: 100%;
+// }
+
+
+
+// .menu-collapsed{
+//     width: $widt-collapsed;
+// }
+
+// .menu-collapsed #header #title {
+//     width: 0;
+//     height: 0;
+//     padding: 0;
+//     margin: 0;
+// }
+
+// .menu-collapsed #profile #name{
+//     display: none;
+// }
+
+// .menu-collapsed .item {
+//     width: 100px;
+// }
+
+html{
+  
+    font-family: "Montserrat",sans-serif;
+    font-size: 1rem;
+    color: #004884;
+}
+
+
+/* Estilo base para la lista de menú */
+mat-list {
+    padding: 0;
+    list-style: none;
+    width: 250px; /* Ancho del menú lateral */
+    background-color: #333; /* Color de fondo del menú */
+    color: #fff; /* Color del texto */
+  }
+  
+  /* Estilo para los elementos de la lista */
+  mat-list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Estilo cuando se coloca el cursor sobre un elemento */
+  mat-list-item:hover {
+    background-color: #555; /* Color de fondo al pasar el cursor */
+  }
+  
+  /* Estilo para el icono en los elementos */
+  mat-icon {
+    margin-right: 10px;
+  }
+  
+  /* Estilo para el submenú */
+  mat-nav-list {
+    padding-left: 20px; /* Espaciado del submenú con respecto a los elementos principales */
+  }
+  
+  /* Estilo para el submenú cuando se muestra */
+  mat-nav-list.open {
+    display: block;
+    transition: max-height 0.3s;
+  }
+  
+  /* Estilo para el submenú cuando se oculta */
+  mat-nav-list:not(.open) {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s;
+  }
+  
+  /* Estilo para los elementos del submenú */
+  mat-nav-list mat-list-item {
+    padding: 5px 0;
+    cursor: pointer;
+  }
+  
+  /* Estilo para los elementos del submenú al pasar el cursor */
+  mat-nav-list mat-list-item:hover {
+    background-color: #444;
+  }
+
+  .mat-list-item-content {
+    color: white !important;
+  }
+
+  .material-icons{
+    color:white;
+    font-size: 1.5rem;
+  }
+
+
+
+  .mat-list-base .mat-list-item {
+    font-size: 16px;
+    color: white !important;
+}
+
+.mat-list {
+  padding: 0;
+  list-style: none;
+  width: 250px;
+  background-color: #0b487d;
+  color: #fff;
+}
+
+* {
+  font-size: 1rem;
+  // color: red !important;
+}
+
+// span.mat-list-item-content {
+//   color: yellow;
+// }

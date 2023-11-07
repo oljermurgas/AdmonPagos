@@ -1,0 +1,290 @@
+//---------------------------------------
+// CSS POPUP
+//---------------------------------------
+  .contenedor-banner-descarga {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    pointer-events: none;
+    background: rgba(75, 75, 75, 0.3);
+    pointer-events: none;
+  }
+
+  .popup-container {
+    top: 161px;
+    left: 370px;
+    width: 540px;
+    height: 406px;
+    background: #FFF 0% 0% no-repeat padding-box !important;
+    padding: 60px 90px 60px 90px;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px !important;
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    opacity: 1;
+    border: 1px solid rgb(236, 235, 235);
+    pointer-events: auto;
+  }
+
+//---------------------------------------
+// CSS ELEMENTOS DENTRO DEL POPUP TEXTOS
+//---------------------------------------
+
+.area-descripcion
+{
+  width: 330px;
+  height: auto;
+  white-space: initial;
+}
+
+  .titulo-banner-descarga {
+    top: 297px;
+    width: 320px;
+    height: 39px;
+    text-align: center;
+    font: normal normal 600 32px/46px Montserrat;
+    letter-spacing: 0px;
+    color: #3366CC;
+    opacity: 1;
+    padding-bottom: 60px;
+  }
+
+  .descripcion-banner-descarga {
+    color: #4B4B4B;       
+    font: normal normal 14px Work Sans;
+
+    display: -webkit-box; 
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+    white-space: normal; 
+    text-overflow: ellipsis; 
+  }
+
+  .spam-text {
+    font: normal normal 600 14px Work Sans;
+    color: #4B4B4B;
+    text-align: center;
+}
+
+.spam-text-sinnegrilla {
+  font: normal normal 14px Work Sans;
+  color: #4B4B4B;
+  text-align: center;
+  margin-bottom: 10px !important;
+  white-space: nowrap; 
+  letter-spacing: -0.9px;
+}
+
+.spam-text-peso{
+  color: #4B4B4B;
+  font: normal normal 600 14px/21px Work Sans;
+}
+
+//---------------------------------------
+// CSS ELEMENTOS DENTRO DEL POPUP BOTONES E ICONO
+//---------------------------------------
+
+  .btn-container {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .btn-cancelar-descarga {
+    width: 165px;
+    height: 42px;
+    color: #3366CC;
+    background-color: #fff;
+    border-color: #3366CC;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 20px;
+  }
+
+  .btn-cancelar-descarga:hover {
+    color: #fff;
+    background-color: #004884;
+    border-color: #004884;
+  }
+
+.btn-aceptar-descarga {
+  width: 165px;
+  height: 42px;
+  color: #fff;
+  background-color: #3366CC;
+  border-color: #3366CC;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.btn-aceptar-descarga:hover {
+  color: #fff;
+  background-color: #004884;
+  border-color: #004884;
+}
+
+// CSS ICONO
+.btn {
+  border-radius: 2rem;
+  padding: .6rem 2rem;
+}
+
+.btn-check {
+  border-radius: 2rem;
+  padding: 0.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: #3366CC;
+}
+
+.rounded-icon {
+  background-color: #3366CC;
+  border-radius: 50%;
+  padding: 0.2em 0.25em;
+  margin-right: 0.2em;
+}
+
+.fa-check:before {
+  color: #FFFFFF;
+}
+
+
+@media (max-width: 992px) {
+
+  .contenedor-banner-descarga {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    pointer-events: none;
+    // background: rgba(75, 75, 75, 0.9);
+  }
+
+.popup-container {
+  width: 328px;
+  background: #FFF 0% 0% no-repeat padding-box;
+  opacity: 1;
+  padding-top:48px;
+  padding-left:24px;
+  padding-right:24px;
+  padding-bottom:56px;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px !important;
+  margin: 0;
+  top: 40%;
+  transform: translateX(-50%);
+  z-index: 2;
+  border: 1px solid rgb(236, 235, 235);
+  transform:translate(-50%,-50%);
+}
+
+.area-descripcion
+{
+  width: 280px;
+  height: auto;
+  white-space: initial;
+  overflow: hidden; /* Agregamos esta propiedad para que los contenidos grandes no se desborden */
+
+}
+.spam-text-sinnegrilla {
+  font: normal normal 14px Work Sans;
+  color: #4B4B4B;
+  text-align: center;
+  margin-bottom: 0px !important;
+  letter-spacing: -0.9px;
+  white-space: initial;
+}
+
+.titulo-banner-descarga {
+  left: 40px;
+  width: 280px;
+  height: auto;
+  text-align: center;
+  font: normal normal 600 24px/46px Montserrat;
+  letter-spacing: 0px;
+  color: #3366CC;
+  opacity: 1;
+  padding-top: 0px; 
+  padding-bottom: 0px;
+}
+
+.btn-cancelar-descarga {
+  width: 280px;
+  height: 42px;
+  color: #3366CC;
+  background-color: #fff;
+  border-color: #3366CC;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: 20px;
+}
+
+
+.btn-aceptar-descarga {
+width: 280px;
+height: 42px;
+color: #fff;
+background-color: #3366CC;
+border-color: #3366CC;
+position: relative;
+overflow: hidden;
+z-index: 1;
+border-radius: 20px;
+}
+
+.btn-container {
+  position: absolute;
+  left: 9px;
+  width: 312px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.descripcion-banner-descarga {
+  color: #4B4B4B;       
+  font: normal normal 14px Work Sans;
+  width: 280px;
+  display: -webkit-box; 
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
+  white-space: normal; 
+  text-overflow: ellipsis; 
+}
+
+.spam-text {
+  font: normal normal 600 14px Work Sans;
+  color: #4B4B4B;
+  text-align: center;
+}
+
+
+
+}

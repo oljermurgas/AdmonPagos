@@ -1,0 +1,27 @@
+<div class="contenedor-banner-descarga" *ngIf="isOpen">
+  <div class="container popup-container">
+
+    <div class="input-group-append d-flex align-items-center justify-content-center mb-3">
+      <button type="button" class="btn btn-check rounded-circle">
+        <i class="fa fa-check fa-lg"></i>
+      </button>
+    </div>
+
+    <div class="titulo-banner-descarga">Descargar recursos </div>
+    <div class="area-descripcion">
+      <p class="spam-text-sinnegrilla">¿Esta seguro de que desea descargar el recurso</p>
+      <p class="spam-text descripcion-banner-descarga">"{{title}}"<span class="spam-text-sinnegrilla ">?</span></p>
+      <p class="spam-text-sinnegrilla">Peso: <span class="spam-text-peso">{{peso}} MB</span></p>
+    </div>
+    <div class="btn-container">
+      <div class="row">
+        <div class="col-12 col-sm-6 my-1">
+          <button class="btn btn-aceptar-descarga" (click)="onAccept()">Descargar</button>
+        </div>
+        <div class="col-12 col-sm-6 my-1">
+          <button class="btn btn-cancelar-descarga" (click)="onCancel()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

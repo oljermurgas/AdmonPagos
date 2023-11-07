@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+//-------------------------------------------
+// PATRONES DE COLORES
+//-------------------------------------------
+$principal:#00ad75;
+$secundario:#35363c;
+$texto:#696969;
+
+/* -------------------------------------------
+1. TIPOGRAFIA DEL SITIO
+---------------------------------------------*/
+
+html{
+    font-size: 14px;
+}
+
+body{
+    // font-family: 'Lato', sans-serif;
+    font-family: "Montserrat",sans-serif;
+    color: $texto;
+}
+
+.row >{
+    background-color: #00ad75;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

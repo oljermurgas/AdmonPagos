@@ -1,0 +1,368 @@
+html {
+    font-size: 100%; /* 100% = 16px */
+  }
+  
+  .h4{
+    font-size: 0.75rem;
+  }
+  
+  .tarjeta-govco {
+    border-radius: 0.625rem;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .tarjeta-govco .container-img-tarjeta-govco {
+    background-color: #F6F8F9;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  
+  .tarjeta-govco .container-img-tarjeta-govco .image-tarjeta-govco {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+  
+  .tarjeta-govco .body-tarjeta-govco {
+    background-color: #FFFFFF;
+  }
+  
+  .tarjeta-govco .body-tarjeta-govco span {
+    color: #707070;
+    font-size: 14px;
+    font-family: WorkSans-Regular;
+    margin-bottom: 0.625rem;
+    display: block;
+  }
+  
+  .tarjeta-govco .body-tarjeta-govco h5 {
+    font-family: Montserrat-SemiBold;
+    color: #3366CC;
+    text-decoration: underline;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 0.625rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.688rem;
+  }
+  
+  .tarjeta-govco .body-tarjeta-govco p {
+    font-family: WorkSans-Regular;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    // -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: 0;
+    line-height: 1.5rem;
+  }
+  
+  .tarjeta-govco:hover,
+  .tarjeta-govco:focus-visible,
+  .tarjeta-govco:focus {
+    text-decoration: none;
+    box-shadow: 0 0.25rem 0 #3366CC24;
+  }
+  
+  .tarjeta-govco:focus-visible,
+  .tarjeta-govco:focus {
+    outline: max(0.125rem, 0.15em) solid #000000;
+    outline-offset: max(0.125rem, 0.15em);
+  }
+  
+  .tarjeta-govco:hover .body-tarjeta-govco h5,
+  .tarjeta-govco:focus .body-tarjeta-govco h5 {
+    color: #004884;
+  }
+  
+  .tarjeta-govco.horizontal-tarjeta-govco {
+    border: 0.063rem solid #E5EEFB;
+  }
+  
+  .tarjeta-govco.horizontal-tarjeta-govco .container-img-tarjeta-govco {
+    border-radius: 0.625rem 0 0 0.625rem;
+    padding: 0px;
+  }
+  
+  .tarjeta-govco.horizontal-tarjeta-govco .body-tarjeta-govco {
+    border-radius: 0 0.625rem 0.625rem 0;
+    padding:1.875rem;
+    overflow: auto;
+    max-height: none;
+  }
+  
+  .tarjeta-govco.horizontal-tarjeta-govco .body-tarjeta-govco p {
+    text-align: left;
+    font: normal normal normal 14px/21px Work Sans;
+    letter-spacing: 0px;
+    color: #4B4B4B;
+  }
+  
+  .tarjeta-govco.horizontal-tarjeta-govco .body-tarjeta-govco h5{
+    text-align: left;
+    text-decoration: underline;
+    font: normal normal 600 20px/28px Montserrat;
+    letter-spacing: 0px;
+    color: #3366CC;
+  }
+  
+  
+  .tarjeta-govco.horizontal-tarjeta-govco:hover,
+  .tarjeta-govco.horizontal-tarjeta-govco:focus-visible,
+  .tarjeta-govco.horizontal-tarjeta-govco:focus {
+    border-color: #3366CC;
+  }
+  
+  .tarjeta-govco.reverse-tarjeta-govco {
+    flex-direction: row-reverse;
+  }
+  
+  .tarjeta-govco.reverse-tarjeta-govco .container-img-tarjeta-govco {
+    border-radius: 0 0.625rem 0.625rem 0;
+  }
+  
+  .tarjeta-govco.reverse-tarjeta-govco .body-tarjeta-govco {
+    border-radius: 0.625rem 0 0 0.625rem;
+    background-color: red;
+  }
+  
+  
+  /* Estilos para la superposición de texto */
+  /* Estilos para la superposición de texto */
+  .overlay-text {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  
+  .top-left-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .bottom-right-text {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .spam{
+    position: absolute;
+      text-align: center;
+      font: normal normal 600 1.125rem/1.688rem Montserrat;
+      letter-spacing: 0;
+      color: #fff;
+      opacity: 1;
+      -webkit-transition: opacity .3s ease-out;
+      transition: opacity .3s ease-out;
+      overflow-wrap: anywhere;
+      display: block;
+  }
+  
+
+  .container-img-tarjeta-govco {
+    position: relative;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .5rem;
+    color: white;
+  }
+  
+  .overlay-text span {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .overlay-text span:first-child {
+    text-align: left;
+  }
+  
+  .overlay-text span:last-child {
+    text-align: right;
+  }
+
+  
+  .descripcion_opciones_etiqueta{
+    position: absolute;
+    padding: 5px 8px;
+    background-color: #CDE6DF;
+    border-radius: 13px;
+    text-align: left;
+    font: normal normal 600 11px Montserrat;
+    letter-spacing: 0px;
+    opacity: 1;
+    text-decoration: none;
+    bottom: 0.5rem;
+    right: 0.5rem;
+  }
+  
+  .contenedor-icono-recurso {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    top: 2px;
+    left: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    z-index: 0;
+    padding: 0px;
+  }
+  
+  
+  .titulo-nivel {
+    text-align: left;
+    text-decoration: underline;
+    font: normal normal 500 20px/28px Montserrat;
+    color: #3366CC;
+  }
+  
+  .subtitulo-nivel {
+    text-align: left;
+    text-decoration: underline;
+    font: normal normal 500 16px/28px Montserrat;
+    color: #3366CC;
+  }
+
+  .titulo_opciones{
+    text-align: left;
+    font: normal normal 500 11px Montserrat !important;
+    letter-spacing: 0px;
+    color: #0b457f;
+    opacity: 1;
+    text-decoration: none;
+  }
+  
+  .descripcion_opciones{
+    text-align: left;
+    font: normal normal 400 11px Work Sans,Regular !important;
+    letter-spacing: 0px;
+    color: #4B4B4B;
+    opacity: 1;
+    text-decoration: none;
+  }
+  
+  
+    .descripcion-nivel {
+        text-align: left;
+        font: normal normal normal 16px/24px Work Sans;
+        color: #4B4B4B;
+        max-height: 4.1875 rem;
+    }
+  
+    .texto-boton-descargar{
+      text-align: left;
+      font: normal normal 600 12px Work Sans;
+      color: #000;
+      text-decoration: none;
+      padding-left: .5px;
+    }
+  
+    .pagada {
+      background-color: #CDE6DF; 
+      color: #0D684B;
+    }
+
+    .reclamo{
+      background-color: #e7f074; 
+      color: #818374;
+    }
+    
+    .proxvencer {
+      background-color: #FFEECC; 
+      color: #8B5D13;
+    }
+    
+    .pendiente{
+      background-color: #EECDD2; 
+      color: #B30937;
+    }
+  
+    .noaplica {
+      background-color: transparent; 
+    }
+
+    .capitalizar {
+      text-transform: capitalize;
+    }
+  
+    .image-container {
+      width: 100%;
+      height: 100%;
+      background-size: cover; /* Hace que la imagen ocupe todo el espacio del contenedor sin distorsión */
+      background-repeat: no-repeat; /* Evita que la imagen se repita */
+      background-position: center; /* Centra la imagen dentro del contenedor */
+    }
+  
+  
+  /*----------------------------------------
+   ESTILOS PARA RESPONSIVE MEDIA QUERY
+  -----------------------------------------*/
+  
+  @media (max-width: 360px) {
+    .tarjeta-govco.horizontal-tarjeta-govco .body-tarjeta-govco {
+      padding: 1.25rem;
+    }
+    
+  
+    .tarjeta-govco.horizontal-tarjeta-govco
+    .container-img-tarjeta-govco {
+      border-radius: 0.625rem 0.625rem 0rem 0rem;
+  }
+  
+  .container-img-tarjeta-govco img {
+    max-width: 100%; /* Ajusta el ancho de la imagen según el ancho del contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+  }
+  
+  .image-container {
+    max-width: 100%; 
+    height: auto;
+  }
+  
+  .overlay-text {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem;
+    color: white;
+  }
+  
+  
+  
+  }
+  
+  

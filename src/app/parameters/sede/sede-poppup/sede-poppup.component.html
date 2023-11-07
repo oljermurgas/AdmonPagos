@@ -1,0 +1,134 @@
+
+<div class="popup-container" *ngIf="isOpen">
+    <div class="row justify-content-center">
+      <form [formGroup]="form" class="bg-light my-0 p-3 border rounded popup-form"> 
+          <h2 class="mb-0">Formulario de registro de contrato</h2>
+          
+          <div class="form-row mb-1">
+            <h4 class="col-12 text-info mb-2">
+              <span class="fa-stack h6 mb-0">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-user fa-stack-1x fa-inverse"></i>
+              </span>
+              Informacion Del Tercero
+            </h4>
+
+            <div class="form-group col-12 col-sm-6 col-md-4">
+              <label for="terceroidentificacion">Identificación</label>
+              <input type="text" formControlName="terceroidentificacion" id="terceroidentificacion" name="terceroidentificacion" class="form-control"
+               placeholder="Ejem: 1065998123">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-4">
+              <label for="terceronombre">Nombre(s)</label>
+              <input type="text" formControlName="terceronombre"  id="terceronombre" name="terceronombre" class="form-control"
+               placeholder="Ejem: Luis">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-4">
+              <label for="terceroapellido">Apellido(s)</label>
+              <input type="text" formControlName="terceroapellido" id="terceroapellido" name="terceroapellido" class="form-control"
+               placeholder="Ejem: Castro">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="terceroemail">Email</label>
+              <input type="terceroemail" formControlName="terceroemail"  id="terceroemail" name="terceroemail" class="form-control"
+               placeholder="Ejem: usuario@gmail.com">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="tercerotelefono">Telefono</label>
+              <input type="text" formControlName="tercerotelefono"  id="tercerotelefono" name="tercerotelefono" class="form-control"
+               placeholder="Ejem: (096) 315 6789">
+            </div>
+
+          </div>
+
+          <div class="form-row mb-1">
+            <h4 class="col-12 text-info mb-2">
+              <span class="fa-stack h6 mb-0">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-user fa-stack-1x fa-inverse"></i>
+              </span>
+              Informacion Del Contrado
+            </h4>
+
+            <div class="form-group col-12 col-sm-6 col-md-4">
+              <label for="documento">Documento</label>
+              <input type="text" formControlName="documento"  id="documento" name="documento" class="form-control"
+               placeholder="Ejem: 2023-1201">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-4">
+              <label for="valor">Valor Total</label>
+              <input type="text" formControlName="valor"  id="valor" name="valor" class="form-control"
+               placeholder="Ejem: 1,000,000">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-4">
+              <label for="nummes">Numero Meses</label>
+              <input type="text" formControlName="nummes" id="nummes" name="nummes" class="form-control"
+               placeholder='Ejem: 7'>
+            </div>
+
+            <div class="form-group col-12 col-sm-12">
+              <label for="linksecop">Link Contrato</label>
+              <input type="text" formControlName="linksecop" id="linksecop" name="linksecop" class="form-control"
+               placeholder='Ejem: https://www.contratos.gov.co/consultas/detalleProceso.do?numConstancia=23-11-13777985'>
+            </div>
+
+          </div>
+
+          <div class="form-row mb-1">
+            <h4 class="col-12 text-info mb-2">
+              <span class="fa-stack h6 mb-0">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
+              </span>
+              Fecha del contrato 
+            </h4>
+
+            <div class="col-12 col-md-4">
+                <div class="form-row">
+                  <div class="form group col-12 col-sm-2 col-md-12">
+                    <label for="fechainicio">Fecha inicio</label>
+                    <input type="text" formControlName="fechainicio" id="fechainicio" name="fechainicio" class="form-control"
+                    placeholder="Ejem: 01/01/2022">
+                  </div>
+
+                  <div class="form group col-12 col-sm-2 col-md-12">
+                    <label for="fechafinal">Fecha final</label>
+                    <input type="text" formControlName="fechafinal" id="fechafinal" name="fechafinal" class="form-control"
+                    placeholder="Ejem: 30/11/2022">
+                  </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-md-8">
+             <div class="form-row">
+              <label for="comentarios">Comentarios</label>
+              <textarea name="comentarios" formControlName="comentarios" id="comentarios"  rows="4" class="form-control"
+              placeholder="Texto referente a la actividad"></textarea>
+             </div>
+            </div>
+            </div>
+
+            <div class="form-row mb-1">
+              <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-primary btn-block my-1"
+                (click)="onAccept()">
+                  <i class="fas fa-location-arrow pr-1"></i>Enviar</button>
+              </div>
+
+              <div class="col-12 col-md-3">
+                <button type="reset" class="btn btn-secondary btn-block  my-1"
+                  (click)="onCancel()">
+                  <i class="fas fa-times pr-1"></i>Cancelar</button>
+              </div>
+              <input type="text" formControlName="sedeid" id="sedeid" name="sedeid" class="form-control" [hidden]="true">
+            </div>
+      </form>
+    </div>
+</div>

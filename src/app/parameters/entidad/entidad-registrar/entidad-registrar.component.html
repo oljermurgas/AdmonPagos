@@ -1,0 +1,164 @@
+<div class="container">
+    <div class="row justify-content-center">
+         <form [formGroup]="form" class="bg-light my-3 p-3 border rounded">
+             <h2 class="mb-4">Formulario de registro</h2>
+ 
+             <div class="form-row mb-3">
+                 <h4 class="col-12 text-info mb-3">
+                     <span class="fa-stack h5 mb-0">
+                         <i class="fas fa-circle fa-stack-2x"></i>
+                         <i class="fa-solid fa-house fa-stack-1x fa-inverse"></i>
+                     </span>
+                     Información Entidad | Tercero
+                 </h4>
+ 
+                 <div class="form-group col-3">
+                     <label for="">Id</label>
+                     <input type="text" formControlName="id" id="id" nombre="id" class="form-control"
+                             placeholder="Ejem: 10" readonly>
+ 
+                 </div>
+ 
+                 <div class="form-group col-3">
+                     <label for="identificacion">Codigo o Nit</label>
+                     <input type="text" formControlName="identificacion" id="identificacion" name="identificacion" class="form-control"
+                             placeholder="Ejem: 72122321-1">
+                 </div>
+
+                 <div class="form-group col-3">
+                  <label for="departamentoId">Departamento</label>
+                  <select formControlName="departamentoId" id="departamentoId" nombre="departamentoId" 
+                          class="form-control" (change)="onDepartamentoChange($event)">
+                    <option value="0">Seleccione Departamento</option>
+                    
+                    <ng-container *ngFor="let departamento of tipoDepartamento">
+                      <option [value]="departamento.id">{{ departamento.nombre }}</option>
+                    </ng-container>
+                  </select>
+                </div>
+
+
+                <div class="form-group col-3">
+                  <label for="municipioId">Municipio</label>
+                  <select   formControlName="municipioId" id="municipmunicipioIdioid" 
+                            nombre="municipioId" class="form-control" >
+                    <option value="0">Seleccione Municipio</option>
+                    
+                    <ng-container *ngFor="let municipio of tipoMunicipio">
+                      <option [value]="municipio.id">{{ municipio.nombre }}</option>
+                    </ng-container>
+                  </select>
+                </div>
+
+                 <div class="form-group col-6">
+                     <label for="nombre">Nombre Entidad</label>
+                     <input type="text" formControlName="nombre" id="nombre" nombre="nombre" class="form-control"
+                             placeholder="Ejem: Empresa de servicios publicos Valledupar - Emdupar">
+                 </div>
+
+                 <div class="form-group col-6">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" formControlName="direccion" id="direccion" nombre="direccion" class="form-control"
+                            placeholder="Ejem: Carerra 1ra # 54-23">
+                </div>
+
+                <div class="form-group col-3">
+                  <label for="tipoempresaid">Tipo Empresa</label>
+                  <select   formControlName="tipoempresaid" id="tipoempresaid" 
+                            nombre="tipoempresaid" class="form-control" >
+                    <option value="0">Seleccione tipo empresa</option>
+                    
+                    <ng-container *ngFor="let tipEmp of tipoEmpresa">
+                      <option [value]="tipEmp.id">{{ tipEmp.descripcion }}</option>
+                    </ng-container>
+                  </select>
+                </div>
+
+                <div class="form-group col-3">
+                  <label for="tipoempresanivelid">Tipo empresa nivel</label>
+                  <select   formControlName="tipoempresanivelid" id="tipoempresanivelid" 
+                            nombre="tipoempresanivelid" class="form-control" >
+                    <option value="0">Seleccione tipo empresa</option>
+                    
+                    <ng-container *ngFor="let tipEmpNiv of tipoEmpresaNivel">
+                      <option [value]="tipEmpNiv.id">{{ tipEmpNiv.descripcion }}</option>
+                    </ng-container>
+                  </select>
+                </div>
+
+                <div class="form-group col-3">
+                  <label for="tipoempresasectorid">Tipo empresa sector</label>
+                  <select   formControlName="tipoempresasectorid" id="tipoempresasectorid" 
+                            nombre="tipoempresasectorid" class="form-control" >
+                    <option value="0">Seleccione tipo empresa</option>
+                    
+                    <ng-container *ngFor="let tipEmpSec of tipoEmpresaSector">
+                      <option [value]="tipEmpSec.id">{{ tipEmpSec.descripcion }}</option>
+                    </ng-container>
+                  </select>
+                </div>
+
+                  <div class="form-group col-3">
+                  
+                  </div>
+
+                  <div class="form-group col-3">
+                    <label for="">Usuario</label>
+                    <input type="text" formControlName="usuarioId" id="usuarioId" name="usuarioId" class="form-control"
+                            placeholder="Ejem: usuario" readonly>
+                </div>
+
+                 <div class="form-group col-3">
+                     <label for="estado">&nbsp;</label>
+                     <div class="d-flex align-items-center contenedor-checkbox">
+                         <label for="estado" class="m-0 pt-1">Estado</label>
+                        <span> <div class="d-flex align-items-center">
+                            <input type="checkbox" formControlName="estado" id="estado" name="estado" class="form-check-input ml-2">
+                        </div></span>
+                     </div>
+                 </div>
+                 
+                 <div class="form-group col-3">
+                     <label for="fecharegistro">Fecha registro</label>
+                     <input type="text" formControlName="fecharegistro" id="fecharegistro" nombre="fecharegistro" class="form-control"
+                             placeholder="Ejem: 18/12/2023" readonly>
+ 
+                 </div>
+ 
+                 <div class="form-group col-3">
+                     <label for="fechamodificacion">Fecha modificación</label>
+                     <input type="text" formControlName="fechamodificacion" id="fechamodificacion" name="fechamodificacion" class="form-control"
+                             placeholder="Ejem: 25/12/2023" readonly>
+                 </div>           
+             </div>
+ 
+             <div class="form-row mb-3">
+                 <div class="col-12 col-md-3">
+                     <button type="reset" class="btn bg-success btn-block my-1">
+                       <i class="fa-solid fa-plus pr-2"></i>Nuevo</button>
+                   </div>
+ 
+                   <div class="col-12 col-md-3">
+                     <button type="submit" class="btn btn-primary btn-block my-1" (click)="GuardarRegistro()" [disabled]="form.invalid">
+                         <i class="fas fa-location-arrow pr-2"></i>Enviar
+                     </button>
+                 </div>
+ 
+                 <div class="col-12 col-md-3">
+                   <button type="reset" class="btn btn-secondary btn-block  my-1">
+                     <i class="fas fa-times pr-2"></i>Cancelar</button>
+                 </div>
+
+                 <div class="col-12 col-md-3">
+                    <button type="reset" class="btn btn-info btn-block  my-1" (click)="openPopup()">
+                      <i class="fas fa-times pr-2"></i>Tipo Obligacion </button>
+                  </div>
+
+
+               </div> 
+         </form>
+    </div>
+ </div>
+ 
+ <app-entidad-poppup [entidadid]='idRegistro' ></app-entidad-poppup>
+

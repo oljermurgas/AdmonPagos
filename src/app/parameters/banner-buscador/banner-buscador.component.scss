@@ -1,0 +1,167 @@
+
+//---------------------------------------
+// PATRONES DE COLORES
+//---------------------------------------
+$principal:#004884;
+$secundario:#FFFFFF;
+$textopincipal: #4B4B4B;
+$textosecundario: #FFFFFF;
+
+/*-----------------------------------------
+2. ESTILOS GENERALES DE BOTONES
+-------------------------------------------*/
+.btn {
+    border-radius: 2rem;
+    padding: .6rem 2rem;
+}
+
+.btn-outline-primary {
+    background-color: $secundario !important;
+}
+
+.btn-buscador {
+    border-radius: 2rem;
+    padding: .5rem;
+    width: 1.65rem;
+    height: 1.65rem;
+    border: none; 
+    padding: 0; 
+    display: flex;                   //Reducir
+    align-items: center;             //Reducir
+    justify-content: center;         //Reducir
+    color: $secundario;              //Reducir
+}
+
+.btn-buscador-lupa {
+    background-color: #3366CC;
+   
+}
+
+.btn-buscador-lupa-inactivo {
+    background-color: #737373;      
+   
+}
+
+.btn-buscador-equis {
+    background-color: $secundario;
+    align-items: center;
+    border-right: 0.063rem solid #4B4B4B;
+    left: -5px;
+    width: 2rem;
+    height: 2rem;
+    top: 2px;
+}
+
+.fa-search:before {
+    color: $secundario;
+}
+
+.btn-outline-primary {
+    color: #3366CC;
+    background-color: $secundario;
+    border-color: #3366CC;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    // transition: all .3s ease;
+}
+
+.btn-outline-primary:hover {
+    color: $secundario;
+    background-color: $principal !important;
+    border-color: $principal;
+}
+
+.btn-outline-primary:active {
+    color: $secundario !important;
+    // background-color: lighten($principal, 5%) !important;
+    // border-color: lighten($principal, 10%) !important;
+}
+
+.btn-outline-primary:focus {
+    color: $principal !important;
+    box-shadow: 0 0 0 0.2rem rgba($principal, .5) !important;
+}
+
+.btn-outline-primary::after {
+    font-family: "FontAwesome";
+    font-weight: 900;
+    content: "\f138";
+    position: relative;
+    left: 0.6rem;
+    top: 0.1rem;
+}
+
+.btn-outline-primary::before {
+    transform: rotate(180deg);
+}
+
+// Boton para activar los filtros
+#btn-buscador-filtro {
+    height: 2.625rem;
+    width: 100%;
+}
+
+.fa-times::before {
+    font-size: 26px;
+    color: #3366CC;
+}
+
+/*-----------------------------------------
+3. ESTILOS CONTENEDOR BUSCADOR
+------------------------------------------*/
+.contenedor-buscador-container {
+margin-top: 2.5rem;
+}
+
+#buscar {
+    height: 1.8rem;
+    border: 0px;
+    margin: 0px 3px 0px -3px;
+    border-top-left-radius: 5rem;
+    border-bottom-left-radius: 5rem;
+}
+
+#buscar:focus {
+    box-shadow:none !important;
+}
+
+
+
+#buscar:focus-visible{
+    border: none !important;
+}
+
+#seccion-buscador {
+    height: 2rem;
+    width: 100%;
+    border-radius: 2rem;
+    padding: 1px 2px 1px 6px;
+    background-color: #FFFFFF;
+    border: 0.063rem solid #CDBEBE;
+}
+
+#seccion-buscador:focus-within {
+    border: 1px solid #3366CC;
+
+    outline: max(0.125rem, 0.15em) solid #000000;
+    outline-offset: max(0.125rem, 0.15em);
+}
+
+.linea-separadora-boton {
+border-right: 3px solid gray;
+height: 1.8rem;
+margin: 0px 4px;
+top: 50%;
+transform: translateY(6%);
+}
+
+.text-primary {
+color: $principal !important;
+}
+
+.horizontal-line {
+    border-top: 1px solid #3366cc; 
+    width: 100%; 
+  }
+

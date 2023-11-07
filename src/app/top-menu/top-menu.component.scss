@@ -1,0 +1,25 @@
+//-------------------------------------------
+// PATRONES DE COLORES
+//-------------------------------------------
+$principal:#00ad75;
+$secundario:#3366cc;
+$texto:#696969;
+
+/* -------------------------------------------
+1. TIPOGRAFIA DEL SITIO
+---------------------------------------------*/
+
+html{
+    font-size: 14px;
+}
+
+body{
+    font-family: 'Lato', sans-serif;
+    color: $texto;
+}
+
+
+
+.bg-secondary{
+    background-color: $secundario !important;
+}

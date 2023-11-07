@@ -1,0 +1,85 @@
+<div class="container">
+   <div class="row justify-content-center">
+        <form [formGroup]="form" class="bg-light my-3 p-3 border rounded">
+            <h2 class="mb-4">Formulario de registro</h2>
+
+            <div class="form-row mb-3">
+                <h4 class="col-12 text-info mb-3">
+                    <span class="fa-stack h5 mb-0">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fa-solid fa-house fa-stack-1x fa-inverse"></i>
+                    </span>
+                    Información Tipo Empresa
+                </h4>
+
+                <div class="form-group col-6">
+                    <label for="">Id</label>
+                    <input type="text" formControlName="id" id="id" nombre="id" class="form-control"
+                            placeholder="Ejem: 10" readonly>
+
+                </div>
+
+                <div class="form-group col-6">
+                    <label for="">Codigo</label>
+                    <input type="text" formControlName="codigo" id="codigo" name="codigo" class="form-control"
+                            placeholder="Ejem: 001">
+                </div>
+
+                <div class="form-group col-12">
+                    <label for="">Descripción</label>
+                    <input type="text" formControlName="descripcion" id="descripcion" nombre="descripcion" class="form-control"
+                            placeholder="Ejem: Juridica">
+
+                </div>
+
+                <div class="form-group col-6">
+                    <label for="">Usuario</label>
+                    <input type="text" formControlName="usuarioId" id="usuarioId" name="usuarioId" class="form-control"
+                            placeholder="Ejem: usuario" readonly>
+                </div>
+
+                <div class="form-group col-6">
+                    <label for="estado">&nbsp;</label>
+                    <div class="d-flex align-items-center contenedor-checkbox">
+                        <label for="estado" class="m-0 pt-1">Estado</label>
+                        <div class="d-flex align-items-center">
+                            <input type="checkbox" formControlName="estado" id="estado" name="estado" class="form-check-input ml-2">
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="form-group col-6">
+                    <label for="">Fecha registro</label>
+                    <input type="text" formControlName="fechaRegistro" id="fechaRegistro" nombre="fechaRegistro" class="form-control"
+                            placeholder="Ejem: 18/12/2023" readonly>
+
+                </div>
+
+                <div class="form-group col-6">
+                    <label for="">Fecha modificación</label>
+                    <input type="text" formControlName="fechaModificacion" id="fechaModificacion" name="fechaModificacion" class="form-control"
+                            placeholder="Ejem: 25/12/2023" readonly>
+                </div>           
+            </div>
+
+            <div class="form-row mb-3">
+                <div class="col-12 col-md-4">
+                    <button type="reset" class="btn bg-success btn-block my-1">
+                      <i class="fa-solid fa-plus pr-2"></i>Nuevo</button>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <button type="submit" class="btn btn-primary btn-block my-1" (click)="GuardarRegistro()" [disabled]="form.invalid">
+                        <i class="fas fa-location-arrow pr-2"></i>Enviar
+                    </button>
+                </div>
+
+                <div class="col-12 col-md-4">
+                  <button type="reset" class="btn btn-secondary btn-block  my-1">
+                    <i class="fas fa-times pr-2"></i>Cancelar</button>
+                </div>
+              </div> 
+        </form>
+   </div>
+</div>

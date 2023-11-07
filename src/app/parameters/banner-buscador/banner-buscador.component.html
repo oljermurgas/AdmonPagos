@@ -1,0 +1,56 @@
+<div class="contenedor-buscador-container">
+  <div class="container"  aria-label="Buscador de biblioteca">
+   <div class="row">
+      <div class="col-12">
+          <form action="" >
+              <div class="form-group form-group d-flex align-items-center" id="seccion-buscador">
+                  <div class="input-group align-items-center">
+                      <input  type="text"       name="buscar"     id="buscar"
+                              placeholder="Ingrese texto a buscar"
+                              [maxlength]="50"
+                              class="form-control"
+                              [(ngModel)]="textoBusqueda"
+                              (input)="onSearchInputChange()"
+                              autocomplete="off" 
+                      />
+                      <div class="input-group-append">
+                          <button
+                            *ngIf="realizarbusqueda()"
+                              type="submit"
+                              class="btn btn-buscador btn-buscador-equis"
+                              (click)="limpiarBotonEquis()"
+                              aria-label="Limpiar. Borrará todo lo que has escrito."
+                          >
+                          <i class="fa fa-times fa-lg"></i>
+                        </button>
+                      </div>
+                    
+                      <div class="input-group-append">
+                            <button
+                              type="button"
+                              class="btn btn-buscador rounded-circle"
+                              *ngIf="realizarbusqueda(); else deshabilitarBoton"
+                                  [class.btn-buscador-lupa]="true"
+                                  [disabled]="false"
+                                  (click)="buscarBotonBuscador()"
+                                  aria-label="Buscar. Te llevará a los resultados de búsqueda"
+                            >
+                              <i class="fa fa-search"></i>
+                            </button>
+                            <ng-template #deshabilitarBoton>
+                              <button
+                                  type="button"
+                                  class="btn btn-buscador rounded-circle btn-buscador-lupa-inactivo"
+                                  [disabled]="true"
+                              >
+                                <i class="fa fa-search"></i>
+                              </button>
+                            </ng-template>
+                      </div>
+                    </div>
+              </div>
+          </form>
+      </div>
+   </div>
+
+</div>

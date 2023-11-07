@@ -1,0 +1,94 @@
+
+<!-- 
+<section id="detalle-encabezado" class="d-none d-md-block py-3">
+  <div class="container">
+      <div class="row justify-content-md-between align-items-md-center">
+          <div class="col-auto">
+            <a href="#" class="logo">
+              <img src="../../assets/image/logo-pgn.png" alt="Logo del sitio" width="70"
+              class="img-fluid">
+            </a>
+          </div>
+
+          <div class="col-auto ml-md-auto">
+            <i class="fas fa-phone fa-2x pr-1 align-middle text-primary"></i>
+            <span class="font-weight-bold h5 ml-2">+511-917 338 6831</span>
+          </div>
+
+          <div class="col-auto">
+            <i class="fas fa-envelope fa-2x pr-1 align-middle text-primary"></i>
+            <span class="font-weight-bold h5 ml-2">info@aulaideal.com</span>
+          </div>
+      </div>
+  </div>
+</section> -->
+
+
+<section id="detalle-encabezado" class="d-none d-md-block py-3">
+  <div class="container">
+      <div class="row justify-content-md-between align-items-md-center">
+          <nav id="menu-navegacion" class="navbar navbar-dark bg-secondary navbar-expand-md">
+              <div class="container">
+
+                 <button type="button" class="navbar-toggler" data-toggle="collapse"  data-target="#menu-principal"
+                  aria-expanded="false" aria-label="Botón menu principal">
+                  <span class="boton-menu"></span>
+                </button>
+
+                <a routerLink="/menu-usuario" class="btn btn-primary order-md-1">Seguimiento</a>
+
+                <div class="collapse navbar-collapse id" id="menu-principal">
+                  <ul class="navbar-nav mt-3 mt-md-0">
+                    <li class="nav-item mb-1 mb-md-0 mr-md-1"> <a routerLink="/home" class="nav-link active">Inicio</a> </li>
+                    <li class="nav-item mb-1 mb-md-0 mr-md-1 dropdown"> 
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Seguridad
+                      </a>
+                      <!-- <a routerLink="/home/security" class="nav-link">Seguridad</a>  -->
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Usuarios</a>
+                        <a class="dropdown-item" href="#">Roles</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Menu</a> 
+                        <a class="dropdown-item" href="#">Menu Roles</a> 
+                    </div>
+
+                    </li>
+                    <li class="nav-item mb-1 mb-md-0 mr-md-1 dropdown">
+                      <!-- <a routerLink="/home/parameters" class="nav-link">Parámetros</a> -->
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Parametros
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a routerLink="/home/parameters/tipo-empresa" class="dropdown-item">Empresa Tipo</a>
+                        <a routerLink="/home/parameters/tipo-empresa-nivel" class="dropdown-item">Empresa Nivel</a>
+                        <a routerLink="/home/parameters/tipo-inmueble" class="dropdown-item">Tipo Inmueble</a>
+                        <a routerLink="/home/parameters/tipo-canal-envio-facturacion" class="dropdown-item">Canales de envio facturacion</a>
+                        <a routerLink="/home/parameters/tipo-empresa-sector" class="dropdown-item">Tipo Empresa Sector</a>
+                        <div class="dropdown-divider"></div>
+                        <a routerLink="/home/parameters/tipo-pago-admon" class="dropdown-item">Tipo Pago Admon</a>
+                        <a routerLink="/home/parameters/tipo-concepto-facturacion" class="dropdown-item">Concepto Facturacion</a>
+                        <div class="dropdown-divider"></div>
+                        <a routerLink="/home/parameters/sede" class="dropdown-item">Sede</a>
+                        <a routerLink="/home/parameters/entidad" class="dropdown-item">Entidad</a>
+                        <a routerLink="/home/parameters/Factura-listado" class="dropdown-item">Listado Factura</a>
+                      
+                    </div>
+                    </li>
+                    <li class="nav-item mb-1 mb-md-0 mr-md-1"><a routerLink="/home/reports" class="nav-link">Nuestra App</a></li>
+                    <li class="nav-item mb-1 mb-md-0 mr-md-0"><a routerLink="/home" class="nav-link">Contacto</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+      </div>
+    </div>
+  </section>
+
+
+
+
+<router-outlet></router-outlet>
+  

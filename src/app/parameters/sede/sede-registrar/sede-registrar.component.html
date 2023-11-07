@@ -1,0 +1,186 @@
+<div class="container">
+    <div class="row justify-content-center">
+         <form [formGroup]="form" class="bg-light my-3 p-3 border rounded">
+             <h2 class="mb-4">Formulario de registro</h2>
+ 
+             <div class="form-row mb-3">
+                 <h4 class="col-12 text-info mb-3">
+                     <span class="fa-stack h5 mb-0">
+                         <i class="fas fa-circle fa-stack-2x"></i>
+                         <i class="fa-solid fa-house fa-stack-1x fa-inverse"></i>
+                     </span>
+                     Información Sede
+                 </h4>
+
+                <article class="col-12 mx-auto">
+                    <ul class="nav nav-tabs small justify-content-start" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab1" role="tab">Datos General</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab2" role="tab">Datos Adicionales</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab3" role="tab">Datos Contracto Actual</a></li>
+                    </ul>
+
+                    <section id="tab-opciones" class="tab-content py-1">
+                        <div class="tab-pane active" id="tab1" role="tabpanel">
+                          <div class="card border-secundary mb-3">
+                            <div class="card-body bg-light">
+                                <div class="row">
+                                      <div class="form-group col-3">
+                                        <label for="">Id</label>
+                                        <input type="text" formControlName="id" id="id" nombre="id" class="form-control" placeholder="Ejem: 10" readonly>
+                                      </div>
+              
+                                      <div class="form-group col-3">
+                                          <label for="">Codigo Hominis</label>
+                                          <input type="text" formControlName="codigo" id="codigo" name="codigo" class="form-control" placeholder="Ejem: 210000000">
+                                      </div>
+
+                                      <div class="form-group col-3">
+                                        <label for="departamentoId">Departamento</label>
+                                        <select formControlName="departamentoId" id="departamentoId" nombre="departamentoId" 
+                                                class="form-control" (change)="onDepartamentoChange($event)">
+                                          <option value="0">Seleccione Departamento</option>
+                                          
+                                          <ng-container *ngFor="let departamento of tipoDepartamento">
+                                            <option [value]="departamento.id">{{ departamento.nombre }}</option>
+                                          </ng-container>
+                                        </select>
+                                      </div>
+              
+
+                                      <div class="form-group col-3">
+                                        <label for="municipioId">Municipio</label>
+                                        <select   formControlName="municipioId" id="municipmunicipioIdioid" 
+                                                  nombre="municipioId" class="form-control" >
+                                          <option value="0">Seleccione Municipio</option>
+                                          
+                                          <ng-container *ngFor="let municipio of tipoMunicipio">
+                                            <option [value]="municipio.id">{{ municipio.nombre }}</option>
+                                          </ng-container>
+                                        </select>
+                                      </div>
+                
+                                      <div class="form-group col-6">
+                                          <label for="nombre">Nombre Sede</label>
+                                          <input type="text" formControlName="nombre" id="nombre" nombre="nombre" class="form-control"
+                                                  placeholder="Ejem: PROC REGIONAL TOLIMA">
+                                      </div>
+                  
+                                      <div class="form-group col-6">
+                                          <label for="">Direccion</label>
+                                          <input type="text" formControlName="direccion" id="direccion" nombre="direccion" class="form-control"
+                                                  placeholder="Ejem: Calle 1ra # 4-54">
+                                      </div>
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="tab2" role="tabpanel">
+                          <div class="card border-secundary mb-3">
+                            <div class="card-body bg-light">
+                              <div class="row">
+                                  <div class="form-group col-6">
+                                    <label for="numerocatastro">Numero Catastro</label>
+                                    <input type="text" formControlName="numerocatastro" id="numerocatastro" name="numerocatastro" class="form-control" placeholder="Ejem: 2020345-7" >
+                                  </div>
+              
+                                  <div class="form-group col-6">
+                                    <label for="matriculainmoviliaria">Matricula Inmoviliaria</label>
+                                    <input type="text" formControlName="matriculainmoviliaria" id="matriculainmoviliaria" name="matriculainmoviliaria" class="form-control" placeholder="Ejem: 3456-00999-01">
+                                  </div>
+              
+                                  <div class="form-group col-6">
+                                    <label for="tipoVinculacionContractualId">Tipo Vinculacion Contractual</label>
+                                    <select formControlName="tipoVinculacionContractualId" id="tipoVinculacionContractualId" nombre="tipoVinculacionContractualId" class="form-control" >
+                                      <option value="0">Seleccione Tipo Vinculacion Contractual</option>
+                                      <ng-container *ngFor="let tipvincont of tipoVinculacionContractual">
+                                        <option [value]="tipvincont.id">{{ tipvincont.descripcion }}</option>
+                                      </ng-container>
+                                    </select>
+                                  </div>
+
+                                  <div class="form-group col-6">
+                                    <label for="tipoInmuebleId">Tipo Inmueble</label>
+                                    <select formControlName="tipoInmuebleId" id="tipoInmuebleId" nombre="tipoInmuebleId" class="form-control" >
+                                      <option value="0">Seleccione Tipo Inmueble</option>
+                                      <ng-container *ngFor="let tipinmu of tipoInmueble">
+                                        <option [value]="tipinmu.id">{{ tipinmu.descripcion }}</option>
+                                      </ng-container>
+                                    </select>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="tab3" role="tabpanel">  
+                          <div class="card border-secundary mb-3">
+                            <div class="card-body bg-light">
+                                <div class="row">
+                                  <p class="m-0"> Lista de contratos</p>
+                                  <app-sede-contrato>
+                                   
+                                  </app-sede-contrato>
+                                </div>
+                            </div>
+                        </div>                          
+                      </div>
+                  </section>
+                </article>
+            </div>
+
+            <section id="auditoria" class="container">
+              <div class="row"> 
+                <div class="form-group col-3">
+                      <label for="">Usuario</label>
+                      <input type="text" formControlName="usuarioId" id="usuarioId" name="usuarioId" class="form-control" placeholder="Ejem: usuario" readonly>
+                </div>
+
+                <div class="form-group col-3">
+                    <label for="estado">&nbsp;</label>
+                    <div class="d-flex align-items-center contenedor-checkbox">
+                        <label for="estado" class="m-0 pt-1">Estado</label>
+                        <span>  <div class="d-flex align-items-center">
+                                    <input type="checkbox" formControlName="estado" id="estado" name="estado" class="form-check-input ml-2">
+                                </div>
+                        </span>
+                    </div>
+                </div>
+               
+                <div class="form-group col-3">
+                    <label for="">Fecha registro</label>
+                    <input type="text" formControlName="fecharegistro" id="fecharegistro" nombre="fecharegistro" class="form-control" placeholder="Ejem: 18/12/2023" readonly>
+                </div>
+
+                <div class="form-group col-3">
+                    <label for="">Fecha modificación</label>
+                    <input type="text" formControlName="fechaModificacion" id="fechaModificacion" name="fechaModificacion" class="form-control" placeholder="Ejem: 25/12/2023" readonly>
+                </div> 
+              </div>
+            </section>
+ 
+            <section id="seccion-botones"class="form-row mb-1">
+                <div class="col-12 col-md-3">
+                     <button type="reset" class="btn bg-success btn-block my-1">
+                       <i class="fa-solid fa-plus pr-2"></i>Nuevo</button>
+                </div>
+ 
+                <div class="col-12 col-md-3">
+                     <button type="submit" class="btn btn-primary btn-block my-1" (click)="GuardarRegistro()" [disabled]="form.invalid"
+                     
+                     >
+                         <i class="fas fa-location-arrow pr-2"></i>Enviar
+                     </button>
+                </div>
+ 
+                <div class="col-12 col-md-3">
+                   <button type="reset" class="btn btn-secondary btn-block  my-1">
+                     <i class="fas fa-times pr-2"></i>Cancelar</button>
+                </div>
+            </section> 
+         </form>
+    </div>
+ </div>
+ 
+ <app-sede-poppup [sedeid]='idRegistro' ></app-sede-poppup>
+

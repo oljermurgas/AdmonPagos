@@ -1,0 +1,60 @@
+<div class="container">
+  <button class="btn-floating" (click)="openPopup()">
+    <i class="fa fa-plus"></i>
+  </button>
+    <div class="row">
+      <form action="" class="contendor-componente bg-light my-1 p-3 border rounded">        
+        <!-- Encabezados de columnas -->
+        <div class="form-row mb-2 border-1 contenedor-item-registro header-row">
+          <div class="col-2 header-col">
+            <div class="texto-lista-item">Documento</div>
+          </div>
+          <div class="col-2 header-col">
+            <div class="texto-lista-item">Fecha Inicio</div>
+          </div>
+          <div class="col-2 header-col">
+            <div class="texto-lista-item">Fecha Final</div>
+          </div>
+          <div class="col-2 header-col">
+            <div class="texto-lista-item">Tercero</div>
+          </div>
+          <div class="col-2 header-col">
+            <div class="texto-lista-item">Valor</div>
+          </div>
+          <div class="col-2 header-col">
+            <div class="texto-lista-item">Acción</div>
+          </div>
+        </div>
+        
+        <!-- Filas de datos -->
+        <div class="contendor-item-todos">
+          <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of itemsContratos">
+            <div class="col-2">
+              <div class="texto-lista-item">{{ item.documentoNumero }}</div>
+            </div>
+            <div class="col-2">
+              <div class="texto-lista-item">{{ item.fechaInicio | date:'dd/MM/yyyy' }}</div>
+            </div>
+            <div class="col-2">
+              <div class="texto-lista-item">{{ item.fechaFinal | date:'dd/MM/yyyy' }}</div>
+            </div>
+  
+            <div class="col-2">
+              <div class="texto-lista-item">{{ item.terceroApellidos  + ' ' + item.terceroNombres }}  </div>
+            </div>
+  
+            <div class="col-2">
+              <div class="texto-lista-item">{{ item.valor }}</div>
+            </div>
+  
+            <div class="col-2">
+              <i class="far fa-edit fa-lg text-info cursor-pointer" ></i>
+              <i *ngIf="item.estado"    class="far fa-trash-alt fa-lg ml-1 text-danger cursor-pointer"></i>
+              <i *ngIf="!item.estado"   class="far fa-trash-alt fa-lg ml-1 black-icon"></i>
+            </div>
+          </div>     
+        </div>
+      </form>
+    </div>
+  </div>
+  

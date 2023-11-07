@@ -1,0 +1,20 @@
+<div class="container mt-4">
+    <div class="row">
+  
+      <div class="col-12 mb-1 ml-1">
+        <h2 class="mb-1">Listado de factura</h2>
+        <!-- <h5 tabindex="0" class="titulo-principal">{{inicioTitulo}}</h5>
+        <p tabindex="0" class="descripcion">{{inicioDescripcion}}</p>
+        <div class="col-12 horizontal-line my-2"></div>
+        <h5 tabindex="0" class="descripcion descripcion-titulo-secundario mt-3">Aquí encuentras <span class="texto-negrilla">Carpetas:</span> {{numeroCarpeta}}</h5>
+        <h5 class="titulo-secundario ">Carpetas de {{inicioTitulo}}</h5> -->
+      </div>
+  
+      <div class="col-12">
+                <app-factura-tarjeta [dato]="datosFactura" *ngFor="let datosFactura of datosFacturas">
+                </app-factura-tarjeta>
+    
+      </div>
+    </div>
+  </div>
+  
