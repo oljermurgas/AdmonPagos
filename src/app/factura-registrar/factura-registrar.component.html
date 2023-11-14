@@ -160,191 +160,309 @@
 
 </section> -->
 
-
-
 <div class="container">
-    <div class="row justify-content-center">
-         <form [formGroup]="form" class="bg-light my-3 p-3 border rounded">
-             <h2 class="mb-4">Formulario de registro</h2>
- 
-             <div class="form-row mb-3">
-                 <h4 class="col-12 text-info mb-3">
-                     <span class="fa-stack h5 mb-0">
-                         <i class="fas fa-circle fa-stack-2x"></i>
-                         <i class="fa-solid fa-house fa-stack-1x fa-inverse"></i>
-                     </span>
-                     Información de la factura
-                 </h4>
- 
-                 <div class="form-group col-4">
-                     <label for="">Id</label>
-                     <input type="text" formControlName="id" id="id" nombre="id" class="form-control"
-                             placeholder="Ejem: 10" readonly>
- 
-                 </div>
- 
-                 <div class="form-group col-4">
-                  <label for="sedeId">Sede</label>
-                  <select formControlName="sedeId" id="sedeId" nombre="sedeId" 
-                          class="form-control" (change)="onSede($event)">
-                    <option value="0">Seleccione sede</option>
-                    
-                    <ng-container *ngFor="let sede of tipoSede">
-                      <option [value]="sede.id">{{ sede.nombre }}</option>
-                    </ng-container>
-                  </select>
-                </div>
+  <div class="row justify-content-center">
+    <form [formGroup]="form" class="bg-light my-3 p-3 border rounded">
+      <h2 class="mb-4">Formulario de registro</h2>
 
-                 <div class="form-group col-4">
-                  <label for="entidadId">Entidad</label>
-                  <select formControlName="entidadId" id="entidadId" nombre="entidadId" 
-                          class="form-control" (change)="onEntidad($event)">
-                    <option value="0">Seleccione Entidad</option>
-                    
-                    <ng-container *ngFor="let entidad of entidades">
-                      <option [value]="entidad.id">{{ entidad.nombre }}</option>
-                    </ng-container>
-                  </select>
-                </div>
+      <div class="form-row mb-3">
+        <h4 class="col-12 text-info mb-3">
+          <span class="fa-stack h5 mb-0">
+            <i class="fas fa-circle fa-stack-2x"></i>
+            <i class="fa-solid fa-house fa-stack-1x fa-inverse"></i>
+          </span>
+          Información de la factura
+        </h4>
 
+        <div class="form-group col-4">
+          <label for="">Id</label>
+          <input
+            type="text"
+            formControlName="id"
+            id="id"
+            name="id"
+            class="form-control"
+            placeholder="Ejem: 10"
+            readonly
+          />
+        </div>
 
-                 <div class="form-group col-4">
-                     <label for="nombre">Factura numero</label>
-                     <input type="text" formControlName="nombre" id="nombre" nombre="nombre" class="form-control"
-                             placeholder="Ejem: Empresa de servicios publicos Valledupar - Emdupar">
-                 </div>
+        <div class="form-group col-4">
+          <label for="sedeId">Sede</label>
+          <select
+            formControlName="sedeId"
+            id="sedeId"
+            name="sedeId"
+            class="form-control"
+            (change)="onSede($event)"
+          >
+            <option value="0">Seleccione sede</option>
 
-                 <div class="form-group col-4">
-                    <label for="direccion">Referencia pago</label>
-                    <input type="text" formControlName="direccion" id="direccion" nombre="direccion" class="form-control"
-                            placeholder="Ejem: ">
-                </div>
+            <ng-container *ngFor="let sede of tipoSede">
+              <option [value]="sede.id">{{ sede.nombre }}</option>
+            </ng-container>
+          </select>
+        </div>
 
-                <div class="form-group col-4">
-                  <label for="direccion">No Contrato</label>
-                  <input type="text" formControlName="direccion" id="direccion" nombre="direccion" class="form-control"
-                          placeholder="Ejem: ">
-                </div>
+        <div class="form-group col-4">
+          <label for="entidadId">Entidad</label>
+          <select
+            formControlName="entidadId"
+            id="entidadId"
+            name="entidadId"
+            class="form-control"
+            (change)="onEntidad($event)"
+          >
+            <option value="0">Seleccione Entidad</option>
 
-                <div class="form-group col-4">
-                  <label for="nombre">Fecha Emision</label>
-                  <input type="text" formControlName="nombre" id="nombre" nombre="nombre" class="form-control"
-                          placeholder="Ejem: 11/12/2022">
-                </div>
+            <ng-container *ngFor="let entidad of entidades">
+              <option [value]="entidad.id">{{ entidad.nombre }}</option>
+            </ng-container>
+          </select>
+        </div>
 
-                <div class="form-group col-4">
-                  <label for="direccion">Fecha Oportuna Pago</label>
-                  <input type="text" formControlName="direccion" id="direccion" nombre="direccion" class="form-control"
-                          placeholder="Ejem: 11/12/2022">
-                </div>
+        <div class="form-group col-4">
+          <label for="nombre">Factura numero</label>
+          <input
+            type="text"
+            formControlName="nombre"
+            id="nombre"
+            name="nombre"
+            class="form-control"
+            placeholder="Ejem: Empresa de servicios publicos Valledupar - Emdupar"
+          />
+        </div>
 
-                <div class="form-group col-4">
-                  <label for="direccion">Fecha suspension</label>
-                  <input type="text" formControlName="direccion" id="direccion" nombre="direccion" class="form-control"
-                          placeholder="Ejem: 11/12/2022">
-                </div>
+        <div class="form-group col-4">
+          <label for="direccion">Referencia pago</label>
+          <input
+            type="text"
+            formControlName="direccion"
+            id="direccion"
+            name="direccion"
+            class="form-control"
+            placeholder="Ejem: "
+          />
+        </div>
 
-                <div class="form-group col-4">
-                  <label for="nombre">Valor</label>
-                  <input type="text" formControlName="nombre" id="nombre" nombre="nombre" class="form-control"
-                          placeholder="Ejem: $213,000">
-                </div>
+        <div class="form-group col-4">
+          <label for="direccion">No Contrato</label>
+          <input
+            type="text"
+            formControlName="direccion"
+            id="direccion"
+            name="direccion"
+            class="form-control"
+            placeholder="Ejem: "
+          />
+        </div>
 
-                <div class="form-group col-8">
-                  <label for="direccion">Observacion</label>
-                  <input type="text" formControlName="direccion" id="direccion" nombre="direccion" class="form-control"
-                          placeholder="Ejem: ">
-                </div>
+        <div class="form-group col-4">
+          <label for="nombre">Fecha Emision</label>
+          <input
+            type="text"
+            formControlName="nombre"
+            id="nombre"
+            name="nombre"
+            class="form-control"
+            placeholder="Ejem: 11/12/2022"
+          />
+        </div>
 
-                <div class="form-group col-12">
-                  <label for="" class="sr-only">Archivo:</label> <!-- Oculta la etiqueta -->
-                  <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text">Archivo adjunto:</span></div>
-                      <input type="text" class="form-control" id="precio" name="precio">
-                  </div>
-                </div>
+        <div class="form-group col-4">
+          <label for="direccion">Fecha Oportuna Pago</label>
+          <input
+            type="text"
+            formControlName="direccion"
+            id="direccion"
+            name="direccion"
+            class="form-control"
+            placeholder="Ejem: 11/12/2022"
+          />
+        </div>
 
-                <h4 class="col-12 text-info mb-3">
-                  <span class="fa-stack h5 mb-0">
-                      <i class="fas fa-circle fa-stack-2x"></i>
-                      <i class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
-                  </span>
-                  Información Última Factura
-              </h4>
+        <div class="form-group col-4">
+          <label for="direccion">Fecha suspension</label>
+          <input
+            type="text"
+            formControlName="direccion"
+            id="direccion"
+            name="direccion"
+            class="form-control"
+            placeholder="Ejem: 11/12/2022"
+          />
+        </div>
 
-              <div class="form-group col-6">
-                <label for="" class="sr-only">Fecha:</label> <!-- Oculta la etiqueta -->
-                <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text">Fecha:</span></div>
-                    <input type="text" class="form-control" id="precio" name="precio" readonly>
-                </div>
-              </div>
+        <div class="form-group col-4">
+          <label for="nombre">Valor</label>
+          <input
+            type="text"
+            formControlName="nombre"
+            id="nombre"
+            name="nombre"
+            class="form-control"
+            placeholder="Ejem: $213,000"
+          />
+        </div>
 
-              <div class="form-group col-6">
-                <label for="" class="sr-only">valor:</label> <!-- Oculta la etiqueta -->
-                <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text">Valor:</span></div>
-                    <input type="text" class="form-control" id="precio" name="precio" readonly>
-                </div>
-              </div>
+        <div class="form-group col-8">
+          <label for="direccion">Observacion</label>
+          <input
+            type="text"
+            formControlName="direccion"
+            id="direccion"
+            name="direccion"
+            class="form-control"
+            placeholder="Ejem: "
+          />
+        </div>
 
-             
-                  <div class="form-group col-3">
-                    <label for="">Usuario</label>
-                    <input type="text" formControlName="usuarioId" id="usuarioId" name="usuarioId" class="form-control"
-                            placeholder="Ejem: usuario" readonly>
-                  </div>
+        <div class="form-group col-12">
+          <label for="" class="sr-only">Archivo:</label>
+          <!-- Oculta la etiqueta -->
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Archivo adjunto:</span>
+            </div>
+            <input type="text" class="form-control" id="precio" name="precio" />
+          </div>
+        </div>
 
-                 <div class="form-group col-3">
-                     <label for="estado">&nbsp;</label>
-                     <div class="d-flex align-items-center contenedor-checkbox">
-                         <label for="estado" class="m-0 pt-1">Estado</label>
-                        <span> <div class="d-flex align-items-center">
-                            <input type="checkbox" formControlName="estado" id="estado" name="estado" class="form-check-input ml-2">
-                        </div></span>
-                     </div>
-                 </div>
-                 
-                 <div class="form-group col-3">
-                     <label for="fecharegistro">Fecha registro</label>
-                     <input type="text" formControlName="fecharegistro" id="fecharegistro" nombre="fecharegistro" class="form-control"
-                             placeholder="Ejem: 18/12/2023" readonly>
- 
-                 </div>
- 
-                 <div class="form-group col-3">
-                     <label for="fechamodificacion">Fecha modificación</label>
-                     <input type="text" formControlName="fechamodificacion" id="fechamodificacion" name="fechamodificacion" class="form-control"
-                             placeholder="Ejem: 25/12/2023" readonly>
-                 </div>           
-             </div>
- 
-             <div class="form-row mb-3">
-                 <div class="col-12 col-md-3">
-                     <button type="reset" class="btn bg-success btn-block my-1">
-                       <i class="fa-solid fa-plus pr-2"></i>Nuevo</button>
-                   </div>
- 
-                   <div class="col-12 col-md-3">
-                     <button type="submit" class="btn btn-primary btn-block my-1" (click)="GuardarRegistro()" [disabled]="form.invalid">
-                         <i class="fas fa-location-arrow pr-2"></i>Enviar
-                     </button>
-                 </div>
- 
-                 <div class="col-12 col-md-3">
-                   <button type="reset" class="btn btn-secondary btn-block  my-1">
-                     <i class="fas fa-times pr-2"></i>Cancelar</button>
-                 </div>
+        <h4 class="col-12 text-info mb-3">
+          <span class="fa-stack h5 mb-0">
+            <i class="fas fa-circle fa-stack-2x"></i>
+            <i class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
+          </span>
+          Información Última Factura
+        </h4>
 
-                 <div class="col-12 col-md-3">
-                    <button type="reset" class="btn btn-info btn-block  my-1" (click)="openPopup()">
-                      <i class="fas fa-times pr-2"></i>Concepto Facturación </button>
-                  </div>
+        <div class="form-group col-6">
+          <label for="" class="sr-only">Fecha:</label>
+          <!-- Oculta la etiqueta -->
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Fecha:</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="precio"
+              name="precio"
+              readonly
+            />
+          </div>
+        </div>
 
+        <div class="form-group col-6">
+          <label for="" class="sr-only">valor:</label>
+          <!-- Oculta la etiqueta -->
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Valor:</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="precio"
+              name="precio"
+              readonly
+            />
+          </div>
+        </div>
 
-               </div> 
-         </form>
-    </div>
- </div>
- 
- <app-entidad-poppup [entidadid]='idRegistro' ></app-entidad-poppup>
+        <div class="form-group col-3">
+          <label for="">Usuario</label>
+          <input
+            type="text"
+            formControlName="usuarioId"
+            id="usuarioId"
+            name="usuarioId"
+            class="form-control"
+            placeholder="Ejem: usuario"
+            readonly
+          />
+        </div>
+
+        <div class="form-group col-3">
+          <label for="estado">&nbsp;</label>
+          <div class="d-flex align-items-center contenedor-checkbox">
+            <label for="estado" class="m-0 pt-1">Estado</label>
+            <span>
+              <div class="d-flex align-items-center">
+                <input
+                  type="checkbox"
+                  formControlName="estado"
+                  id="estado"
+                  name="estado"
+                  class="form-check-input ml-2"
+                /></div
+            ></span>
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="fecharegistro">Fecha registro</label>
+          <input
+            type="text"
+            formControlName="fecharegistro"
+            id="fecharegistro"
+            nombre="fecharegistro"
+            class="form-control"
+            placeholder="Ejem: 18/12/2023"
+            readonly
+          />
+        </div>
+
+        <div class="form-group col-3">
+          <label for="fechamodificacion">Fecha modificación</label>
+          <input
+            type="text"
+            formControlName="fechamodificacion"
+            id="fechamodificacion"
+            name="fechamodificacion"
+            class="form-control"
+            placeholder="Ejem: 25/12/2023"
+            readonly
+          />
+        </div>
+      </div>
+
+      <div class="form-row mb-3">
+        <div class="col-12 col-md-3">
+          <button type="reset" class="btn bg-success btn-block my-1">
+            <i class="fa-solid fa-plus pr-2"></i>Nuevo
+          </button>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block my-1"
+            (click)="GuardarRegistro()"
+            [disabled]="form.invalid"
+          >
+            <i class="fas fa-location-arrow pr-2"></i>Enviar
+          </button>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <button type="reset" class="btn btn-secondary btn-block my-1">
+            <i class="fas fa-times pr-2"></i>Cancelar
+          </button>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <button
+            type="reset"
+            class="btn btn-info btn-block my-1"
+            (click)="openPopup()"
+          >
+            <i class="fas fa-times pr-2"></i>Concepto Facturación
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-entidad-poppup [entidadid]="idRegistro"></app-entidad-poppup>
