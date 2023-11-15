@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 import { PopupService } from 'src/app/services/shared/services/popup-service';
 import { SharedService } from '../services/shared/services/shared.service';
 import { FormulariosService } from '../services/formularios.service';
-import { EntidadService } from '../services/shared/entidades/entidad.services';
+import { ArchivoService } from '../services/archivo/archivo.service';
 
 @Component({
   selector: 'app-factura-registrar',
@@ -19,11 +19,11 @@ import { EntidadService } from '../services/shared/entidades/entidad.services';
   styleUrls: ['./factura-registrar.component.scss'],
 })
 export class FacturaRegistrarComponent implements OnInit {
-  form: FormGroup;
+  registerInvoiceForm!: FormGroup;
   suscription: Subscription = new Subscription();
   originalFormValues: any;
   idRegistro: number = 0;
-  endPoint = 'Entidad';
+  endPoint = 'Factura';
 
   tipoSede: any[] = [];
   entidades: any[] = [];
@@ -32,32 +32,43 @@ export class FacturaRegistrarComponent implements OnInit {
   tipoEmpresaNivel: any[] = [];
   tipoEmpresaSector: any[] = [];
 
+
+
+
   constructor(
     private sharedService: SharedService,
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private formulariosService: FormulariosService,
-    private entidadService: EntidadService,
+    private archivoService: ArchivoService,
     private popupService: PopupService
   ) {
-    this.form = this.formBuilder.group({
-      id: 0,
-      identificacion: [null, Validators.required],
-      departamentoId: [null, Validators.required],
-      municipioId: [null, Validators.required],
-      nombre: [null, Validators.required],
-      direccion: [null, Validators.required],
-      tipoempresaid: [null, Validators.required],
-      tipoempresanivelid: [null, Validators.required],
-      tipoempresasectorid: [null, Validators.required],
-      estado: [null],
-      usuarioId: 1,
-      fecharegistro: [null],
-      fechamodificacion: [null],
+    this.registerInvoiceForm = this.formBuilder.group({
+      id: new FormControl(this.idRegistro, [
+      ]),
+      sedeId: new FormControl('1', []),
+      entidadId: new FormControl('1', []),
+      facturaNumero: new FormControl('', [Validators.required]),
+      referenciaPago: new FormControl('', [Validators.required]),
+      numeroContrato: new FormControl('', [Validators.required]),
+      fechaEmision: new FormControl(new Date(), []),
+      fechaPago: new FormControl(new Date(), []),
+      //Este dato no se require en el modelo de back
+      fechaSuspension: new FormControl(new Date(), []),
+      valorFactura: new FormControl('', [Validators.required]),
+      nota: new FormControl('', []),
+      urlFactura: new FormControl('', [Validators.required]),
+      archivoOrigen: new FormControl('', [Validators.required]),
+      valorFacturaUltimoPago: new FormControl(2131231, []),
+      facturaEstadoId: new FormControl(1, []),
+      fechaUltimoPago: new FormControl(new Date(), []),
+      usuarioId: new FormControl('1', []),
+      fechaCreacion: new FormControl(new Date(), []),
+      fechaModificacion: new FormControl(new Date(), []),
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngOnDestroy() {
     this.suscription.unsubscribe();
@@ -76,11 +87,19 @@ export class FacturaRegistrarComponent implements OnInit {
     }
   }
 
-  onEntidad(event: any) {}
+  onEntidad(event: any) { }
 
   //------------------------------------------------------------------------------------------
 
-  GuardarRegistro() {
+  guardarRegistro() {
+
+    console.log(this.registerInvoiceForm.value);
+
+
+    // Estas fechas se tienen que adicionar en el create no hacen parte del formulario
+    /*     
+        fechaProximaFecha: new FormControl('', []), */
+
     if (this.idRegistro === 0 || this.idRegistro === undefined) {
       this.AdicionarRegistro();
     } else {
@@ -89,63 +108,75 @@ export class FacturaRegistrarComponent implements OnInit {
   }
 
   AdicionarRegistro() {
-    if (this.form.get('identificacion') && this.form.get('nombre')) {
-      const dataToSend = {
-        identificacion: this.form.get('identificacion')?.value ?? '',
-        departamentoId: this.form.get('departamentoId')?.value ?? '',
-        municipioId: this.form.get('municipioId')?.value ?? '',
-        nombre: this.form.get('nombre')?.value ?? '',
-        direccion: this.form.get('direccion')?.value ?? '',
-        tipoempresaid: this.form.get('tipoempresaid')?.value ?? '',
-        tipoempresanivelid: this.form.get('tipoempresanivelid')?.value ?? '',
-        tipoempresasectorid: this.form.get('tipoempresasectorid')?.value ?? '',
-      };
-      console.log('dataToSend : ', dataToSend);
-      this.sharedService.post(this.endPoint, dataToSend).subscribe(
-        {
-          next: (response) => {
-            this.toastr.success('Registros exitoso', 'Exito');
-          },
-          error: (error) => {
-            console.log('error : ', error);
-          },
-        }
 
-        // (response) => {
-        //   this.toastr.success('Registros exitoso', 'Exito');
-        // },
-        // (error) => {
-        //   console.log('error : ', error);
-        // }
-      )
-    }
+    const formData = new FormData();
+    formData.append('files', this.registerInvoiceForm.get('archivoOrigen')!.value);
+
+    this.archivoService.subirArchivo(formData);
+
+    const dataToSend = {
+      fechaProximaFecha: new Date(),
+      ...this.registerInvoiceForm.value
+    };
+
+    delete dataToSend.fechaSuspension;
+    delete dataToSend.archivoOrigen;
+
+    this.sharedService.post(this.endPoint, dataToSend).subscribe(
+      {
+        next: (response) => {
+          this.toastr.success('Registros exitoso', 'Exito');
+        },
+        error: (error) => {
+          console.log('error : ', error);
+        },
+        complete: () => {
+
+        }
+      }
+    )
   }
 
   ActualizarRegistro() {
     const jsonPatch: any[] = [];
     this.formulariosService.compareAndGeneratePatch(
       jsonPatch,
-      this.form.value,
+      this.registerInvoiceForm.value,
       this.originalFormValues
     );
 
     this.sharedService
       .patch(this.endPoint, this.idRegistro, jsonPatch)
       .subscribe(
-        (response) => {
-          // this.admonPagosAdminService.obtenerListadoRegistros('/' + this.endPoint);
-          this.toastr.success('Registros actualizados', 'Exito');
-        },
-        (error) => {
-          const errorMessage =
-            error?.message ?? 'Mensaje de error predeterminado';
-          this.toastr.error(errorMessage, 'Error!');
+        {
+          next: (response) => {
+            // this.admonPagosAdminService.obtenerListadoRegistros('/' + this.endPoint);
+            this.toastr.success('Registros actualizados', 'Exito');
+          },
+          error: (error) => {
+            const errorMessage =
+              error?.message ?? 'Mensaje de error predeterminado';
+            this.toastr.error(errorMessage, 'Error!');
+          },
+          complete: () => {
+
+          }
         }
       );
   }
 
+  cambioCampoArchivo(event: any) {
+
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.registerInvoiceForm.patchValue({
+        archivoOrigen: file
+      });
+    }
+  }
+
   LimpiarFormulario() {
-    this.form.reset();
+    this.registerInvoiceForm.reset();
     this.idRegistro = 0;
   }
 
