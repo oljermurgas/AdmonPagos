@@ -1,4 +1,12 @@
-#seccion-menu{
-    height: 56rem;
-    background-color: #0b487d;
+#seccion-menu {
+  display: flex;
+  top: 0;
+  bottom: 0;
+  margin: 10px 0;
+  width: fit-content;
+  background-color: #f8f9fa; /* Color de fondo del menú */
+  border-radius: 4px;
+  overflow: hidden;
+  position: fixed;
+  // background-color: #0b487d;
 }

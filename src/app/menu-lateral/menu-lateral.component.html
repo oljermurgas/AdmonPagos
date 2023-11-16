@@ -1,26 +1,27 @@
 <mat-list>
-
   <mat-list-item>
     <mat-icon>home</mat-icon>
-      Admon Pagos
+    Admon Pagos
   </mat-list-item>
-
 
   <!-- Elemento Nuevo con icono más -->
   <mat-list-item (click)="navigateTo('nuevo')">
     <mat-icon>add</mat-icon>
-      Nuevo
+    Nuevo
   </mat-list-item>
 
   <!-- Elemento Servicios Públicos con ícono -->
-  <mat-list-item (click)="toggleServices()" (click)="navigateTo('consulta')">
+  <mat-list-item
+    (click)="toggleServices()"
+    class="submenu"
+    (click)="navigateTo('consulta')"
+  >
     <mat-icon>local_fire_department</mat-icon>
     Servicios Públicos
   </mat-list-item>
 
-  <!-- Submenú de Servicios Públicos -->
-  <mat-nav-list *ngIf="servicesOpen">
-    <mat-list-item >
+  <div class="submenu" *ngIf="servicesOpen">
+    <mat-list-item>
       <mat-icon>emoji_objects</mat-icon>
       Servicio Energía
     </mat-list-item>
@@ -32,7 +33,24 @@
       <mat-icon>phone</mat-icon>
       Servicio de Teléfono
     </mat-list-item>
-  </mat-nav-list>
+  </div>
+
+  <!-- <mat-nav-list *ngIf="servicesOpen">
+    <mat-list-item>
+      <mat-icon>emoji_objects</mat-icon>
+      Servicio Energía
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon>delete</mat-icon>
+      Servicio Aseo
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon>phone</mat-icon>
+      Servicio de Teléfono
+    </mat-list-item>
+  </mat-nav-list> -->
+
+  <!-- Submenú de Servicios Públicos -->
 
   <!-- Elemento Administración -->
   <mat-list-item class="mat-text">
@@ -40,19 +58,14 @@
     Administración
   </mat-list-item>
 
-    <!-- Elemento Administración -->
-    <mat-list-item class="mat-text">
-      <mat-icon>business</mat-icon>
-      Registrar pagos
-    </mat-list-item>
+  <!-- Elemento Administración -->
+  <mat-list-item class="mat-text">
+    <mat-icon>business</mat-icon>
+    Registrar pagos
+  </mat-list-item>
 
   <mat-list-item class="mat-text">
     <mat-icon>brightness_low</mat-icon>
     Procuraduria General
   </mat-list-item>
-
 </mat-list>
-
-
-
-

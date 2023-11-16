@@ -222,13 +222,20 @@ html{
 }
 
 
+mat-list-item mat-icon {
+  color: gray;
+}
+mat-list-item:hover mat-icon {
+  color: white;
+}
+
 /* Estilo base para la lista de menú */
 mat-list {
     padding: 0;
     list-style: none;
     width: 250px; /* Ancho del menú lateral */
-    background-color: #333; /* Color de fondo del menú */
-    color: #fff; /* Color del texto */
+    // background-color: #333; /* Color de fondo del menú */
+    // color: #fff; /* Color del texto */
   }
   
   /* Estilo para los elementos de la lista */
@@ -237,12 +244,21 @@ mat-list {
     align-items: center;
     padding: 10px 20px;
     cursor: pointer;
+    height: fit-content;
     transition: background-color 0.3s;
+    color: gray;
   }
-  
+
+  .submenu > * {
+    margin-left: 40px;
+    color: rgb(195, 195, 195);
+    border-left: solid gray;
+  }
+
   /* Estilo cuando se coloca el cursor sobre un elemento */
   mat-list-item:hover {
     background-color: #555; /* Color de fondo al pasar el cursor */
+    color: white;
   }
   
   /* Estilo para el icono en los elementos */
@@ -279,28 +295,23 @@ mat-list {
     background-color: #444;
   }
 
-  .mat-list-item-content {
-    color: white !important;
-  }
-
   .material-icons{
     color:white;
     font-size: 1.5rem;
   }
 
-
-
   .mat-list-base .mat-list-item {
     font-size: 16px;
-    color: white !important;
+    // color: white !important;
 }
 
 .mat-list {
   padding: 0;
   list-style: none;
   width: 250px;
-  background-color: #0b487d;
-  color: #fff;
+  // background-color: #0b487d;
+  // color: #fff;
+
 }
 
 * {
