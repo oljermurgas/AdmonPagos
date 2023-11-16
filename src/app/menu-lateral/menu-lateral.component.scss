@@ -237,9 +237,14 @@ mat-list {
     align-items: center;
     padding: 10px 20px;
     cursor: pointer;
+    height: fit-content;
     transition: background-color 0.3s;
   }
-  
+
+  .submenu > * {
+    padding-left: 40px;
+  }
+
   /* Estilo cuando se coloca el cursor sobre un elemento */
   mat-list-item:hover {
     background-color: #555; /* Color de fondo al pasar el cursor */
