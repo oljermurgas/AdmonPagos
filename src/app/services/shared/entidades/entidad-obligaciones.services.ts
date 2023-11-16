@@ -22,7 +22,6 @@ export class EntidadObligacionesService {
   constructor(private http: HttpClient) {}
 
   obtenerListadoRegistrosPorEntidad(idEntidad: number) {
-    // Establece un array vacío antes de realizar la solicitud HTTP
     this.listadoDataSubject.next([]);
   
     const EndPoint = `/TipoObligacion/entidad/${idEntidad}`;
@@ -30,11 +29,10 @@ export class EntidadObligacionesService {
       .pipe(
         catchError((error) => {
           console.error("Error al obtener datos: ", error);
-          return []; // Devuelve un array vacío en caso de error
+          return []; 
         })
       )
       .subscribe((data) => {
-        console.log("data: ", data);
         this.listadoDataSubject.next(data);
       });
   }

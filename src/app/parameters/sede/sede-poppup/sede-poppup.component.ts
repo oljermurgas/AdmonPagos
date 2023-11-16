@@ -1,12 +1,17 @@
 import { Component, OnInit , Input} from '@angular/core';
 import { PopupService } from 'src/app/services/shared/services/popup-service';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { format } from 'date-fns';
+import { CurrencyPipe } from '@angular/common';
 import { SedeService } from 'src/app/services/shared/sedes/sede.services';
 import { SharedService } from 'src/app/services/shared/services/shared.service';
 import { FormulariosService } from 'src/app/services/formularios.service';
+import { SedeContratoService } from 'src/app/services/shared/sedes/sede-contratos.services';
+
+declare var $: any;
 
 @Component({
   selector: 'app-sede-poppup',
@@ -22,6 +27,7 @@ export class SedePoppupComponent implements OnInit {
   originalFormValues: any;
   idRegistro: number =0;
   endPoint="SedeContrato"
+  sedeContratoId: number = 0;
 
   private subscription: Subscription;
   private subscriptionForm: Subscription = new Subscription();
@@ -31,73 +37,77 @@ export class SedePoppupComponent implements OnInit {
               private toastr: ToastrService,
               private sedeService: SedeService,
               private sharedService: SharedService,
-              private formulariosService: FormulariosService
+              private formulariosService: FormulariosService,
+              private currencyPipe: CurrencyPipe,
+              private sedeContratoService: SedeContratoService
     ) {
+
           this.subscription = this.popupService.isOpen$.subscribe((isOpen) => {
-          this.isOpen = isOpen;
+              this.isOpen = isOpen;
               if (isOpen) {
-                    this.title = 'Titulo';
+                  const idSedeContrato = this.popupService.getPopupTitle();
+                  this.sedeContratoId = +idSedeContrato;
+                  if (isNaN(this.sedeContratoId) ||  this.sedeContratoId ===0) {
+                      this.sedeContratoId = 0;
+                      this.form.reset();
+                  }
+                  // Actualizar this.subscriptionForm
+                  this.updateSubscriptionForm();
               }
-          });
+            });
 
           this.form = this.formBuilder.group({
             id:[null],
-            terceroidentificacion:[null],
-            terceronombre:[null],
-            terceroapellido: [null],
-            terceroemail:[null],
-            tercerotelefono:[null],
-            documento:[null],
-            valor:[null],
-            nummes:[null],
-            linksecop:[null],
+            documentonumero:[null],
             fechainicio:[null],
             fechafinal:[null],
+            identificacion:[null],
+            razonsocial:[null],
+            email:[null],
+            telefono:[null],
+            notas:[null],
+            linksecop:[null],
             estado:[null],
-            usuarioId:1,
-            comentarios:[null],
-            sedeid:[null]
+            usuarioId:[null],
+            valor:[null],
+            fecharegistro:[null],
+            fechaModificacion:[null] 
           });
-
    }
 
       ngOnInit() {
-              this.subscription = this.popupService.isOpen$.subscribe((isOpen) => {
-                this.isOpen = isOpen;
-                if (isOpen) {
-                  this.title = this.popupService.getPopupTitle();
-                  }
-              });
-             
-              this.subscriptionForm= this.sedeService.obtenerDatosRegistroObservable$().subscribe(data => {
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Mantener this.subscriptionForm actualizado cuando cambia this.subscription
+        this.subscriptionForm = this.sedeContratoService.listadoData$
+            .pipe(
+                map((data: any[]) => {
+                    return data.filter(item => item.id === this.sedeContratoId);
+                })
+            )
+            .subscribe((resultadosFiltrados: any[]) => {
+                const data = resultadosFiltrados;
                 if (data && Object.keys(data).length > 0) {
-
-                  this.form.patchValue({
-                    id:data.id,
-                    terceroidentificacion:data.terceroidentificacion,
-                    terceronombre: data.terceronombre,
-                    terceroapellido: data.terceroapellido,
-                    terceroemail: data.terceroemail,
-                    tercerotelefono: data.tercerotelefono,
-                    documento: data.documento,
-                    valor: data.valor,
-                    nummes: data.nummes,
-                    linksecop: data.linksecop,
-                    fechainicio: data.fechainicio,
-                    fechafinal: data.fechafinal,
-                    estado: data.estado,
-                    usuarioId: data.usuarioId,
-                    comentarios:data.comentarios,
-                    sedeId:data.sedeid 
-                  });
-                  this.originalFormValues = { ...this.form.value };
-                  this.idRegistro = data.id;
-                } else {
-                  // Handle cuando no se encuentren datos válidos
+    
+                    this.form.patchValue({
+                        documentonumero: data[0].documentoNumero,
+                        fechainicio: format(new Date(data[0].fechaInicio), 'dd/MM/yyyy'),
+                        fechafinal: format(new Date(data[0].fechaFinal), 'dd/MM/yyyy'),
+                        identificacion: data[0].identificacion,
+                        razonsocial: data[0].razonSocial,
+                        email: data[0].email,
+                        telefono: data[0].telefono,
+                        notas: data[0].notas,
+                        linksecop: data[0].linkSecop,
+                        estado: data[0].estado,
+                        valor: data[0].valor,
+                        fecharegistro: data[0].fechaCreacion,
+                        fechaModificacion: data[0].fechaModificacion
+                    });
+                    this.originalFormValues = { ...this.form.value };
+                    this.idRegistro = data[0].id;
                 }
-              });
-
-
+            });
       }
 
     onAccept() {
@@ -106,7 +116,6 @@ export class SedePoppupComponent implements OnInit {
     }
 
     GuardarRegistro(){   
-      this.idRegistro=0;
       if (this.idRegistro === 0 || (this.idRegistro === undefined)) {
           this.AdicionarRegistro(); 
       } 
@@ -116,19 +125,20 @@ export class SedePoppupComponent implements OnInit {
     }
   
     AdicionarRegistro(){
-        if (this.form.get('terceroidentificacion') && this.form.get('documento')) {
+        if (this.form.get('identificacion') && this.form.get('documentonumero')) {
             const dataToSend = {
               SedeId: this.sedeid,
-              TerceroIdentificacion: this.form.get('terceroidentificacion')?.value ?? '',
-              TerceroNombres: this.form.get('terceronombre')?.value ?? '',
-              TerceroApellidos: this.form.get('terceroapellido')?.value ?? '',
-              DocumentoNumero: this.form.get('documento')?.value ?? '',
-              valor: this.form.get('valor')?.value ?? '', 
-              meses: this.form.get('nummes')?.value ?? '', 
-              linksecop: this.form.get('linksecop')?.value ?? '', 
+              DocumentoNumero: this.form.get('documentonumero')?.value ?? '',
               FechaInicio: this.form.get('fechainicio')?.value ?? '',
               FechaFinal: this.form.get('fechafinal')?.value ?? '',
-              Notas: this.form.get('comentarios')?.value ?? ''
+              Identificacion: this.form.get('identificacion')?.value ?? '',
+              RazonSocial: this.form.get('razonsocial')?.value ?? '',
+              Email: this.form.get('email')?.value ?? '',
+              Telefono: this.form.get('telefono')?.value ?? '',
+              Notas: this.form.get('notas')?.value ?? '',
+              linksecop: this.form.get('linksecop')?.value ?? '',
+              valor: this.form.get('valor')?.value ?? '',
+              estado: this.form.get('estado')?.value ?? ''
             };
             this.sharedService.post(this.endPoint, dataToSend).subscribe(response => {
             this.toastr.success("Registros exitoso","Exito");
@@ -143,10 +153,9 @@ export class SedePoppupComponent implements OnInit {
     ActualizarRegistro(){
       const jsonPatch: any[] = [];
       this.formulariosService.compareAndGeneratePatch(jsonPatch, this.form.value, this.originalFormValues);
-
         this.sharedService.patch(this.endPoint, this.idRegistro, jsonPatch).subscribe(
           response => {
-            this.sedeService.obtenerListadoRegistros('/' + this.endPoint);
+            this.sedeService.obtenerListadoRegistros('/Sede');
             this.toastr.success("Registros actualizados","Exito");
           },
           error => {
@@ -168,4 +177,61 @@ export class SedePoppupComponent implements OnInit {
       this.popupService.close();
     }
 
+    get valor() {
+      return this.form.get('valor');
+    }
+  
+    // Función para formatear el valor a moneda
+    get valorFormateado() {
+      const valorNumerico = Number(this.valor?.value);
+    
+      if (!isNaN(valorNumerico)) {
+        return valorNumerico.toLocaleString('es-CO', {
+          style: 'currency',
+          currency: 'COP',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        });
+      } else {
+        return '0';
+      }
+    }
+    
+    actualizarValorFormateado() {
+      this.valor?.setValue(this.valor.value);
+    }
+    
+    private updateSubscriptionForm() {
+      // Actualizar this.subscriptionForm con el nuevo valor de this.sedeContratoId
+      this.subscriptionForm.unsubscribe();
+  
+      this.subscriptionForm = this.sedeContratoService.listadoData$
+          .pipe(
+              map((data: any[]) => {
+                  return data.filter(item => item.id === this.sedeContratoId);
+              })
+          )
+          .subscribe((resultadosFiltrados: any[]) => {
+              const data = resultadosFiltrados;
+              if (data && Object.keys(data).length > 0) {  
+                  this.form.patchValue({
+                      documentonumero: data[0].documentoNumero,
+                      fechainicio: format(new Date(data[0].fechaInicio), 'dd/MM/yyyy'),
+                      fechafinal: format(new Date(data[0].fechaFinal), 'dd/MM/yyyy'),
+                      identificacion: data[0].identificacion,
+                      razonsocial: data[0].razonSocial,
+                      email: data[0].email,
+                      telefono: data[0].telefono,
+                      notas: data[0].notas,
+                      linksecop: data[0].linkSecop,
+                      estado: data[0].estado,
+                      valor: data[0].valor,
+                      fecharegistro: data[0].fechaCreacion,
+                      fechaModificacion: data[0].fechaModificacion
+                  });
+                  this.originalFormValues = { ...this.form.value };
+                  this.idRegistro = data[0].id;
+              }
+          });
+  }
 }

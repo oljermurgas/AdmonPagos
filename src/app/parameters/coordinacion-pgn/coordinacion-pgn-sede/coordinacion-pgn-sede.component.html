@@ -1,0 +1,31 @@
+<form [formGroup]="formulario" action="" class="contendor-componente bg-light my-3 p-3 border rounded">
+  <!-- Filtrar -->
+  <h2 class="contendor-fijo">Sedes</h2>
+  <div class="form-group form-row col-12 m-0 p-0">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa-solid fa-filter"></i></span>
+      </div>
+          <input  formControlName="tipopagpadministracionid" type="text" 
+                  class="form-control lista-despegable" placeholder="Ingrese texto a filtrar"
+                  (input)="filtrarOpciones($event)"
+          >
+    </div>
+  </div>
+
+  <!-- Encabezados de Columna -->
+  <div class="form-row mb-2 border-1 mt-2">
+    <div class="col-10 d-flex align-items-center font-weight-bold">
+      <div class="texto-lista-item">Descripción</div>
+    </div>
+  </div>
+
+  <!-- Filas de Datos -->
+  <div class="contendor-resultados">
+      <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of items">
+          <div class="col-10 d-flex align-items-center" (dblclick)="adicionarRegistro(item)">
+            <div class="texto-lista-item">{{item.nombre}}</div>
+          </div>
+        </div>
+  </div>
+</form>

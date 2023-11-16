@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, of , forkJoin } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FormulariosService } from 'src/app/services/formularios.service';
 import { AdmonPagosAdminService } from 'src/app/services/shared/services/admon-pagos-admin.service';
 import { SharedService } from 'src/app/services/shared/services/shared.service';
@@ -8,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { format } from 'date-fns';
 import { SedeService } from 'src/app/services/shared/sedes/sede.services';
 import { SedeContratoService } from 'src/app/services/shared/sedes/sede-contratos.services';
+import { PopupService } from 'src/app/services/shared/services/popup-service';
 
 
 @Component({
@@ -27,6 +29,9 @@ export class SedeRegistrarComponent implements OnInit {
   tipoMunicipio : any [] =[];
   tipoInmueble : any [] =[];
   tipoVinculacionContractual : any [] =[];
+  selectedMunicipioId: number = 0;
+  mostrarSedeContrato: boolean ;
+  mostrarSedeEntidad: boolean;
 
   constructor(  private admonPagosAdminService: AdmonPagosAdminService,
                 private sharedService: SharedService,
@@ -34,8 +39,12 @@ export class SedeRegistrarComponent implements OnInit {
                 private toastr: ToastrService,
                 private formulariosService: FormulariosService,
                 private sedeService: SedeService,
-                private sedeContratoService: SedeContratoService
+                private sedeContratoService: SedeContratoService,
+                private popupService: PopupService
                ) {
+                this.mostrarSedeContrato = false;
+                this.mostrarSedeEntidad = false;
+
                    this.form = this.formBuilder.group({
                       id:0,
                       codigo:[null],
@@ -43,8 +52,8 @@ export class SedeRegistrarComponent implements OnInit {
                       municipioId:0,
                       nombre: [null],
                       direccion:[null],
-                      numerocatastro:[null],
-                      matriculainmoviliaria:[null],
+                      cedulacatastral:[null],
+                      matriculainnoviliaria:[null],
                       tipoVinculacionContractualId:[null],
                       tipoInmuebleId:[null],
                       estado:[null],
@@ -55,38 +64,53 @@ export class SedeRegistrarComponent implements OnInit {
     }
 //------------------------------------------------------------------------------------------
   ngOnInit(): void {
+    let data: any; 
 
     if (this.sedeService.obtenerDatosRegistroObservable$) {
-      this.suscription = this.sedeService.obtenerDatosRegistroObservable$().subscribe(data => {
+      this.suscription = this.sedeService.obtenerDatosRegistroObservable$().pipe(
+        switchMap((responseData) => {
+          data = responseData;
           if (data && Object.keys(data).length > 0) {
-            this.form.patchValue({
-              id:data.id,
-              codigo:data.identificacionHominis,
-              departamentoId: data.departamentoId,
-              municipioId: data.municipioId,
-              nombre: data.nombre,
-              direccion: data.direccion,
-              numerocatastro: data.cedulaCatastral,
-              matriculainmoviliaria: data.matriculaInnoviliaria,
-              tipoVinculacionContractualId: data.tipoVinculacionContractualId,
-              tipoInmuebleId: data.tipoInmuebleId,
-              estado: data.estado,
-              usuarioId: data.usuarioId,
-              fecharegistro: format(new Date(data.fechaCreacion), 'yyyy/MM/dd :hh:mm:ss'), 
-              fechaModificacion: format(new Date(data.fechaModificacion), 'yyyy/MM/dd :hh:mm:ss') 
-            }); 
-            this.originalFormValues = { ...this.form.value };
-            this.idRegistro = data.id;
-
-            const idSede = this.idRegistro ; // Obtén el idSede correspondiente
-            this.sedeContratoService.obtenerListadoRegistrosPorSede(idSede);
-
+            return forkJoin([
+              this.sharedService.get('departamento/' + data.departamentoId),
+              of(data) 
+            ]);
           } else {
-            // this.toastr.success("Los datos del servicio no son válidos o están vacíos.","Mensaje");
-              this.idRegistro = 0;
+            return of([null, null]); 
           }
-        });
-      }
+        })
+      ).subscribe(([depto, data]) => {
+        if (depto) {
+          this.tipoMunicipio = depto;
+          this.selectedMunicipioId = data.municipioId;
+
+          this.form.patchValue({
+            id: data.id,
+            codigo: data.identificacionHominis,
+            departamentoId: data.departamentoId,
+            municipioId: data.municipioId,
+            nombre: data.nombre,
+            direccion: data.direccion,
+            cedulacatastral: data.cedulaCatastral,
+            matriculainnoviliaria: data.matriculaInnoviliaria,
+            tipoVinculacionContractualId: data.tipoVinculacionContractualId,
+            tipoInmuebleId: data.tipoInmuebleId,
+            estado: data.estado,
+            usuarioId: data.usuarioId,
+            fecharegistro: format(new Date(data.fechaCreacion), 'yyyy/MM/dd :hh:mm:ss'),
+            fechaModificacion: format(new Date(data.fechaModificacion), 'yyyy/MM/dd :hh:mm:ss')
+          });
+          this.originalFormValues = { ...this.form.value };
+          this.idRegistro = data.id;
+    
+          const idSede = this.idRegistro ; // Obtén el idSede correspondiente
+          this.sedeContratoService.obtenerListadoRegistrosPorSede(idSede);
+
+        } else {
+          // Manejar el caso en el que no hay datos de departamento
+        }
+      });
+    }
 
       this.sharedService.get('departamento').subscribe(data => {
         this.tipoDepartamento = data;
@@ -109,7 +133,6 @@ export class SedeRegistrarComponent implements OnInit {
   GuardarRegistro(){   
       if (this.idRegistro === 0 || (this.idRegistro === undefined)) {
           this.AdicionarRegistro(); 
-          console.log("Registrar Datos");
       } 
       else{
           this.ActualizarRegistro(); 
@@ -125,7 +148,7 @@ export class SedeRegistrarComponent implements OnInit {
             telefono: '000000',
             nombre: this.form.get('nombre')?.value ?? '', 
             direccion: this.form.get('direccion')?.value ?? '', 
-            CedulaCatastral: this.form.get('numerocatastro')?.value ?? '',
+            cedulacatastral: this.form.get('numerocatastro')?.value ?? '',
             MatriculaInnoviliaria: this.form.get('matriculainmoviliaria')?.value ?? '', 
             TipoVinculacionContractualId: this.form.get('tipoVinculacionContractualId')?.value ?? '', 
             TipoInmuebleId: this.form.get('tipoInmuebleId')?.value ?? ''
@@ -143,15 +166,14 @@ export class SedeRegistrarComponent implements OnInit {
     ActualizarRegistro(){
       const jsonPatch: any[] = [];
       this.formulariosService.compareAndGeneratePatch(jsonPatch, this.form.value, this.originalFormValues);
-
         this.sharedService.patch(this.endPoint, this.idRegistro, jsonPatch).subscribe(
           response => {
-            this.admonPagosAdminService.obtenerListadoRegistros('/' + this.endPoint);
+            this.sedeService.obtenerListadoRegistros('/' + this.endPoint);
             this.toastr.success("Registros actualizados","Exito");
           },
           error => {
-            const errorMessage = error?.message ?? 'Mensaje de error predeterminado';
-            this.toastr.error(errorMessage,"Error!");
+            // const errorMessage = error?.message ?? 'Mensaje de error predeterminado';
+            // this.toastr.error(errorMessage,"Error!");
           }
         );
     }
@@ -170,6 +192,19 @@ export class SedeRegistrarComponent implements OnInit {
       } else {
         this.tipoMunicipio = [];
       }
+    }
+
+    openPopup(){
+      if (this.idRegistro > 0){
+        this.mostrarSedeContrato =false;
+        this.mostrarSedeEntidad=true;
+        this.popupService.open(this.idRegistro.toString(), 'Mensaje del Popup', 'RegistrarSede');
+      }
+    }
+
+    recibirDatoEnviado(data: any) {
+      this.mostrarSedeContrato =true;
+      this.mostrarSedeEntidad=false;
     }
 
 }

@@ -1,0 +1,87 @@
+/* -------------------------------------------
+ 2. ESTILO CONTENDOR
+ ---------------------------------------------*/
+    .contendor-componente{
+        height: 35.75rem;
+    }
+
+/* -------------------------------------------
+ 2. ESTILO LISTA DE ITEM
+ ---------------------------------------------*/
+    .contenedor-item-registro {
+        background-color: white;
+        border: 1px solid #cdbebe;
+        padding: 1px;
+        border-radius: var(--bs-border-radius);
+        z-index: 1;
+        -webkit-transition: all .5s ease;
+        transition: all .5s ease;
+        overflow: hidden; }
+      
+    .contenedor-item-registro:hover {
+        color: #35363c;
+        background-color: #fff;
+        border-color: #17a2b8; }
+    
+    .contenedor-item-registro:active {
+        color: #35363c !important;
+        background-color: #17a2b8 !important;
+        border-color: #17a2b8 !important; }
+    
+    .contenedor-item-registro:focus {
+        background-color: #35363c;
+        color: #35363c !important;
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(4, 85, 235, 0.5) !important;
+        box-shadow: 0 0 0 0.2rem rgba(4, 85, 235, 0.5) !important; }
+
+    .texto-lista-item {
+        display: block;
+        width: 100%;
+        padding: 0.2rem 0.5rem;
+        font-size: 1rem;
+        line-height: 1.2;
+        -webkit-appearance: none;
+        appearance: none;
+        background-clip: padding-box;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        min-height: 1.8rem; 
+        }
+       
+    .black-icon {
+    color: rgb(63, 62, 62);  }
+
+    .cursor-pointer {
+        cursor: pointer;  }
+
+
+
+
+.contendor-componente {
+    position: relative;
+  }
+  
+  .contendor-resultados {
+    max-height: 23.625rem; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+    scrollbar-width: thin;
+  }
+  
+  .contendor-fijo {
+    position: sticky;
+    top: 0;
+    z-index: 3; 
+  }
+
+  .contendor-resultados::-webkit-scrollbar {
+    width: 8px; 
+  }
+  
+  .contendor-resultados::-ms-scrollbar {
+    width: 8px; 
+  }
+
+  .form-row {
+    margin-right: 0px; 
+    margin-left: 0px; 
+}

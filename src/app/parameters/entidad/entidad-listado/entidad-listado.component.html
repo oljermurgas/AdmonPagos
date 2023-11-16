@@ -1,18 +1,40 @@
-<div class="container">
-    <div class="row">
-        <form action="" class="contendor-componente bg-light my-3 p-3 border rounded">
-            <h2>Listado</h2>
-            <app-banner-buscador></app-banner-buscador>
-            <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of items">
-                <div class="col-10 " >
-                    <div class="texto-lista-item">{{item.nombre}}</div>
-                </div>
-                <div class="col-2">
-                    <i (click)="editar(item)" class="far fa-edit fa-lg text-info cursor-pointer" ></i>
-                    <i *ngIf="item.estado"    (click)="eliminar(item.id)"  class="far fa-trash-alt fa-lg ml-1 text-danger cursor-pointer"></i>
-                    <i *ngIf="!item.estado"   class="far fa-trash-alt fa-lg ml-1 black-icon"></i>
-                </div>
-            </div>
-        </form>
+<form [formGroup]="formulario" action="" class="contendor-componente bg-light my-3 p-3 border rounded">
+    <!-- Filtrar -->
+    <h2 class="contendor-fijo">Listado</h2>
+    <div class="form-group form-row col-12 m-0 p-0">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa-solid fa-filter"></i></span>
+        </div>
+            <input  formControlName="tipopagpadministracionid" type="text" 
+                    class="form-control lista-despegable" placeholder="Ingrese texto a filtrar"
+                    (input)="filtrarOpciones($event)"
+            >
+      </div>
     </div>
-</div>
+  
+    <!-- Encabezados de Columna -->
+    <div class="form-row mb-2 border-1 mt-2">
+      <div class="col-10 d-flex align-items-center font-weight-bold">
+        <div class="texto-lista-item">Descripción</div>
+      </div>
+      <div class="col-2 d-flex align-items-center font-weight-bold">
+        Acciones
+      </div>
+    </div>
+  
+    <!-- Filas de Datos -->
+    <div class="contendor-resultados">
+        <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of items">
+            <div class="col-10 d-flex align-items-center">
+              <div class="texto-lista-item">{{item.nombre}}</div>
+            </div>
+            <div class="col-2 d-flex align-items-center">
+              <i (click)="editar(item)" class="far fa-edit fa-lg text-info cursor-pointer"></i>
+              <i *ngIf="item.estado" (click)="eliminar(item.id)" class="far fa-trash-alt fa-lg ml-1 text-danger cursor-pointer"></i>
+              <i *ngIf="!item.estado" class="far fa-trash-alt fa-lg ml-1 black-icon"></i>
+            </div>
+          </div>
+    </div>
+  </form>
+  

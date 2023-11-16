@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PopupService } from 'src/app/services/shared/services/popup-service';
 import { SedeContratoService } from 'src/app/services/shared/sedes/sede-contratos.services';
 import { format } from 'date-fns';
@@ -14,6 +14,7 @@ export class SedeContratoComponent implements OnInit {
   endPoint: string = 'SedeContrato';
   dateToFormat = new Date();
   formattedDate: string;
+  @Output() datoEnviadoMensajeAbrirPoppup = new EventEmitter<boolean>();
 
   constructor(
     private popupService: PopupService,
@@ -37,10 +38,19 @@ export class SedeContratoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
-  openPopup(){
-    this.popupService.open('titulo', 'Mensaje del Popup');
+  openPopup(dato?: any ){
+    this.datoEnviadoMensajeAbrirPoppup.emit(true);
+    if (dato)
+      this.popupService.open(dato, 'Mensaje del Popup');
+    else
+      this.popupService.open('0', 'Mensaje del Popup');
   }
+
+  editar(tarjeta: any) {
+    this.openPopup(tarjeta.id); 
+    this.datoEnviadoMensajeAbrirPoppup.emit(true);
+  }
+
 }

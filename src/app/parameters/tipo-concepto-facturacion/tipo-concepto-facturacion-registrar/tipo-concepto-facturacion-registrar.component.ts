@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormulariosService } from 'src/app/services/formularios.service';
-import { AdmonPagosAdminService } from 'src/app/services/shared/services/admon-pagos-admin.service';
+import { ConceptoFacturacionService } from 'src/app/services/tipos/concepto-facturacion.service';
+import { TipoPagoAdmonService } from 'src/app/services/tipos/tipo-pago-admon.service';
 import { SharedService } from 'src/app/services/shared/services/shared.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +22,8 @@ export class TipoConceptoFacturacionRegistrarComponent implements OnInit {
 
     tiposPagoAdministracion: any[] = [];
   
-    constructor(  private admonPagosAdminService: AdmonPagosAdminService,
+    constructor(  private conceptoFacturacionService: ConceptoFacturacionService,
+                  private tipoPagoAdmonService: TipoPagoAdmonService,
                   private sharedService: SharedService,
                   private formBuilder: FormBuilder,
                   private toastr: ToastrService,
@@ -39,16 +41,16 @@ export class TipoConceptoFacturacionRegistrarComponent implements OnInit {
       }
   //------------------------------------------------------------------------------------------
     ngOnInit(): void {
-      this.admonPagosAdminService.obtenerListadoRegistros('/TipoPagoAdmon');
-      this.admonPagosAdminService.listadoItems$.subscribe((data) => {
+      this.tipoPagoAdmonService.obtenerListadoRegistros('/TipoPagoAdmon');
 
+      this.tipoPagoAdmonService.listadoItems$.subscribe((data) => {
         this.tiposPagoAdministracion = data.map(item => ({
           id: item.id,
           descripcion: item.descripcion
         }));
       });
 
-        this.suscription= this.admonPagosAdminService.obtenerDatosRegistroObservable$().subscribe(data => {
+        this.suscription= this.conceptoFacturacionService.obtenerDatosRegistroObservable$().subscribe(data => {
           if (data && Object.keys(data).length > 0) {
             this.form.patchValue({
               id:data.id,
@@ -56,12 +58,13 @@ export class TipoConceptoFacturacionRegistrarComponent implements OnInit {
               descripcion: data.descripcion,
               estado: data.estado,
               usuarioId: data.usuarioId,
+              tipopagpadministracionid: data.tipoPagoAdmonId,
               fechaRegistro: format(new Date(data.fechaCreacion), 'yyyy/MM/dd :hh:mm:ss'), 
               fechaModificacion: format(new Date(data.fechaModificacion), 'yyyy/MM/dd :hh:mm:ss') 
             }); 
             this.originalFormValues = { ...this.form.value };
           } else {
-            // this.toastr.success("Los datos del servicio no son válidos o están vacíos.","Mensaje");
+            this.toastr.success("Los datos del servicio no son válidos o están vacíos.","Mensaje");
           }
            this.idRegistro = data.id;
         });
@@ -85,7 +88,8 @@ export class TipoConceptoFacturacionRegistrarComponent implements OnInit {
         if (this.form.get('codigo') && this.form.get('descripcion')) {
             const dataToSend = {
               codigo: this.form.get('codigo')?.value ?? '',
-              descripcion: this.form.get('descripcion')?.value ?? ''
+              descripcion: this.form.get('descripcion')?.value ?? '',
+              tipopagoadmonid:  this.form.get('tipopagpadministracionid')?.value ?? ''
             };
   
             this.sharedService.post(this.endPoint, dataToSend).subscribe(response => {
@@ -100,7 +104,7 @@ export class TipoConceptoFacturacionRegistrarComponent implements OnInit {
   
           this.sharedService.patch(this.endPoint, this.idRegistro, jsonPatch).subscribe(
             response => {
-              this.admonPagosAdminService.obtenerListadoRegistros('/' + this.endPoint);
+              this.conceptoFacturacionService.obtenerListadoRegistros('/' + this.endPoint);
               this.toastr.success("Registros actualizados","Exito");
             },
             error => {

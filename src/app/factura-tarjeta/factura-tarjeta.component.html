@@ -20,7 +20,6 @@
         </div>
       </div>
       
-  
       <div class="col-12 col-md-9 p-3">
         <article class="container mt-1">
           <h3 class="titulo-nivel"> {{nombreSede}} </h3>
@@ -34,19 +33,19 @@
                   <span class="mx-1">
                     <i class="fa-regular fa-calendar"></i>
                   </span>
-                  <h6 class="descripcion_opciones m-0" style="text-decoration: none;">
+                  <h4 class="descripcion_opciones m-0" style="text-decoration: none;">
                     {{facturaFechaEmision | date: 'dd/MM/yyyy'}}
-                  </h6>
+                  </h4>
             </div>
 
             <div class="col-6 d-flex align-items-center mt-1">
                 <a class="titulo_opciones">Fecha pago oportuno: </a>
-                    <span class="mx-1">
+                    <span class="mx-1" style="text-decoration: none; color: #e05252;">
                       <i class="fa-solid fa-calendar-day"></i>
                     </span>
-                    <h6 class="descripcion_opciones m-0" style="text-decoration: none;">
+                    <h4 class="descripcion_opciones m-0" style="text-decoration: none;">
                       {{facturaFechaPagoOportuno | date: 'dd/MM/yyyy'}}
-                    </h6>
+                    </h4>
             </div>
 
             <div class="col-12 d-flex align-items-center mt-1">
@@ -54,9 +53,9 @@
                   <span class="mx-1">
                     <i class="fa-solid fa-dollar-sign"></i>
                   </span>
-                  <h6 class="descripcion_opciones m-0" style="text-decoration: none;">
+                  <h4 class="descripcion_opciones m-0" style="text-decoration: none;">
                     {{facturaValor | number:'1.2-2'}}
-                  </h6>
+                  </h4>
             </div>
   
             <div class="col-12 mt-1">
