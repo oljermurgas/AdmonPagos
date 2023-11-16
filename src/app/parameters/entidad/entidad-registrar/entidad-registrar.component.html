@@ -27,6 +27,10 @@
 
                  <div class="form-group col-3">
                   <label for="departamentoId">Departamento</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
                   <select formControlName="departamentoId" id="departamentoId" nombre="departamentoId" 
                           class="form-control" (change)="onDepartamentoChange($event)">
                     <option value="0">Seleccione Departamento</option>
@@ -36,9 +40,9 @@
                     </ng-container>
                   </select>
                 </div>
+                </div>
 
-
-                <div class="form-group col-3">
+                <!-- <div class="form-group col-3">
                   <label for="municipioId">Municipio</label>
                   <select   formControlName="municipioId" id="municipmunicipioIdioid" 
                             nombre="municipioId" class="form-control" >
@@ -48,7 +52,20 @@
                       <option [value]="municipio.id">{{ municipio.nombre }}</option>
                     </ng-container>
                   </select>
-                </div>
+                </div> -->
+
+                <div class="form-group col-3">
+                  <label for="municipioId">Municipio</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa-solid fa-chevron-down"></i></span>
+                      </div>
+
+                      <select formControlName="municipioId" id="municipmunicipioIdioid" nombre="municipioId" class="form-control">
+                        <option *ngFor="let municipio of tipoMunicipio" [value]="municipio.id">{{ municipio.nombre }}</option>
+                      </select>
+                    </div>
+                </div> 
 
                  <div class="form-group col-6">
                      <label for="nombre">Nombre Entidad</label>
@@ -64,38 +81,56 @@
 
                 <div class="form-group col-3">
                   <label for="tipoempresaid">Tipo Empresa</label>
-                  <select   formControlName="tipoempresaid" id="tipoempresaid" 
-                            nombre="tipoempresaid" class="form-control" >
-                    <option value="0">Seleccione tipo empresa</option>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
                     
-                    <ng-container *ngFor="let tipEmp of tipoEmpresa">
-                      <option [value]="tipEmp.id">{{ tipEmp.descripcion }}</option>
-                    </ng-container>
-                  </select>
+                      <select   formControlName="tipoempresaid" id="tipoempresaid" 
+                                nombre="tipoempresaid" class="form-control" >
+                        <option value="0">Seleccionar</option>
+                      
+                        <ng-container *ngFor="let tipEmp of tipoEmpresa">
+                          <option [value]="tipEmp.id">{{ tipEmp.descripcion }}</option>
+                        </ng-container>
+                      </select>
+                  </div>
                 </div>
 
                 <div class="form-group col-3">
-                  <label for="tipoempresanivelid">Tipo empresa nivel</label>
-                  <select   formControlName="tipoempresanivelid" id="tipoempresanivelid" 
-                            nombre="tipoempresanivelid" class="form-control" >
-                    <option value="0">Seleccione tipo empresa</option>
-                    
-                    <ng-container *ngFor="let tipEmpNiv of tipoEmpresaNivel">
-                      <option [value]="tipEmpNiv.id">{{ tipEmpNiv.descripcion }}</option>
-                    </ng-container>
-                  </select>
+                  <label for="tipoempresanivelid">Empresa Tipo Nivel</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+
+                    <select   formControlName="tipoempresanivelid" id="tipoempresanivelid" 
+                              nombre="tipoempresanivelid" class="form-control" >
+                      <option value="0">Seleccionar</option>
+                      
+                      <ng-container *ngFor="let tipEmpNiv of tipoEmpresaNivel">
+                        <option [value]="tipEmpNiv.id">{{ tipEmpNiv.descripcion }}</option>
+                      </ng-container>
+                    </select>
+                  </div>
                 </div>
 
                 <div class="form-group col-3">
-                  <label for="tipoempresasectorid">Tipo empresa sector</label>
-                  <select   formControlName="tipoempresasectorid" id="tipoempresasectorid" 
-                            nombre="tipoempresasectorid" class="form-control" >
-                    <option value="0">Seleccione tipo empresa</option>
-                    
-                    <ng-container *ngFor="let tipEmpSec of tipoEmpresaSector">
-                      <option [value]="tipEmpSec.id">{{ tipEmpSec.descripcion }}</option>
-                    </ng-container>
-                  </select>
+                  <label for="tipoempresasectorid">Empresa Tipo Sector</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+
+                    <select   formControlName="tipoempresasectorid" id="tipoempresasectorid" 
+                              nombre="tipoempresasectorid" class="form-control" >
+                      <option value="0">Seleccionar</option>
+                      
+                      <ng-container *ngFor="let tipEmpSec of tipoEmpresaSector">
+                        <option [value]="tipEmpSec.id">{{ tipEmpSec.descripcion }}</option>
+                      </ng-container>
+                    </select>
+                  </div>
                 </div>
 
                   <div class="form-group col-3">

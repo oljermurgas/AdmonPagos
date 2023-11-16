@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormulariosService } from 'src/app/services/formularios.service';
-import { AdmonPagosAdminService } from 'src/app/services/shared/services/admon-pagos-admin.service';
+import { InmuebleTipoService } from 'src/app/services/tipos/inmueble-tipo.service';
 import { SharedService } from 'src/app/services/shared/services/shared.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -19,7 +19,7 @@ export class TipoInmuebleRegistrarComponent implements OnInit {
   idRegistro: number =0;
   endPoint="TipoInmueble"
 
-  constructor(  private admonPagosAdminService: AdmonPagosAdminService,
+  constructor(  private inmuebleTipoService: InmuebleTipoService,
                 private sharedService: SharedService,
                 private formBuilder: FormBuilder,
                 private toastr: ToastrService,
@@ -36,7 +36,8 @@ export class TipoInmuebleRegistrarComponent implements OnInit {
     }
 //------------------------------------------------------------------------------------------
   ngOnInit(): void {
-      this.suscription= this.admonPagosAdminService.obtenerDatosRegistroObservable$().subscribe(data => {
+      this.suscription= this.inmuebleTipoService.obtenerDatosRegistroObservable$().subscribe(data => {
+        console.log("Llamado:", data);
         if (data && Object.keys(data).length > 0) {
           this.form.patchValue({
             id:data.id,
@@ -88,7 +89,7 @@ export class TipoInmuebleRegistrarComponent implements OnInit {
 
         this.sharedService.patch(this.endPoint, this.idRegistro, jsonPatch).subscribe(
           response => {
-            this.admonPagosAdminService.obtenerListadoRegistros('/' + this.endPoint);
+            this.inmuebleTipoService.obtenerListadoRegistros('/' + this.endPoint);
             this.toastr.success("Registros actualizados","Exito");
           },
           error => {

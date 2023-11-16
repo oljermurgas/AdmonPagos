@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { TipoEmpresaService } from 'src/app/services/tipo-empresa.service';
+import { EmpresaTipoService } from 'src/app/services/tipos/empresa-tipo.service';
 import { SharedService } from 'src/app/services/shared/services/shared.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -17,7 +17,7 @@ export class TipoEmpresaRegistrarComponent implements OnInit, OnDestroy  {
   originalFormValues: any;
   idRegistro: number =0;
 
-  constructor(  private serviceService: TipoEmpresaService,
+  constructor(  private serviceService: EmpresaTipoService,
                 private sharedService: SharedService,
                 private formBuilder: FormBuilder,
                 private toastr: ToastrService) {

@@ -17,13 +17,14 @@ export class PopupService {
     private popupMessage: string = '';
     private popupUrl: string = '';
     private popupPeso:string='';
+    private popupComponente: string ='';
   
-    open(title: string, message: string, url?: string, peso?: string) {
+    open(title: string, message: string, componente?: string) {
       this.popupTitle = title;
       this.popupMessage = message;
-      // this.popupUrl = url;
-      // this.popupPeso = peso;
+      this.popupComponente = componente || '';
       this.isOpenSubject.next(true);
+
     }
   
     close() {
@@ -42,8 +43,8 @@ export class PopupService {
       return this.popupUrl;
     }
 
-    getPeso(): string {
-      return this.popupPeso;
+    getPopupComponente(): string {
+      return this.popupComponente;
     }
 
     downloadFile() {

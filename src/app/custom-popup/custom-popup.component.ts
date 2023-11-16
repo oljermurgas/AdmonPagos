@@ -50,7 +50,7 @@ export class CustomPopupComponent implements OnInit {
         this.title = this.popupService.getPopupTitle();
         this.message = this.popupService.getPopupMessage();
         this.url = this.popupService.getPopupUrl();
-        this.peso = this.popupService.getPeso();
+        // this.peso = this.popupService.getPeso();
 
         if (this.peso !== '0') {
           const pesoNumber = parseInt(this.peso, 10);

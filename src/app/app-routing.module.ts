@@ -22,7 +22,10 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { FacturaListadoComponent } from './factura-listado/factura-listado.component';
 import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
 import { FacturaRegistroPagoComponent } from './factura-registro-pago/factura-registro-pago.component';
-
+import { TipoObligacionEmpresaComponent } from './parameters/tipo-obligacion-empresas/tipo-obligacion-empresas.component';
+import { TipoTarifaComponent } from './parameters/tipo-tarifas/tipo-tarifa.component';
+import { CoordinacionPgnComponent } from './parameters/coordinacion-pgn/coordinacion-pgn.component';
+import { TipoVinculacionContractualComponent } from './parameters/tipo-vinculacion-contractual/tipo-vinculacion-contractual.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -34,18 +37,22 @@ const routes: Routes = [
       { path: 'users', component: UsersComponent }
     ]},
     { path: 'parameters', children: [
+      { path: 'tipo-pago-admon', component: TipoPagoAdmonComponent },
       { path: '', redirectTo: 'tipo-empresa', pathMatch: 'full' },
       { path: 'tipo-empresa', component: TipoEmpresaComponent },
       { path: 'tipo-empresa-nivel', component: TipoEmpresaNivelComponent },
-      { path: 'tipo-inmueble', component: TipoInmuebleComponent },
-      { path: 'tipo-canal-envio-facturacion', component: TipoCanalEnvioFacturacionComponent },
-      { path: 'tipo-empresa-sector', component: TipoEmpresaSectorComponent },
-      { path: 'tipo-pago-admon', component: TipoPagoAdmonComponent },
       { path: 'tipo-concepto-facturacion', component: TipoConceptoFacturacionComponent },
-      { path: 'sede', component: SedeComponent },
       { path: 'entidad', component: EntidadComponent },
-      { path: 'SedePoppupComponent', component: SedePoppupComponent },
-      { path: 'Factura-listado', component: FacturaListadoComponent }
+      { path: 'tipo-empresa-sector', component: TipoEmpresaSectorComponent },      
+      { path: 'tipo-canal-envio-facturacion', component: TipoCanalEnvioFacturacionComponent },
+      { path: 'tipo-inmueble', component: TipoInmuebleComponent },
+      { path: 'tipo-obligacion', component: TipoObligacionEmpresaComponent },
+      { path: 'tipo-tarifa', component: TipoTarifaComponent },
+      { path: 'tipo-vinculacion-contractual', component: TipoVinculacionContractualComponent },
+      { path: 'sede', component: SedeComponent },
+      { path: 'sedepoppupComponent', component: SedePoppupComponent },
+      { path: 'factura-listado', component: FacturaListadoComponent },
+      { path: 'coordinador', component: CoordinacionPgnComponent }
     ]},
     { path: 'reports', component: ReportsComponent }
   ]},

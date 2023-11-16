@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SharedService } from 'src/app/services/shared/services/shared.service';
 import { EntidadObligacionesService } from 'src/app/services/shared/entidades/entidad-obligaciones.services';
 import { ToastrService } from 'ngx-toastr';
@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EntidadTipoObligacionComponent implements OnInit {
   @Input() endPoint: string='';
+  @Output() datoEnviadoTipoObligacion = new EventEmitter<any>();
   items: any =[];
 
   constructor(private sharedService : SharedService,
@@ -29,11 +30,13 @@ export class EntidadTipoObligacionComponent implements OnInit {
 
               editar(tarjeta: any) {
                 this.entidadObligacionesService.editarRegistro(tarjeta);
+                this.datoEnviadoTipoObligacion.emit(tarjeta);
+                console.log("tarjeta : ", tarjeta);
                 }
 
               eliminar(id: number){
                   if (confirm('Esta seguro que desea borrar el registro' + id + " ?")) {
-                        this.sharedService.del('Sede', id).subscribe(data => {
+                        this.sharedService.del('EntidadTipoObligacion', id).subscribe(data => {
                           if (parseInt(this.endPoint) > 0) {
                             this.entidadObligacionesService.obtenerListadoRegistrosPorEntidad(parseInt(this.endPoint));
                             this.entidadObligacionesService.obtenerDatosRegistroObservable$().subscribe((data) => {

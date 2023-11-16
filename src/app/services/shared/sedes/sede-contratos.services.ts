@@ -29,7 +29,7 @@ export class SedeContratoService {
     this.http.get<any[]>(this.url + EndPoint)
       .pipe(
         catchError((error) => {
-          console.error("Error al obtener datos: ", error);
+          // console.error("Error al obtener datos: ", error);
           return []; // Devuelve un array vacío en caso de error
         })
       )

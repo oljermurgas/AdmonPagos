@@ -3,7 +3,7 @@
     <i class="fa fa-plus"></i>
   </button>
     <div class="row">
-      <form action="" class="contendor-componente bg-light my-1 p-3 border rounded">        
+      <form action="" class="contendor-componente bg-light my-0 p-0 border rounded">        
         <!-- Encabezados de columnas -->
         <div class="form-row mb-2 border-1 contenedor-item-registro header-row">
           <div class="col-2 header-col">
@@ -15,12 +15,10 @@
           <div class="col-2 header-col">
             <div class="texto-lista-item">Fecha Final</div>
           </div>
-          <div class="col-2 header-col">
-            <div class="texto-lista-item">Tercero</div>
+          <div class="col-4 header-col">
+            <div class="texto-lista-item">Razon Social</div>
           </div>
-          <div class="col-2 header-col">
-            <div class="texto-lista-item">Valor</div>
-          </div>
+         
           <div class="col-2 header-col">
             <div class="texto-lista-item">Acción</div>
           </div>
@@ -28,7 +26,7 @@
         
         <!-- Filas de datos -->
         <div class="contendor-item-todos">
-          <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of itemsContratos">
+          <div class="form-row mb-1 border-1 contenedor-item-registro" *ngFor="let item of itemsContratos">
             <div class="col-2">
               <div class="texto-lista-item">{{ item.documentoNumero }}</div>
             </div>
@@ -39,16 +37,12 @@
               <div class="texto-lista-item">{{ item.fechaFinal | date:'dd/MM/yyyy' }}</div>
             </div>
   
-            <div class="col-2">
-              <div class="texto-lista-item">{{ item.terceroApellidos  + ' ' + item.terceroNombres }}  </div>
+            <div class="col-4">
+              <div class="texto-lista-item">{{ item.razonSocial }}  </div>
             </div>
   
             <div class="col-2">
-              <div class="texto-lista-item">{{ item.valor }}</div>
-            </div>
-  
-            <div class="col-2">
-              <i class="far fa-edit fa-lg text-info cursor-pointer" ></i>
+              <i class="far fa-edit fa-lg text-info cursor-pointer" (click)="editar(item)"></i>
               <i *ngIf="item.estado"    class="far fa-trash-alt fa-lg ml-1 text-danger cursor-pointer"></i>
               <i *ngIf="!item.estado"   class="far fa-trash-alt fa-lg ml-1 black-icon"></i>
             </div>

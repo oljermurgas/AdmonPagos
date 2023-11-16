@@ -14,35 +14,32 @@
             </h4>
 
             <div class="form-group col-12 col-sm-6 col-md-4">
-              <label for="terceroidentificacion">Identificación</label>
-              <input type="text" formControlName="terceroidentificacion" id="terceroidentificacion" name="terceroidentificacion" class="form-control"
-               placeholder="Ejem: 1065998123">
-            </div>
+              <label for="identificacion" data-toggle="tooltip" data-placement="bottom" title="NIT o Num. Cedula">
+                Identificación
+              </label>
 
-            <div class="form-group col-12 col-sm-6 col-md-4">
-              <label for="terceronombre">Nombre(s)</label>
-              <input type="text" formControlName="terceronombre"  id="terceronombre" name="terceronombre" class="form-control"
-               placeholder="Ejem: Luis">
+              <input type="text" formControlName="identificacion" id="identificacion" name="identificacion" class="form-control"
+                placeholder="Ejem: 1065998123">
             </div>
+            
 
-            <div class="form-group col-12 col-sm-6 col-md-4">
-              <label for="terceroapellido">Apellido(s)</label>
-              <input type="text" formControlName="terceroapellido" id="terceroapellido" name="terceroapellido" class="form-control"
-               placeholder="Ejem: Castro">
+            <div class="form-group col-12 col-sm-12 col-md-8">
+              <label for="razonsocial">Tercero</label>
+              <input type="text" formControlName="razonsocial"  id="razonsocial" name="razonsocial" class="form-control"
+               placeholder="Ejem: Representaciones MAS">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="terceroemail">Email</label>
-              <input type="terceroemail" formControlName="terceroemail"  id="terceroemail" name="terceroemail" class="form-control"
+              <label for="email">Email</label>
+              <input type="email" formControlName="email"  id="email" name="email" class="form-control"
                placeholder="Ejem: usuario@gmail.com">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="tercerotelefono">Telefono</label>
-              <input type="text" formControlName="tercerotelefono"  id="tercerotelefono" name="tercerotelefono" class="form-control"
+              <label for="telefono">Telefono</label>
+              <input type="text" formControlName="telefono"  id="telefono" name="telefono" class="form-control"
                placeholder="Ejem: (096) 315 6789">
             </div>
-
           </div>
 
           <div class="form-row mb-1">
@@ -51,25 +48,31 @@
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="fas fa-user fa-stack-1x fa-inverse"></i>
               </span>
-              Informacion Del Contrado
+              Informacion Del Contrato
             </h4>
 
-            <div class="form-group col-12 col-sm-6 col-md-4">
-              <label for="documento">Documento</label>
-              <input type="text" formControlName="documento"  id="documento" name="documento" class="form-control"
+            <div class="form-group col-12 col-sm-4 col-md-4">
+              <label for="documentonumero">Documento</label>
+              <input type="text" formControlName="documentonumero"  id="documentonumero" name="documentonumero" class="form-control"
                placeholder="Ejem: 2023-1201">
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-4">
+            <div class="form-group col-12 col-sm-4 col-md-4">
               <label for="valor">Valor Total</label>
-              <input type="text" formControlName="valor"  id="valor" name="valor" class="form-control"
-               placeholder="Ejem: 1,000,000">
+              <input  type="text" formControlName="valor" id="valor" name="valor" class="form-control"
+                placeholder="Ejem: 1,000,000"   (input)="actualizarValorFormateado()"
+              />
+              <div>{{ valorFormateado }}</div>
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-4">
-              <label for="nummes">Numero Meses</label>
-              <input type="text" formControlName="nummes" id="nummes" name="nummes" class="form-control"
-               placeholder='Ejem: 7'>
+            <div class="form-group col-4">
+              <label for="estado">&nbsp;</label>
+              <div class="d-flex align-items-center contenedor-checkbox">
+                  <label for="estado" class="m-0 pt-1">Estado</label>
+                  <div class="d-flex align-items-center">
+                      <input type="checkbox" formControlName="estado" id="estado" name="estado" class="form-check-input ml-2">
+                  </div>
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-12">
@@ -86,34 +89,55 @@
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
               </span>
-              Fecha del contrato 
+              Fecha Del Contrato 
             </h4>
 
             <div class="col-12 col-md-4">
                 <div class="form-row">
                   <div class="form group col-12 col-sm-2 col-md-12">
                     <label for="fechainicio">Fecha inicio</label>
-                    <input type="text" formControlName="fechainicio" id="fechainicio" name="fechainicio" class="form-control"
-                    placeholder="Ejem: 01/01/2022">
+                      <div class="input-group">
+                        <input type="text" formControlName="fechainicio" id="fechainicio" name="fechainicio" 
+                              class="form-control"        placeholder="Ejem: 01/01/2022">
+                      </div>
                   </div>
 
                   <div class="form group col-12 col-sm-2 col-md-12">
                     <label for="fechafinal">Fecha final</label>
-                    <input type="text" formControlName="fechafinal" id="fechafinal" name="fechafinal" class="form-control"
-                    placeholder="Ejem: 30/11/2022">
+                      <div class="input-group">
+                          <input type="text" formControlName="fechafinal" id="fechafinal" name="fechafinal" 
+                                class="form-control"         placeholder="Ejem: 30/11/2022">
+
+                                <!-- <div class="input-group-append" for="fechafinal">
+                                  <span class="input-group-text"> <i class="far fa-calendar-alt fa-sm"></i></span>
+                                </div> -->
+                      </div>
                   </div>
                 </div>
-
             </div>
 
             <div class="col-12 col-md-8">
              <div class="form-row">
-              <label for="comentarios">Comentarios</label>
-              <textarea name="comentarios" formControlName="comentarios" id="comentarios"  rows="4" class="form-control"
+              <label for="notas">Comentarios</label>
+              <textarea name="notas" formControlName="notas" id="notas"  rows="4" class="form-control"
               placeholder="Texto referente a la actividad"></textarea>
              </div>
             </div>
             </div>
+
+            <div class="form-row mb-1">
+           
+              <div class="form-group col-6">
+                <label for="">Fecha registro</label>
+                <input type="text" formControlName="fecharegistro" id="fecharegistro" nombre="fecharegistro" class="form-control" placeholder="Ejem: 18/12/2023" readonly>
+              </div>
+  
+              <div class="form-group col-6">
+                  <label for="">Fecha modificación</label>
+                  <input type="text" formControlName="fechaModificacion" id="fechaModificacion" name="fechaModificacion" class="form-control" placeholder="Ejem: 25/12/2023" readonly>
+              </div> 
+
+          </div>
 
             <div class="form-row mb-1">
               <div class="col-12 col-md-3">
@@ -127,8 +151,8 @@
                   (click)="onCancel()">
                   <i class="fas fa-times pr-1"></i>Cancelar</button>
               </div>
-              <input type="text" formControlName="sedeid" id="sedeid" name="sedeid" class="form-control" [hidden]="true">
             </div>
+
       </form>
     </div>
 </div>

@@ -1,16 +1,26 @@
 <div class="container">
     <div class="row">
         <form action="" class="contendor-componente bg-light my-3 p-3 border rounded">
-            <h2>Listado elementos</h2>
-            <app-banner-buscador></app-banner-buscador>
+            <h2>Listado</h2>
+            <!-- Encabezados de Columna -->
+            <div class="form-row mb-2 border-1">
+                <div class="col-10 d-flex align-items-center font-weight-bold">
+                    <div class="texto-lista-item">Descripción</div>
+                </div>
+                <div class="col-2 d-flex align-items-center font-weight-bold">
+                    Acciones
+                </div>
+            </div>
+            
+            <!-- Filas de Datos -->
             <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of items">
-                <div class="col-10 " >
+                <div class="col-10 d-flex align-items-center">
                     <div class="texto-lista-item">{{item.descripcion}}</div>
                 </div>
-                <div class="col-2">
-                    <i (click)="editar(item)" class="far fa-edit fa-lg text-info cursor-pointer" ></i>
-                    <i *ngIf="item.estado"    (click)="eliminar(item.id)"  class="far fa-trash-alt fa-lg ml-1 text-danger cursor-pointer"></i>
-                    <i *ngIf="!item.estado"   class="far fa-trash-alt fa-lg ml-1 black-icon"></i>
+                <div class="col-2 d-flex align-items-center">
+                    <i (click)="editar(item)" class="far fa-edit fa-lg text-info cursor-pointer"></i>
+                    <i *ngIf="item.estado" (click)="eliminar(item.id)" class="far fa-trash-alt fa-lg ml-1 text-danger cursor-pointer"></i>
+                    <i *ngIf="!item.estado" class="far fa-trash-alt fa-lg ml-1 black-icon"></i>
                 </div>
             </div>
         </form>

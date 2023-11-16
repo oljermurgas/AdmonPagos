@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription,  of , forkJoin } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FormulariosService } from 'src/app/services/formularios.service';
 import { AdmonPagosAdminService } from 'src/app/services/shared/services/admon-pagos-admin.service';
 import { SharedService } from 'src/app/services/shared/services/shared.service';
@@ -8,10 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 import { format } from 'date-fns';
 import { EntidadService } from 'src/app/services/shared/entidades/entidad.services';
 import { PopupService } from 'src/app/services/shared/services/popup-service';
-
-
-// import { SedeService } from 'src/app/services/shared/sedes/sede.services';
-// import { SedeContratoService } from 'src/app/services/shared/sedes/sede-contratos.services';
 
 @Component({
   selector: 'app-entidad-registrar',
@@ -31,6 +28,7 @@ export class EntidadRegistrarComponent implements OnInit {
   tipoEmpresa : any [] =[];
   tipoEmpresaNivel : any [] =[];
   tipoEmpresaSector : any [] =[];
+  selectedMunicipioId: number = 0;
 
   constructor(  private admonPagosAdminService: AdmonPagosAdminService,
                 private sharedService: SharedService,
@@ -59,37 +57,55 @@ export class EntidadRegistrarComponent implements OnInit {
                     fechamodificacion:[null] });
     }
 //------------------------------------------------------------------------------------------
-  ngOnInit(): void {
-    if (this.entidadService.obtenerDatosRegistroObservable$) {
-      this.suscription = this.entidadService.obtenerDatosRegistroObservable$().subscribe(data => {
-          if (data && Object.keys(data).length > 0) {
-            this.form.patchValue({
-              id:data.id,
-              identificacion:data.identificacion,
-              departamentoId: data.departamentoId,
-              municipioId: data.municipioId,
-              nombre: data.nombre,
-              direccion: data.direccion,
-              tipoempresaid: data.tipoEmpresaId,
-              tipoempresanivelid: data.tipoEmpresaNivelId,
-              tipoempresasectorid: data.tipoEmpresaSectorId,
-              estado: data.estado,
-              usuarioId: data.usuarioId,
-              fecharegistro: format(new Date(data.fechaCreacion), 'yyyy/MM/dd :hh:mm:ss'), 
-              fechaModificacion: format(new Date(data.fechaModificacion), 'yyyy/MM/dd :hh:mm:ss') 
-            }); 
-            this.originalFormValues = { ...this.form.value };
-            this.idRegistro = data.id;
+    ngOnInit(): void {
+      let data: any; 
 
-            // const idSede = this.idRegistro ; // Obtén el idSede correspondiente
-            // this.sedeContratoService.obtenerListadoRegistrosPorSede(idSede);
+        if (this.entidadService.obtenerDatosRegistroObservable$) {
+          this.suscription = this.entidadService.obtenerDatosRegistroObservable$().pipe(
+            switchMap((responseData) => {
+              data = responseData;
+              if (data && Object.keys(data).length > 0) {
+                return forkJoin([
+                  this.sharedService.get('departamento/' + data.departamentoId),
+                  of(data) 
+                ]);
+              } else {
+                return of([null, null]); 
+              }
+            })
+          ).subscribe(([depto, data]) => {
+            if (depto) {
+              this.tipoMunicipio = depto;
+              this.selectedMunicipioId = data.municipioId;
 
-          } else {
-            // this.toastr.success("Los datos del servicio no son válidos o están vacíos.","Mensaje");
+              this.form.patchValue({
+                id:data.id,
+                  identificacion:data.identificacion,
+                  departamentoId: data.departamentoId,
+                  municipioId: data.municipioId,
+                  nombre: data.nombre,
+                  direccion: data.direccion,
+                  tipoempresaid: data.tipoEmpresaId,
+                  tipoempresanivelid: data.tipoEmpresaNivelId,
+                  tipoempresasectorid: data.tipoEmpresaSectorId,
+                  estado: data.estado,
+                  usuarioId: data.usuarioId,
+                  fecharegistro: format(new Date(data.fechaCreacion), 'yyyy/MM/dd :hh:mm:ss'), 
+                  fechaModificacion: format(new Date(data.fechaModificacion), 'yyyy/MM/dd :hh:mm:ss') 
+              });
+              this.originalFormValues = { ...this.form.value };
+              this.idRegistro = data.id;
+        
+              // const idSede = this.idRegistro ; // Obtén el idSede correspondiente
+              // this.sedeContratoService.obtenerListadoRegistrosPorSede(idSede);
+
+            } else {
+              // Manejar el caso en el que no hay datos de departamento
               this.idRegistro = 0;
-          }
-        });
-      }
+            }
+          });
+
+        }
 
       this.sharedService.get('departamento').subscribe(data => {
         this.tipoDepartamento = data;
@@ -152,7 +168,7 @@ export class EntidadRegistrarComponent implements OnInit {
 
         this.sharedService.patch(this.endPoint, this.idRegistro, jsonPatch).subscribe(
           response => {
-            this.admonPagosAdminService.obtenerListadoRegistros('/' + this.endPoint);
+            this.entidadService.obtenerListadoRegistros('/' + this.endPoint);
             this.toastr.success("Registros actualizados","Exito");
           },
           error => {

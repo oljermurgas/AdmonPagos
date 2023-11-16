@@ -62,6 +62,7 @@ export class EntidadPoppupComponent implements OnInit {
                 this.isOpen = isOpen;
                 if (isOpen) {
                   this.title = this.popupService.getPopupTitle();
+                  this.form.reset();
                   }
               });
              
@@ -118,7 +119,6 @@ export class EntidadPoppupComponent implements OnInit {
         if (this.form.get('tipoobligacionid') && this.form.get('tipotarifaid')) {
             const dataToSend = {
               EntidadId: this.entidadid,
-              // TerceroIdentificacion: this.form.get('tipopagoadmonid')?.value ?? '',
               TipoObligacionId: this.form.get('tipoobligacionid')?.value ?? '',
               TipoTarifaId: this.form.get('tipotarifaid')?.value ?? '',
               PeriodicidadFactura: this.form.get('periodicidadfactura')?.value ?? '',
@@ -138,7 +138,7 @@ export class EntidadPoppupComponent implements OnInit {
     ActualizarRegistro(){
       const jsonPatch: any[] = [];
       this.formulariosService.compareAndGeneratePatch(jsonPatch, this.form.value, this.originalFormValues);
-
+      console.log("jsonPatch : ", jsonPatch);
         this.sharedService.patch(this.endPoint, this.idRegistro, jsonPatch).subscribe(
           response => {
             this.sedeService.obtenerListadoRegistros('/' + this.endPoint);
@@ -173,5 +173,25 @@ export class EntidadPoppupComponent implements OnInit {
       } else {
         this.tipoObligacion = [];
       }
+    }
+
+    recibirDatoEnviado(data: any) {
+      if (data) {
+        console.log("Recibido :", data);
+        this.form.patchValue({
+          // id:data.id,
+          tipopagoadmonid:data.tipoObligacion.tipoPagoAdmonId,
+          tipoobligacionid: data.tipoObligacionId,
+          tipotarifaid: data.tipoTarifaId,
+          periodicidadfactura: data.periodicidadFactura,
+          numeropagoelectronico: data.numeroPagoElectronico,
+          numerocontrato: data.numeroContrato
+
+        });
+        this.originalFormValues = { ...this.form.value };
+        this.idRegistro = data.id;
+        this.idRegistrostring =this.idRegistro.toString();
+      }
+  
     }
 }

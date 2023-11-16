@@ -1,0 +1,64 @@
+<div class="popup-container" *ngIf="isOpen">
+  <div class="row justify-content-center contendor-total">
+    <button type="button" class="btn btn-link text-dark close-button d-flex justify-content-end" (click)="onCancel()">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="col-6 p-0">
+      <form [formGroup]="formulario" class="popup-form bg-light my-0 p-3 border rounded mx-0"> 
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="mb-0">Formulario Seleccionar Empresas</h2>
+        </div>
+
+        <div class="form-row mb-1">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa-solid fa-filter"></i></span>
+            </div>
+            <input  formControlName="tipopagpadministracionid" type="text" 
+                    class="form-control lista-despegable" placeholder="Ingrese texto a filtrar"
+                    (input)="filtrarOpciones($event)">
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <div class="form-row mb-2 border-1 mt-2">
+            <div class="col-12 d-flex align-items-center font-weight-bold">
+              <div class="texto-lista-item">Descripción</div>
+            </div>
+          </div> 
+    
+          <div class="contendor-resultados">
+            <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of items">
+                <div class="row">
+                    <div class="col-12 d-flex align-items-center" (dblclick)="adicionarRegistro(item)">
+                        <div class="texto-lista-item">{{item.nombre}}</div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          </div>
+      </form>
+    </div>
+
+    <div class="col-6 p-0">
+      <form [formGroup]="formularioasociado" class="popup-form bg-light my-0 p-3 border rounded mx-0"> 
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="mb-0">Empresas Relacionadas</h2>
+        </div>
+
+        <div class="mb-2">
+          <div class="contendor-resultados">
+            <div class="form-row mb-2 border-1 contenedor-item-registro contenedor-item-registro2" *ngFor="let itemEnt of itemsEntidades">
+                <div class="row">
+                    <div class="col-12 d-flex align-items-center" (dblclick)="eliminarRegistro(itemEnt)">
+                        <div class="texto-lista-item">{{itemEnt.entidades.nombre }}</div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

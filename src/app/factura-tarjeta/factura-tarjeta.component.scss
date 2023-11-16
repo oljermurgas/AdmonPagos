@@ -1,5 +1,7 @@
 html {
     font-size: 100%; /* 100% = 16px */
+    // font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   .h4{
@@ -214,12 +216,13 @@ html {
     background-color: #CDE6DF;
     border-radius: 13px;
     text-align: left;
-    font: normal normal 600 11px Montserrat;
+    // font: normal normal 600 11px Montserrat;
     letter-spacing: 0px;
     opacity: 1;
     text-decoration: none;
     bottom: 0.5rem;
     right: 0.5rem;
+    font-weight: 600;
   }
   
   .contenedor-icono-recurso {
@@ -241,20 +244,21 @@ html {
   .titulo-nivel {
     text-align: left;
     text-decoration: underline;
-    font: normal normal 500 20px/28px Montserrat;
+    // font: normal normal 600 20px/28px Montserrat;
     color: #3366CC;
+    font-weight: 600;
+    // color: red;
   }
   
   .subtitulo-nivel {
-    text-align: left;
-    text-decoration: underline;
-    font: normal normal 500 16px/28px Montserrat;
     color: #3366CC;
-  }
+    font-size: 1.1rem;
+    font-weight: 500;
+}
 
   .titulo_opciones{
     text-align: left;
-    font: normal normal 500 11px Montserrat !important;
+    // font: normal normal 500 11px Montserrat !important;
     letter-spacing: 0px;
     color: #0b457f;
     opacity: 1;
@@ -263,7 +267,7 @@ html {
   
   .descripcion_opciones{
     text-align: left;
-    font: normal normal 400 11px Work Sans,Regular !important;
+    // font: normal normal 400 11px Work Sans,Regular !important;
     letter-spacing: 0px;
     color: #4B4B4B;
     opacity: 1;

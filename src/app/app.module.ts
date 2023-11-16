@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe  } from '@angular/common';
 
 import { PopupService } from './services/shared/services/popup-service';
 
@@ -30,15 +30,11 @@ import { ListadoTipoEmpresaNivelComponent } from './parameters/tipo-empresa-nive
 import { TipoEmpresaNivelRegistrarComponent } from './parameters/tipo-empresa-nivel/tipo-empresa-nivel-registrar/tipo-empresa-nivel-registrar.component';
 import { CompListarComponent } from './parameters/compartir/comp-listar/comp-listar.component';
 import { CoordinacionPgnComponent } from './parameters/coordinacion-pgn/coordinacion-pgn.component';
-import { CoordinacionPgnSedeComponent } from './parameters/coordinacion-pgn-sede/coordinacion-pgn-sede.component';
-import { CoordinacionPgnSedeRegistrarComponent } from './parameters/coordinacion-pgn-sede/coordinacion-pgn-sede-registrar/coordinacion-pgn-sede-registrar.component';
 import { EntidadComponent } from './parameters/entidad/entidad.component';
 import { EntidadRegistrarComponent } from './parameters/entidad/entidad-registrar/entidad-registrar.component';
 import { EntidadTipoObligacionComponent } from './parameters/entidad/entidad-tipo-obligacion/entidad-tipo-obligacion.component';
 import { SedeComponent } from './parameters/sede/sede.component';
 import { SedeContratoComponent } from './parameters/sede/sede-contrato/sede-contrato.component';
-import { SedeEntidadComponent } from './parameters/sede-entidad/sede-entidad.component';
-import { SedeEntidadRegistrarComponent } from './parameters/sede-entidad/sede-entidad-registrar/sede-entidad-registrar.component';
 import { SedeRegistrarComponent } from './parameters/sede/sede-registrar/sede-registrar.component';
 import { TipoCanalEnvioFacturacionComponent } from './parameters/tipo-canal-envio-facturacion/tipo-canal-envio-facturacion.component';
 import { TipoCanalEnvioFacturacionRegistrarComponent } from './parameters/tipo-canal-envio-facturacion/tipo-canal-envio-facturacion-registrar/tipo-canal-envio-facturacion-registrar.component';
@@ -50,8 +46,6 @@ import { TipoInmuebleComponent } from './parameters/tipo-inmueble/tipo-inmueble.
 import { TipoInmuebleRegistrarComponent } from './parameters/tipo-inmueble/tipo-inmueble-registrar/tipo-inmueble-registrar.component';
 import { TipoPagoAdmonComponent } from './parameters/tipo-pago-admon/tipo-pago-admon.component';
 import { TipoPagoAdmonRegistrarComponent } from './parameters/tipo-pago-admon/tipo-pago-admon-registrar/tipo-pago-admon-registrar.component';
-import { TipoTarifaComponent } from './parameters/tipo-tarifa/tipo-tarifa.component';
-import { TipoTarifaRegistrarComponent } from './parameters/tipo-tarifa/tipo-tarifa-registrar/tipo-tarifa-registrar.component';
 import { TipoVinculacionContractualComponent } from './parameters/tipo-vinculacion-contractual/tipo-vinculacion-contractual.component';
 import { TipoVinculacionContractualRegistrarComponent } from './parameters/tipo-vinculacion-contractual/tipo-vinculacion-contractual-registrar/tipo-vinculacion-contractual-registrar.component';
 import { CoordinacionPgnRegistrarComponent } from './parameters/coordinacion-pgn/coordinacion-pgn-registrar/coordinacion-pgn-registrar.component';
@@ -67,6 +61,21 @@ import { FacturaRegistrarComponent } from './factura-registrar/factura-registrar
 import { FacturaTarjetaComponent } from './factura-tarjeta/factura-tarjeta.component'; 
 import { CustomPopupComponent } from './custom-popup/custom-popup.component';
 import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
+import { ListadoTipoInmuebleComponent } from './parameters/tipo-inmueble/listado-inmueble/listado-tipo-inmueble.component';
+import { ListadoTipoCanalEnvioComponent } from './parameters/tipo-canal-envio-facturacion/listado-tipo-canal-envio/listado-tipo-canal-envio.component';
+import { ListadoTipoEmpresaSectorComponent } from './parameters/tipo-empresa-sector/listado-tipo-empresa-sector/listado-tipo-empresa-sector.component';
+import { ListadoTipoPagoAdmonComponent } from './parameters/tipo-pago-admon/listado-tipo-pago-admon/listado-tipo-pago-admon.component';
+import { ListadoConceptoFacturacionComponent } from './parameters/tipo-concepto-facturacion/listado-concepto-facturacion/listado-concepto-facturacion.component';
+import { TipoObligacionEmpresaComponent } from './parameters/tipo-obligacion-empresas/tipo-obligacion-empresas.component';
+import { ListadoTipoObligacionEmpresasComponent } from './parameters/tipo-obligacion-empresas/listado-tipo-obligacion-empresas/listado-tipo-obligacion-empresas.component';
+import { TipoObligacionEmpresaRegistrarComponent } from './parameters/tipo-obligacion-empresas/tipo-obligacion-empresas-registrar/tipo-obligacion-empresas-registrar.component';
+import { ListadoTipoTarifaComponent } from './parameters/tipo-tarifas/listado-tipo-tarifa/listado-tipo-tarifa.component';
+import { TipoTarifaRegistrarComponent } from './parameters/tipo-tarifas/tipo-tarifa-registrar/tipo-tarifa-registrar.component';
+import { TipoTarifaComponent } from './parameters/tipo-tarifas/tipo-tarifa.component';
+import { SedePoppupAsociarEmpresaComponent } from './parameters/sede/sede-poppup-asociar-empresa/sede-poppup-asociar-empresa.component';
+import { CoordinacionPgnListadoComponent } from './parameters/coordinacion-pgn/coordinacion-pgn-listado/coordinacion-pgn-listado.component';
+import { ListadoTipoVinculacionContractualComponent } from './parameters/tipo-vinculacion-contractual/listado-tipo-vinculacion-contractual/listado-tipo-vinculacion-contractual.component';
+import { CoordinacionPgnSedeComponent } from './parameters/coordinacion-pgn/coordinacion-pgn-sede/coordinacion-pgn-sede.component';
 
 
 @NgModule({
@@ -90,14 +99,11 @@ import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
     CompListarComponent,
     CoordinacionPgnComponent,
     CoordinacionPgnSedeComponent,
-    CoordinacionPgnSedeRegistrarComponent,
     EntidadComponent,
     EntidadRegistrarComponent,
     EntidadTipoObligacionComponent,
     SedeComponent,
     SedeContratoComponent,
-    SedeEntidadComponent,
-    SedeEntidadRegistrarComponent,
     SedeRegistrarComponent,
     TipoCanalEnvioFacturacionComponent,
     TipoCanalEnvioFacturacionRegistrarComponent,
@@ -109,8 +115,6 @@ import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
     TipoInmuebleRegistrarComponent,
     TipoPagoAdmonComponent,
     TipoPagoAdmonRegistrarComponent,
-    TipoTarifaComponent,
-    TipoTarifaRegistrarComponent,
     TipoVinculacionContractualComponent,
     TipoVinculacionContractualRegistrarComponent,
     CoordinacionPgnRegistrarComponent,
@@ -124,7 +128,22 @@ import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
     FacturaRegistrarComponent,
     FacturaTarjetaComponent,
     CustomPopupComponent,
-    MenuUsuarioComponent
+    MenuUsuarioComponent,
+    ListadoTipoInmuebleComponent,
+    ListadoTipoCanalEnvioComponent,
+    ListadoTipoEmpresaSectorComponent,
+    ListadoTipoPagoAdmonComponent,
+    ListadoConceptoFacturacionComponent,
+    TipoObligacionEmpresaComponent,
+    ListadoTipoObligacionEmpresasComponent,
+    TipoObligacionEmpresaRegistrarComponent,
+    ListadoTipoTarifaComponent,
+    TipoTarifaRegistrarComponent,
+    TipoTarifaComponent,
+    SedePoppupAsociarEmpresaComponent,
+    CoordinacionPgnListadoComponent,
+    ListadoTipoVinculacionContractualComponent,
+    CoordinacionPgnSedeComponent
   ],
   imports: [
     BrowserModule,
@@ -146,8 +165,9 @@ import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
     })
   ],
   providers: [
-    { provide: PopupService}, 
-    SedeService,],
+              { provide: PopupService}, 
+              {provide: CurrencyPipe},
+              SedeService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,3 +12,18 @@
 .contenedor-checkbox{
    height: calc(1.5em + 0.75rem + 2px);
 }
+
+
+.nav-link.active {
+    background: rgb(138, 135, 135);
+    color: #fff;
+}
+
+
+.nav-link {
+    display: block;
+    padding: 0.3rem 0.7rem !important;
+    font: 400 13px/32px Roboto, "Helvetica Neue", sans-serif;
+    color: rgb(105, 105, 105);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}

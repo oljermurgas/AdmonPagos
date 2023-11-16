@@ -3,6 +3,7 @@ import { SharedService } from 'src/app/services/shared/services/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { SedeService } from 'src/app/services/shared/sedes/sede.services';
 import { EntidadService } from 'src/app/services/shared/entidades/entidad.services';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -14,15 +15,26 @@ import { EntidadService } from 'src/app/services/shared/entidades/entidad.servic
 export class EntidadListadoComponent implements OnInit {
   @Input() endPoint: string='';
   items: any =[];
+  textoFiltro: string ='';
+  itemsIniciales: any =[];
+  formulario: FormGroup;
+  tiposSeleccionados: string = '';
 
   constructor(private sharedService : SharedService,
               private entidadService: EntidadService,
-              private toastr: ToastrService) { }
+              private formBuilder: FormBuilder,
+              private toastr: ToastrService) {
+
+                this.formulario = this.formBuilder.group({
+                  tipopagpadministracionid: [this.tiposSeleccionados],
+                });
+               }
 
               ngOnInit(): void {
                 this.entidadService.obtenerListadoRegistros('/' + this.endPoint);
                 this.entidadService.listadoData$.subscribe((data: any[]) => {
                   this.items = data;
+                  this.itemsIniciales = this.items;
                 });
               }
 
@@ -32,7 +44,7 @@ export class EntidadListadoComponent implements OnInit {
 
               eliminar(id: number){
                   if (confirm('Esta seguro que desea borrar el registro' + id + " ?")) {
-                        this.sharedService.del('Sede', id).subscribe(data => {
+                        this.sharedService.del('Entidad', id).subscribe(data => {
                             this.entidadService.obtenerListadoRegistros('/' + this.endPoint);
                             this.entidadService.obtenerDatosRegistroObservable$().subscribe((data) => {
                               this.items = data;
@@ -41,6 +53,24 @@ export class EntidadListadoComponent implements OnInit {
                     },
                     );
                   }
+                }
+
+                filtrarOpciones(event: Event) {
+                  const termino = (event.target as HTMLInputElement).value;
+                  this.textoFiltro = termino;
+                  if (this.textoFiltro.length > 2)
+                    this.actualizarListaConFiltro();
+                  else
+                    this.items = this.itemsIniciales;
+                }
+
+
+                actualizarListaConFiltro() {
+                  if (this.itemsIniciales && this.textoFiltro !== null && this.textoFiltro !== undefined) {
+                    this.items = this.itemsIniciales.filter((item: { nombre: string }) =>
+                    item.nombre.toLowerCase().includes(this.textoFiltro.toLowerCase())
+                  );  
+                  } 
                 }
 
 }
