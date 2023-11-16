@@ -1,25 +1,36 @@
 //-------------------------------------------
 // PATRONES DE COLORES
 //-------------------------------------------
-$principal:#00ad75;
-$secundario:#3366cc;
-$texto:#696969;
+$principal: #00ad75;
+$secundario: #3366cc;
+$texto: #696969;
 
 /* -------------------------------------------
 1. TIPOGRAFIA DEL SITIO
 ---------------------------------------------*/
 
-html{
-    font-size: 14px;
+html {
+  font-size: 14px;
 }
 
-body{
-    font-family: 'Lato', sans-serif;
-    color: $texto;
+body {
+  font-family: "Lato", sans-serif;
+  color: $texto;
 }
 
+.bg-secondary {
+  background-color: $secundario !important;
+}
 
+.btn-follow-up {
+  background-color: #2d2d2d;
+  border: none;
+  transition: ease 0.1s;
+  box-shadow: 0px 0px 16px -2px rgba(0, 0, 0, 0.36);
+  -webkit-box-shadow: 0px 0px 16px -2px rgba(0, 0, 0, 0.36);
+  -moz-box-shadow: 0px 0px 16px -2px rgba(0, 0, 0, 0.36);
+}
 
-.bg-secondary{
-    background-color: $secundario !important;
+.btn-follow-up:hover {
+  background-color: black;
 }
