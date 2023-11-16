@@ -58,6 +58,8 @@ export class CoordinacionPgnSedeComponent implements OnInit {
                 if (data && Object.keys(data).length > 0) {
                   console.log("data: ", data);
                   this.idRegistro = data.id;
+
+                  console.log("this.idRegistro  : ", this.idRegistro );
                   this.obtenerListaEmpresasXId();
 
                 } else {
@@ -92,12 +94,13 @@ export class CoordinacionPgnSedeComponent implements OnInit {
       console.log("Tarjeta: ", tarjeta);
         if (this.idRegistrostring.length > 0) {
           const dataToSend = {
-              SedeId:this.idRegistrostring,
+            CoordinacionPGNId:this.idRegistro,
+            SedeId:tarjeta.id
             };
-        //   this.sharedService.post('SedeEntidad', dataToSend).subscribe(response => {
-        //   this.toastr.success("Registros exitoso","Exito");
-        //   this.obtenerListaEmpresasXId();
-        // });
+          this.sharedService.post('CoordinadorsSede', dataToSend).subscribe(response => {
+          this.toastr.success("Registros exitoso","Exito");
+          this.obtenerListaEmpresasXId();
+        });
       }
     }
 
@@ -112,12 +115,12 @@ export class CoordinacionPgnSedeComponent implements OnInit {
     }
 
     obtenerListaEmpresasXId(){
-      // + this.idRegistrostring
-        // this.coordinadorPgnService.obtenerListadoRegistros('/Coordinadors/list/1' );
-        //   this.coordinadorPgnService.listadoItems$.subscribe((data) => {
-        //   this.itemsEntidades = data;
-        //   console.log("daas:::::");
-        // });
+      + this.idRegistrostring
+        this.coordinadorPgnService.obtenerListadoRegistros('/Coordinadors/list/1' );
+          this.coordinadorPgnService.listadoItems$.subscribe((data) => {
+          this.itemsEntidades = data;
+          console.log("daas:::::");
+        });
     }
 
     ngOnDestroy() {
