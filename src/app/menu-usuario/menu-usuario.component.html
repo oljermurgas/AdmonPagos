@@ -1,35 +1,52 @@
 <div class="container">
-        <div class="container">
-            <div class="row bg-danger">
-                <div class="col-12 col-md-12" id="seccion-buscador-header">
-                    <h2> Buscador</h2>
-                    <!-- <app-banner-buscador></app-banner-buscador> -->
-                </div>
+  <!-- <div class="container">
+    <div class="row bg-danger">
+      <div class="col-12 col-md-12" id="seccion-buscador-header">
+        <h2>Buscador</h2> -->
+  <!-- <app-banner-buscador></app-banner-buscador> -->
+  <!-- </div>
+    </div>
+  </div> -->
+
+  <div class="container" id="contendor-body-biblioteca">
+    <div class="row">
+      <div
+        class="col-12 col-md-3 m-0 p-0 contenedor-menu-fijar"
+        id="contenedor-menu-fijar"
+      >
+        <div class="container p-0">
+          <div id="seccion-menu">
+            <!-- <div class="line"></div> -->
+            <app-menu-lateral></app-menu-lateral>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-9">
+        <div class="row">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-12" id="seccion-buscador-header">
+                <app-banner-buscador></app-banner-buscador>
+              </div>
             </div>
+          </div>
+          <div
+            class="col-12 col-md-12 banner-resultados"
+            id="seccion-resultado"
+          >
+            <app-factura-listado
+              *ngIf="this.opcionMenu === 'consulta'"
+            ></app-factura-listado>
+            <app-factura-registrar
+              *ngIf="this.opcionMenu === 'nuevo'"
+            ></app-factura-registrar>
+            <router-outlet></router-outlet>
+          </div>
         </div>
-
-        <div class="container" id="contendor-body-biblioteca">
-                <div class="row">
-                    <div class="col-12 col-md-3 m-0 p-0 contenedor-menu-fijar" id="contenedor-menu-fijar">
-                        <div class="container p-0">
-                            <div id="seccion-menu">
-                            <app-menu-lateral></app-menu-lateral>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-9">
-                        <div class="row">
-                            <div class="col-12 col-md-12 banner-resultados" id="seccion-resultado">
-                                <app-factura-listado *ngIf="(this.opcionMenu==='consulta')"></app-factura-listado>
-                                <app-factura-registrar *ngIf="(this.opcionMenu==='nuevo')"></app-factura-registrar>
-                                <router-outlet></router-outlet>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- <app-banner-biblioteca></app-banner-biblioteca> -->
