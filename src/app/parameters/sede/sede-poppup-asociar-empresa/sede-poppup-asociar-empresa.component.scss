@@ -10,6 +10,7 @@
   overflow-y: hidden;
   min-width: 30rem;
   min-height: 35rem;
+  margin: 0.5rem 1rem !important;
   }
   
   /* Estilo para los campos de entrada */
@@ -18,7 +19,7 @@
   .popup-form textarea {
     // width: 100%;
     padding: 2px;
-    margin-bottom: 2px; /* Espacio entre los campos */
+    margin-bottom: 0px; /* Espacio entre los campos */
   }
   
   /* Estilo para los botones */
@@ -113,13 +114,13 @@
  }
 
 
-.contenedor-item-registro:hover {
+.contenedor-item-registro:hover  {
   color: #35363c;
   background-color: #F6F8F9;
   border-color: #17a2b8; 
 }
 
-.contenedor-item-registro:active {
+.contenedor-item-registro:active, .activo {
   color: #35363c !important;
   background-color: #17a2b8 !important;
   border-color: #17a2b8 !important; }
@@ -195,8 +196,39 @@ border-radius: 10px;
 .close-button {
   background: gray;
   border-radius: 0px;
+  padding: 0.5rem 0rem !important;
+  color: #fff!important;
 }
 
 .contendor-total{
   background: #fff;
+  border: 1px solid;
 }
+
+.fa-solid, .fas {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+.frame-container {
+  border: 2px solid #79f8f8;
+    padding: 5px 0px;
+    border-radius: 8px;
+    margin: 5px 0px;
+    background: #e5f8f8;
+}
+
+.form-group {
+   margin-bottom: 0rem; 
+}
+
+
+.input-group-prepend {
+   margin-right: 0px;
+}
+
+
+// .popup-form input[type=text][_ngcontent-wti-c105], .popup-form[_ngcontent-wti-c105] input[type=email][_ngcontent-wti-c105], .popup-form[_ngcontent-wti-c105] textarea[_ngcontent-wti-c105] {
+//   /* padding: 2px; */
+//   /* margin-bottom: 2px; */
+// }

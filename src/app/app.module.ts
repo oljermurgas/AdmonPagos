@@ -56,7 +56,6 @@ import { EntidadPoppupComponent } from './parameters/entidad/entidad-poppup/enti
 import { SedeService } from './services/shared/sedes/sede.services';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { FacturaListadoComponent } from './factura-listado/factura-listado.component';
-import { FacturaRegistroPagoComponent } from './factura-registro-pago/factura-registro-pago.component';
 import { FacturaRegistrarComponent } from './factura-registrar/factura-registrar.component';
 import { FacturaTarjetaComponent } from './factura-tarjeta/factura-tarjeta.component'; 
 import { CustomPopupComponent } from './custom-popup/custom-popup.component';
@@ -76,7 +75,7 @@ import { SedePoppupAsociarEmpresaComponent } from './parameters/sede/sede-poppup
 import { CoordinacionPgnListadoComponent } from './parameters/coordinacion-pgn/coordinacion-pgn-listado/coordinacion-pgn-listado.component';
 import { ListadoTipoVinculacionContractualComponent } from './parameters/tipo-vinculacion-contractual/listado-tipo-vinculacion-contractual/listado-tipo-vinculacion-contractual.component';
 import { CoordinacionPgnSedeComponent } from './parameters/coordinacion-pgn/coordinacion-pgn-sede/coordinacion-pgn-sede.component';
-
+import { FacturaPoppupRegistrarDetalleComponent } from './factura-registrar/factura-poppup-registrar-detalle/factura-poppup-registrar-detalle.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +123,6 @@ import { CoordinacionPgnSedeComponent } from './parameters/coordinacion-pgn/coor
     EntidadPoppupComponent,
     MenuLateralComponent,
     FacturaListadoComponent,
-    FacturaRegistroPagoComponent,
     FacturaRegistrarComponent,
     FacturaTarjetaComponent,
     CustomPopupComponent,
@@ -143,7 +141,8 @@ import { CoordinacionPgnSedeComponent } from './parameters/coordinacion-pgn/coor
     SedePoppupAsociarEmpresaComponent,
     CoordinacionPgnListadoComponent,
     ListadoTipoVinculacionContractualComponent,
-    CoordinacionPgnSedeComponent
+    CoordinacionPgnSedeComponent,
+    FacturaPoppupRegistrarDetalleComponent
   ],
   imports: [
     BrowserModule,

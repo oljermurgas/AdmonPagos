@@ -4,6 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,10 +17,15 @@ export class CoordinadorPgnService {
   private itemRegistroActualSubject = new BehaviorSubject<any[]>([]);
   itemRegActual$ = this.itemRegistroActualSubject.asObservable();
 
+  private listadoItemsCoordinadorIdSubject = new BehaviorSubject<any[]>([]);
+  listadoItemsCoordinadorId$ = this.listadoItemsCoordinadorIdSubject.asObservable();
+
+  private ngUnsubscribe = new BehaviorSubject<void>(undefined);
+
+
   constructor(private http: HttpClient) {}
 
   obtenerListadoRegistros(EndPoint: string): void {
-
     this.http.get<any[]>(this.url + EndPoint).pipe(
       catchError((error) => {
         console.error("Error: ", error);
@@ -35,6 +41,26 @@ export class CoordinadorPgnService {
         }
       })
     ).subscribe();
+  }
+
+obtenerListadoRegistrosxCoodinadorId(EndPoint: string): Observable<any[]> {
+  return this.http.get<any[]>(this.url + EndPoint).pipe(
+       map((data) => {
+      if (Array.isArray(data)) {
+        this.listadoItemsCoordinadorIdSubject.next(data);
+        return data;
+      } else {
+        console.error("Data received is not an array.");
+        return [];
+      }
+    })
+  );
+}
+
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next(); // Sin argumentos
+    this.ngUnsubscribe.complete();
   }
 
   editarRegistro(registro: any) {

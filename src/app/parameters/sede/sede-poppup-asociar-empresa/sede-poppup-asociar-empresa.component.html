@@ -1,10 +1,11 @@
 <div class="popup-container" *ngIf="isOpen">
   <div class="row justify-content-center contendor-total">
-    <button type="button" class="btn btn-link text-dark close-button d-flex justify-content-end" (click)="onCancel()">
-      <i class="fas fa-times"></i>
+    <button type="button" class="btn btn-link text-dark close-button d-flex justify-content-end" 
+    (click)="onCancel()">
+      <i class="fas fa-times pr-1"></i>
     </button>
     
-    <div class="col-6 p-0">
+    <div class="col-6 p-0" style="margin: 0.2rem 0rem;">
       <form [formGroup]="formulario" class="popup-form bg-light my-0 p-3 border rounded mx-0"> 
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h2 class="mb-0">Formulario Seleccionar Empresas</h2>
@@ -29,35 +30,69 @@
           </div> 
     
           <div class="contendor-resultados">
-            <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of items">
-                <div class="row">
-                    <div class="col-12 d-flex align-items-center" (dblclick)="adicionarRegistro(item)">
-                        <div class="texto-lista-item">{{item.nombre}}</div>
-                    </div>
+            <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of items" #registroDiv>
+              <div class="row">
+                <div class="col-12 d-flex align-items-center" (dblclick)="registroSeleccionado(item, registroDiv)">
+                  <div class="texto-lista-item">{{item.nombre}}</div>
                 </div>
+              </div>
             </div>
           </div>
+          
           </div>
       </form>
     </div>
 
-    <div class="col-6 p-0">
+    <div class="col-6 p-0" style="margin: 0.2rem 0rem;">
       <form [formGroup]="formularioasociado" class="popup-form bg-light my-0 p-3 border rounded mx-0"> 
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h2 class="mb-0">Empresas Relacionadas</h2>
         </div>
 
+        <div class="frame-container">
+          <div class="form-row">
+            <div class="form-group col-12 mb-2">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa fa-book"></i></span>
+                    </div>
+                    <input type="text" id="numeroContrato" name="numeroContrato" class="form-control" formControlName="numeroContrato"  placeholder="Contrato | NIU | Póliza | NIC | Matrícula" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="form-group col-12 mb-2" ngbTooltip="Numero del contrato">
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa fa-sort-amount-asc"></i></span>
+                  </div>
+                  <input type="text" id="numeroContador" name="numeroContador" class="form-control"  formControlName="numeroContador"  placeholder="Numero Contador" autocomplete="off">
+              </div>
+          </div>
+          
+            <div class="form-group col-4">
+                <button type="submit" class="btn btn-primary btn-block my-1" [disabled]="formularioasociado.invalid" (click)="GuardarRegistro()" >
+                    <i class="fas fa-location-arrow pr-2"></i>Guardar
+                </button>
+            </div>
+            <div class="form-group col-4">
+              <button type="reset" class="btn btn-secondary btn-block my-1" [disabled]="!formularioasociado.get('id')?.value || formularioasociado.get('id')?.value === 0" (click)="eliminarRegistro()">
+                    <i class="fas fa-times pr-2"></i>Eliminar</button>
+            </div>
+          </div>
+        </div>
+
         <div class="mb-2">
           <div class="contendor-resultados">
-            <div class="form-row mb-2 border-1 contenedor-item-registro contenedor-item-registro2" *ngFor="let itemEnt of itemsEntidades">
+            <div class="form-row mb-2 border-1 contenedor-item-registro contenedor-item-registro2" *ngFor="let itemEnt of itemsEntidades" #registroDiv>
                 <div class="row">
-                    <div class="col-12 d-flex align-items-center" (dblclick)="eliminarRegistro(itemEnt)">
+                    <div class="col-12 d-flex align-items-center" (dblclick)="registroSeleccionadoDesasociar(itemEnt, registroDiv)">
                         <div class="texto-lista-item">{{itemEnt.entidades.nombre }}</div>
                     </div>
                 </div>
             </div>
           </div>
-          </div>
+        </div>
+
       </form>
     </div>
   </div>

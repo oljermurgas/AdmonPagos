@@ -64,7 +64,7 @@ export class TipoConceptoFacturacionRegistrarComponent implements OnInit {
             }); 
             this.originalFormValues = { ...this.form.value };
           } else {
-            this.toastr.success("Los datos del servicio no son válidos o están vacíos.","Mensaje");
+            // this.toastr.success("Los datos del servicio no son válidos o están vacíos.","Mensaje");
           }
            this.idRegistro = data.id;
         });

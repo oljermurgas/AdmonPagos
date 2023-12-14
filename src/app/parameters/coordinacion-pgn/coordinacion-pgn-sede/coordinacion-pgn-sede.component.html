@@ -21,11 +21,34 @@
   </div>
 
   <!-- Filas de Datos -->
-  <div class="contendor-resultados">
+  <div class="contendor-resultados mb-4">
       <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of items">
           <div class="col-10 d-flex align-items-center" (dblclick)="adicionarRegistro(item)">
             <div class="texto-lista-item">{{item.nombre}}</div>
           </div>
         </div>
   </div>
+
+
+  <div class="col-12 p-0">
+    <form [formGroup]="formularioasociado" class="popup-form bg-light my-0 p-3 border rounded mx-0"> 
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <h2 class="mb-0">Sede Relacionadas</h2>
+        <h4> {{itemsSedes.length }}</h4>
+      </div>
+
+      <div class="mb-2">
+        <div class="contendor-resultados">
+          <div class="form-row mb-2 border-1 contenedor-item-registro contenedor-item-registro2" *ngFor="let itemSede of itemsSedes">
+              <div class="row">
+                  <div class="col-12 d-flex align-items-center" (dblclick)="eliminarRegistro(itemSede)">
+                      <div class="texto-lista-item">{{itemSede.nombreSede }}</div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
 </form>

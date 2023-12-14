@@ -1,0 +1,104 @@
+<div class="popup-container" *ngIf="isOpen">
+  <div class="row justify-content-center">
+    <form [formGroup]="formulario" class="bg-light my-0 p-3 border rounded popup-form"> 
+        <h2 class="mb-0">Formulario Detalle Concepto Facturación </h2>
+          <div class="form-row mb-1">
+              <h4 class="col-12 text-info mb-2">
+                <span class="fa-stack h6 mb-0">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+                Informacion 
+              </h4>
+
+              <div class="form-group col-12 col-sm-6 col-md-4">
+                  <label for="tipoobligacionid">Tipo Obligacion</label>
+                  <select class="form-select form-select-sm" 
+                    formControlName="tipoobligacionid" id="tipoobligacionid" 
+                    nombre="tipoobligacionid" (change)="onTipoObligacionChange($event)">
+                    <option value="0" selected>Seleccionar Tipo Obligación</option>
+                    <ng-container *ngFor="let obli of tipoObligacion">
+                      <option [value]="obli.id" [attr.data-id]="obli.tipoPagoAdmonId">{{ obli.descripcion }}</option>
+                    </ng-container>
+                  </select>
+              </div>
+
+              <div class="form-group col-12 col-sm-6 col-md-4">
+                  <label for="conceptofacturacionid">Concepto Facturacion</label>
+                  <select class="form-select form-select-sm" 
+                    formControlName="conceptofacturacionid" id="conceptofacturacionid" nombre="conceptofacturacionid" >
+                    <option value="0" selected>Seleccionar Concepto Facturación</option>
+                    <ng-container *ngFor="let tiptar of items">
+                      <option [value]="tiptar.id">{{ tiptar.descripcion }}</option>
+                    </ng-container>
+                  </select>
+              </div>
+
+              <div class="form-group col-12 col-sm-6 col-md-3">
+                <label for="valor">Valor</label>
+                <input type="text" formControlName="valor" id="valor" name="valor" 
+                  class="form-control" autocomplete="off">
+              </div>
+
+              <div class="form-group col-12 col-sm-6 col-md-1">
+                <label for="">Acción</label>
+                <button class="btn-floating" (click) ="GuardarRegistro()">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+          </div>
+
+          <form [formGroup]="formularioTotal" class="bg-light my-0 p-3 border rounded popup-form-total"> 
+
+                <div class="form-row mb-2 border-1">
+                  <div class="col-5 d-flex align-items-center font-weight-bold">
+                      <div class="texto-lista-item">Tipo Obligacion</div>
+                  </div>
+                  <div class="col-4 d-flex align-items-center font-weight-bold">
+                    Concepto Facturacion
+                  </div>
+
+                  <div class="col-3 d-flex align-items-center font-weight-bold">
+                    Valor
+                </div>
+              </div>
+              
+              <!-- Filas de Datos -->
+              <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of detalleFacturaConcepto">
+                  <div class="col-5 d-flex align-items-center">
+                      <div class="texto-lista-item">{{item.tipoObligacionDescripcion}}</div>
+                  </div>
+                  <div class="col-4 d-flex align-items-center">
+                    <div class="texto-lista-item">{{item.tipoConceptoFacturacionDescripcion}}</div>
+                  </div>
+                  <div class="col-3 d-flex align-items-center">
+                    <div class="texto-lista-item">{{item.valor}}</div>
+                  </div>
+              </div>
+              <div>Total Concepto Factura: {{totalValor}}</div>
+          </form>
+        </form>    
+        
+        <!-- <div class="form-row mt-4 d-flex justify-content-start">
+          <div class="col-12 col-md-2">
+            <button type="reset" class="btn bg-success btn-block my-1">
+              <i class="fa-solid fa-plus pr-2"></i>Nuevo</button>
+          </div>
+
+          <div class="col-12 col-md-2">
+             <button type="submit" class="btn btn-primary btn-block my-1"
+            (click)="onAccept()"
+            >
+              <i class="fas fa-location-arrow pr-1"></i>Guardar</button> 
+          </div>
+
+          <div class="col-12 col-md-2">
+             <button type="reset" class="btn btn-secondary btn-block my-1"
+              (click)="onCancel()"
+              >
+              <i class="fas fa-times pr-1"></i>Cancelar</button> 
+          </div>
+        </div> -->
+    <!-- </form> -->
+  </div>
+</div>

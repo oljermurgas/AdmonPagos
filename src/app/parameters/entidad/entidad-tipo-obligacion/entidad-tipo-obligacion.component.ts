@@ -19,8 +19,7 @@ export class EntidadTipoObligacionComponent implements OnInit {
 
               ngOnInit(): void {
                 if (parseInt(this.endPoint) > 0) {
-                  console.log(" this.endPoint :"), this.endPoint;
-                  this.entidadObligacionesService.obtenerListadoRegistrosPorEntidad(parseInt(this.endPoint));
+                  this.entidadObligacionesService.obtenerListadoRegistrosPorEntidad('/TipoObligacion/entidad/' + parseInt(this.endPoint));
                 }  
                
                 this.entidadObligacionesService.listadoData$.subscribe((data: any[]) => {
@@ -31,14 +30,13 @@ export class EntidadTipoObligacionComponent implements OnInit {
               editar(tarjeta: any) {
                 this.entidadObligacionesService.editarRegistro(tarjeta);
                 this.datoEnviadoTipoObligacion.emit(tarjeta);
-                console.log("tarjeta : ", tarjeta);
                 }
 
               eliminar(id: number){
                   if (confirm('Esta seguro que desea borrar el registro' + id + " ?")) {
                         this.sharedService.del('EntidadTipoObligacion', id).subscribe(data => {
                           if (parseInt(this.endPoint) > 0) {
-                            this.entidadObligacionesService.obtenerListadoRegistrosPorEntidad(parseInt(this.endPoint));
+                            this.entidadObligacionesService.obtenerListadoRegistrosPorEntidad('/TipoObligacion/entidad/' + parseInt(this.endPoint));
                             this.entidadObligacionesService.obtenerDatosRegistroObservable$().subscribe((data) => {
                               this.items = data;
                             });

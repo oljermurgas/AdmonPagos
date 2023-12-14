@@ -22,7 +22,7 @@ export class MenuLateralComponent implements OnInit {
 
   navigateTo(opcion: string) {
     this.menuService.setOpcionMenu(opcion);
-    this.router.navigate(['/menu-usuario/factura-registro']);
+    // this.router.navigate(['/menu-usuario/factura-registro']);
   }
 
 }

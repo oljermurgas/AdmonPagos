@@ -4,18 +4,15 @@
             <p>Listado</p>
             <!-- Encabezados de la tabla -->
             <div class="form-row mb-1 border-1 contenedor-item-registro header-row">
-                <div class="col-4">
+
+                <div class="col-5">
+                    <div class="texto-lista-item"><strong>Tipo Admon</strong></div>
+                </div>
+
+                <div class="col-5">
                     <div class="texto-lista-item"><strong>Servicio</strong></div>
                 </div>
-                <div class="col-2">
-                    <div class="texto-lista-item"><strong>Núm Contrato</strong></div>
-                </div>
-                <div class="col-2">
-                    <div class="texto-lista-item"><strong>Núm Contador</strong></div>
-                </div>
-                <div class="col-2">
-                    <div class="texto-lista-item"><strong>Periodo Fac</strong></div>
-                </div>
+
                 <div class="col-2">
                     <div class="texto-lista-item"><strong>Acciones</strong></div>
                 </div>
@@ -24,18 +21,14 @@
             <!-- Elementos en la lista -->
             <div class="contendor-item-todos">
                 <div class="form-row mb-2 border-1 contenedor-item-registro" *ngFor="let item of items">
-                    <div class="col-4">
+                    <div class="col-5">
+                        <div class="texto-lista-item">{{item.tipoObligacion.tipoPagoAdmon.descripcion}}</div>
+                    </div>
+                    
+                    <div class="col-5">
                         <div class="texto-lista-item">{{item.tipoObligacion.descripcion}}</div>
                     </div>
-                    <div class="col-2">
-                        <div class="texto-lista-item">{{item.numeroContrato}}</div>
-                    </div>
-                    <div class="col-2">
-                        <div class="texto-lista-item">{{item.numeroPagoElectronico}}</div>
-                    </div>
-                    <div class="col-2">
-                        <div class="texto-lista-item">{{item.periodicidadFactura}}</div>
-                    </div>
+                  
                     <div class="col-2">
                         <i (click)="editar(item)" class="far fa-edit fa-lg text-info cursor-pointer"></i>
                         <i *ngIf="item.estado" (click)="eliminar(item.id)" class="far fa-trash-alt fa-lg ml-1 text-danger cursor-pointer"></i>

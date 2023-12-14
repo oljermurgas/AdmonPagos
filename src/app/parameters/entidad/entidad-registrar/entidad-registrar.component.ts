@@ -54,7 +54,9 @@ export class EntidadRegistrarComponent implements OnInit {
                     estado:[null],
                     usuarioId:1,
                     fecharegistro:[null],
-                    fechamodificacion:[null] });
+                    fechamodificacion:[null],
+                    periodicidadfactura:[null,Validators.required]
+                  });
     }
 //------------------------------------------------------------------------------------------
     ngOnInit(): void {
@@ -91,7 +93,8 @@ export class EntidadRegistrarComponent implements OnInit {
                   estado: data.estado,
                   usuarioId: data.usuarioId,
                   fecharegistro: format(new Date(data.fechaCreacion), 'yyyy/MM/dd :hh:mm:ss'), 
-                  fechaModificacion: format(new Date(data.fechaModificacion), 'yyyy/MM/dd :hh:mm:ss') 
+                  fechaModificacion: format(new Date(data.fechaModificacion), 'yyyy/MM/dd :hh:mm:ss') ,
+                  periodicidadfactura:data.periodicidadFactura
               });
               this.originalFormValues = { ...this.form.value };
               this.idRegistro = data.id;
@@ -149,7 +152,8 @@ export class EntidadRegistrarComponent implements OnInit {
         direccion: this.form.get('direccion')?.value ?? '', 
         tipoempresaid: this.form.get('tipoempresaid')?.value ?? '', 
         tipoempresanivelid: this.form.get('tipoempresanivelid')?.value ?? '',
-        tipoempresasectorid: this.form.get('tipoempresasectorid')?.value ?? ''
+        tipoempresasectorid: this.form.get('tipoempresasectorid')?.value ?? '',
+        periodicidadFactura: this.form.get('periodicidadfactura')?.value ?? '1'
       };
       console.log("dataToSend : ", dataToSend);
       this.sharedService.post(this.endPoint, dataToSend).subscribe(response => {

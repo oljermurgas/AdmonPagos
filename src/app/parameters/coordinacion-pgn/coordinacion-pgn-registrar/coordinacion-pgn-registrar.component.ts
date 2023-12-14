@@ -18,7 +18,8 @@ export class CoordinacionPgnRegistrarComponent implements OnInit {
   form: FormGroup; 
   originalFormValues: any;
   idRegistro: number =0;
-  endPoint="Coordinadors"
+  endPoint="Coordinadors";
+  acordeonActivo: boolean = false;
 
   constructor(  private coordinadorPgnService: CoordinadorPgnService,
                 private sharedService: SharedService,
@@ -32,6 +33,8 @@ export class CoordinacionPgnRegistrarComponent implements OnInit {
                     responsable: [null, Validators.required],
                     email: [null,Validators.required],
                     telefono: [null, Validators.required],
+                    jefeCoordinadorNombre: [null, Validators.required],
+                    jefeCoordinadorEmail: [null, Validators.required],
                     estado:[null],
                     usuarioId:1,
                     fechaRegistro:[null],
@@ -41,7 +44,6 @@ export class CoordinacionPgnRegistrarComponent implements OnInit {
   ngOnInit(): void {
       this.suscription= this.coordinadorPgnService.obtenerDatosRegistroObservable$().subscribe(data => {
         if (data && Object.keys(data).length > 0) {
-          console.log("data: ", data);
           this.form.patchValue({
             id:data.id,
             coodinacion: data.coodinacion,
@@ -49,6 +51,8 @@ export class CoordinacionPgnRegistrarComponent implements OnInit {
             email: data.email,
             telefono: data.telefono,
             estado: data.estado,
+            jefeCoordinadorNombre: data.jefeCoordinadorNombre,
+            jefeCoordinadorEmail: data.jefeCoordinadorEmail,
             usuarioId: data.usuarioId,
             fechaRegistro: format(new Date(data.fechaCreacion), 'yyyy/MM/dd :hh:mm:ss'), 
             fechaModificacion: format(new Date(data.fechaModificacion), 'yyyy/MM/dd :hh:mm:ss') 
@@ -79,7 +83,9 @@ export class CoordinacionPgnRegistrarComponent implements OnInit {
       if (this.form.get('codigo') && this.form.get('descripcion')) {
           const dataToSend = {
             codigo: this.form.get('codigo')?.value ?? '',
-            descripcion: this.form.get('descripcion')?.value ?? ''
+            descripcion: this.form.get('descripcion')?.value ?? '',
+            jefeCoordinadorNombre: this.form.get('jefeCoordinadorNombre')?.value ?? '',
+            jefeCoordinadorEmail: this.form.get('jefeCoordinadorEmail')?.value ?? ''
           };
 
           this.sharedService.post(this.endPoint, dataToSend).subscribe(response => {

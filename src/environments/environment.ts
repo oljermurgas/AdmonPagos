@@ -1,4 +1,4 @@
-const API_ENDPOINT = "https://localhost:7070";
+const API_ENDPOINT = "https://localhost:44334";
 
 export const environment = {
   production: false,

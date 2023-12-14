@@ -21,7 +21,6 @@ import { SedePoppupComponent } from './parameters/sede/sede-poppup/sede-poppup.c
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { FacturaListadoComponent } from './factura-listado/factura-listado.component';
 import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
-import { FacturaRegistroPagoComponent } from './factura-registro-pago/factura-registro-pago.component';
 import { TipoObligacionEmpresaComponent } from './parameters/tipo-obligacion-empresas/tipo-obligacion-empresas.component';
 import { TipoTarifaComponent } from './parameters/tipo-tarifas/tipo-tarifa.component';
 import { CoordinacionPgnComponent } from './parameters/coordinacion-pgn/coordinacion-pgn.component';
@@ -57,7 +56,7 @@ const routes: Routes = [
     { path: 'reports', component: ReportsComponent }
   ]},
   { path: 'menu-usuario', component: MenuUsuarioComponent, children: [
-    { path: 'factura-registro', component: FacturaRegistroPagoComponent }
+
   ]}
 
 ];

@@ -18,7 +18,7 @@ export class ArchivoService {
     this.httpClient.post<any>(this.url, formData,{ headers: headers }).subscribe(
       {
         next: (response: any) => {
-          console.log(response);
+          // console.log(response);
         },
         error: (error: any) => {
           console.log(error);

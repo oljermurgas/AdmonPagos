@@ -50,10 +50,7 @@ export class EntidadPoppupComponent implements OnInit {
             id:[null],
             tipopagoadmonid:[null],
             tipoobligacionid:[null],
-            tipotarifaid: [null],
-            periodicidadfactura:[null],
-            numeropagoelectronico:[null],
-            numerocontrato:[null]
+            tipotarifaid: [null]
           });
    }
 
@@ -73,10 +70,7 @@ export class EntidadPoppupComponent implements OnInit {
                     id:data.id,
                     tipopagoadmonid:data.tipopagoadmonid,
                     tipoobligacionid: data.tipoobligacionid,
-                    tipotarifaid: data.tipotarifaid,
-                    periodicidadfactura: data.periodicidadfactura,
-                    numeropagoelectronico: data.numeropagoelectronico,
-                    numerocontrato: data.numerocontrato
+                    tipotarifaid: data.tipotarifaid
                   });
                   this.originalFormValues = { ...this.form.value };
                   this.idRegistro = data.id;
@@ -120,10 +114,7 @@ export class EntidadPoppupComponent implements OnInit {
             const dataToSend = {
               EntidadId: this.entidadid,
               TipoObligacionId: this.form.get('tipoobligacionid')?.value ?? '',
-              TipoTarifaId: this.form.get('tipotarifaid')?.value ?? '',
-              PeriodicidadFactura: this.form.get('periodicidadfactura')?.value ?? '',
-              NumeroPagoElectronico: this.form.get('numeropagoelectronico')?.value ?? '',
-              NumeroContrato: this.form.get('numerocontrato')?.value ?? ''
+              TipoTarifaId: this.form.get('tipotarifaid')?.value ?? ''
             };
             this.sharedService.post(this.endPoint, dataToSend).subscribe(response => {
             this.toastr.success("Registros exitoso","Exito");
@@ -182,11 +173,7 @@ export class EntidadPoppupComponent implements OnInit {
           // id:data.id,
           tipopagoadmonid:data.tipoObligacion.tipoPagoAdmonId,
           tipoobligacionid: data.tipoObligacionId,
-          tipotarifaid: data.tipoTarifaId,
-          periodicidadfactura: data.periodicidadFactura,
-          numeropagoelectronico: data.numeroPagoElectronico,
-          numerocontrato: data.numeroContrato
-
+          tipotarifaid: data.tipoTarifaId
         });
         this.originalFormValues = { ...this.form.value };
         this.idRegistro = data.id;

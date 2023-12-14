@@ -1,0 +1,97 @@
+.body {
+  font-size: 10px;
+}
+
+/* Estilo para el formulario */
+.popup-form {
+max-width: 65rem;
+margin: 0 auto; 
+padding: 10px;
+height: 40rem; /* Agregamos la altura fija */
+overflow-y: hidden; 
+width: 60rem;
+}
+
+.popup-form-total {
+  max-width: 65rem;
+  margin: 0 auto; 
+  padding: 10px;
+  height: 20rem; /* Agregamos la altura fija */
+  overflow-y: hidden; 
+  width: 58rem;
+  }
+
+
+/* Estilo para los campos de entrada */
+.popup-form input[type="text"],
+.popup-form input[type="email"],
+.popup-form textarea {
+  width: 100%;
+  padding: 2px;
+  margin-bottom: 2px; /* Espacio entre los campos */
+}
+
+/* Estilo para los botones */
+.popup-form button {
+  // width: 100%; 
+  // margin-right: 50%; 
+}
+
+/* Alinea los botones a la derecha */
+.popup-form .form-row {
+  justify-content: flex-end;
+}
+
+/* Añade estilos específicos para títulos */
+.popup-form h2,
+.popup-form h4 {
+  margin-top: 5px; /* Espacio superior para títulos */
+  margin-bottom: 5px; /* Espacio inferior para títulos */
+}
+
+/* Estilo para el contenedor del formulario */
+.popup-container {
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente para el popup */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Asegura que el popup esté por encima de otros elementos */
+
+}
+
+
+.popup-form label {
+  margin-bottom: 0.1rem;
+}
+
+
+.btn-floating {
+  border-radius: 50%;
+  color: black;
+  border: 0px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-floating:hover {
+color:  #00ad75;;
+}
+
+.popup-body{
+  height: 27rem;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.form-select-sm {
+font-size: 1rem;
+}

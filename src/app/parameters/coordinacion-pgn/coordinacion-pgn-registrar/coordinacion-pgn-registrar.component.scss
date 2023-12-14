@@ -12,3 +12,13 @@
 .contenedor-checkbox{
    height: calc(1.5em + 0.75rem + 2px);
 }
+
+.card {
+    --bs-card-cap-padding-y: 0.2rem;
+    --bs-card-cap-padding-x: 0rem;
+}
+
+.btn:focus {
+    outline: 0; 
+    box-shadow: none; 
+}
